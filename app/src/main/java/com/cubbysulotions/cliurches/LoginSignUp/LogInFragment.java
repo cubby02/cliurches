@@ -25,8 +25,6 @@ import android.widget.Toast;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -78,7 +76,7 @@ public class LogInFragment extends Fragment {
                     //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
                     dialog.setCancelable(true);
                     //Mention the name of the layout of your custom dialog.
-                    dialog.setContentView(R.layout.reset_password);
+                    dialog.setContentView(R.layout.dialog_reset_password);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                     EditText resetEmail = dialog.findViewById(R.id.forgotPassEmail);

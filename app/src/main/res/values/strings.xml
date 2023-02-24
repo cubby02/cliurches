@@ -25,4 +25,11 @@
     <string name="post">Post</string>
     <string name="match_result">MATCH RESULT</string>
     <string name="save_to_gallery">Save to Gallery</string>
+    <string name="mass_reservation">MASS RESERVATION</string>
+    <string name="selected_date">Selected Date</string>
+    <string name="selected_time">Selected Time</string>
+    <string name="name_of_recipient">Name of Recipient</string>
+    <string name="choose_payment_method">Choose payment method</string>
+    <string name="proceed_to_payment">Proceed to Payment</string>
+    <string name="payment">PAYMENT</string>
 </resources>

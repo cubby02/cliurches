@@ -25,7 +25,7 @@ public class LoadingDialog {
         //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(false);
         //Mention the name of the layout of your custom dialog.
-        dialog.setContentView(R.layout.custom_loading_dialog);
+        dialog.setContentView(R.layout.dialog_custom_loading);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         //initialize the textview

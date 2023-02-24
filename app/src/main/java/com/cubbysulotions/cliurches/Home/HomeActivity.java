@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
 import com.cubbysulotions.cliurches.Camera.CameraContainerFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
@@ -54,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
                             tabLabel.setText("HOME");
                             break;
                         case R.id.nav_calendar:
-                            fragment = new CalendarFragment();
+                            fragment = new CalendarContainerFragment();
                             tabLabel.setText("CALENDAR");
                             break;
                         case R.id.nav_receipts:
