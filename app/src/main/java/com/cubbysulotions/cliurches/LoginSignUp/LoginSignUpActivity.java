@@ -1,10 +1,12 @@
-package com.cubbysulotions.cliurches;
+package com.cubbysulotions.cliurches.LoginSignUp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.cubbysulotions.cliurches.R;
+
+public class LoginSignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
