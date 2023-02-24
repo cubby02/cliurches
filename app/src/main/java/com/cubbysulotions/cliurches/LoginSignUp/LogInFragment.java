@@ -1,6 +1,7 @@
 package com.cubbysulotions.cliurches.LoginSignUp;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -21,7 +22,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,6 +43,7 @@ public class LogInFragment extends Fragment {
     private EditText txtEmail, txtPassword;
     private Button btnLogin;
     private TextView txtForgotPassword, register;
+    LoadingDialog loadingDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class LogInFragment extends Fragment {
         btnLogin = view.findViewById(R.id.btnLoginAccount);
         txtForgotPassword = view.findViewById(R.id.btnForgotPass);
         register = view.findViewById(R.id.btnToRegister);
+        loadingDialog = new LoadingDialog(getActivity());
 
         login();
         forgotPassword();
@@ -110,6 +115,10 @@ public class LogInFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     // TODO: add login code here
+
+                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 } catch (Exception e) {
                     Log.e(TAG, "onClick Login: ", e);
                 }

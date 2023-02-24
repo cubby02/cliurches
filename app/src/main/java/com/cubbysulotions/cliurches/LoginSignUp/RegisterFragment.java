@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -31,17 +33,20 @@ public class RegisterFragment extends Fragment {
     private NavController navController;
     private Button btnBack, btnRegister;
     private EditText txtFN, txtLN, txtEmail, txtPassword;
+    LoadingDialog loadingDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        navController = Navigation.findNavController(view);
         btnBack = view.findViewById(R.id.btnBack);
         btnRegister = view.findViewById(R.id.btnRegisterAccount);
         txtFN = view.findViewById(R.id.txtFn);
         txtLN = view.findViewById(R.id.txtLn);
         txtEmail = view.findViewById(R.id.txtEmailRegister);
         txtPassword = view.findViewById(R.id.txtPasswordRegister);
+        loadingDialog = new LoadingDialog(getActivity());
 
         register();
         back();
