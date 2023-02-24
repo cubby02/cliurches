@@ -19,10 +19,11 @@
         android:text="@string/email"
         android:layout_marginLeft="10dp"/>
     <EditText
-        android:id="@+id/txtLogin"
+        android:id="@+id/txtLoginEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:inputType="textEmailAddress"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
+        android:layout_margin="10dp"
+        android:inputType="textPassword"/>
     <Button
         android:id="@+id/btnLoginAccount"
         android:layout_width="match_parent"
