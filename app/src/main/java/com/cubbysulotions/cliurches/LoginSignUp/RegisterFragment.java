@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.github.hariprasanths.bounceview.BounceView;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -47,6 +48,8 @@ public class RegisterFragment extends Fragment {
         txtEmail = view.findViewById(R.id.txtEmailRegister);
         txtPassword = view.findViewById(R.id.txtPasswordRegister);
         loadingDialog = new LoadingDialog(getActivity());
+        BounceView.addAnimTo(btnBack);
+        BounceView.addAnimTo(btnRegister);
 
         register();
         back();

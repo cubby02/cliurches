@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_welcome_screen" >
         <action
             android:id="@+id/action_welcomeScreenFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            app:destination="@id/logInFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"/>
         <action
             android:id="@+id/action_welcomeScreenFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"/>
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
@@ -24,10 +32,16 @@
         tools:layout="@layout/fragment_log_in" >
         <action
             android:id="@+id/action_logInFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"/>
         <action
             android:id="@+id/action_logInFragment_to_welcomeScreenFragment"
-            app:destination="@id/welcomeScreenFragment" />
+            app:destination="@id/welcomeScreenFragment"
+            app:enterAnim="@anim/nav_slide_in_left"
+            app:exitAnim="@anim/nav_slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -36,9 +50,15 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_signInFragment_to_welcomeScreenFragment"
-            app:destination="@id/welcomeScreenFragment" />
+            app:destination="@id/welcomeScreenFragment"
+            app:enterAnim="@anim/nav_slide_in_left"
+            app:exitAnim="@anim/nav_slide_out_right"/>
         <action
             android:id="@+id/action_signInFragment_to_logInFragment"
-            app:destination="@id/logInFragment" />
+            app:destination="@id/logInFragment"
+            app:enterAnim="@anim/nav_slide_in_right"
+            app:exitAnim="@anim/nav_slide_out_left"
+            app:popExitAnim="@anim/nav_slide_out_right"
+            app:popEnterAnim="@anim/nav_slide_in_left"/>
     </fragment>
 </navigation>

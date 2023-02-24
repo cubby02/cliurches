@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.github.hariprasanths.bounceview.BounceView;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -39,7 +40,7 @@ public class LogInFragment extends Fragment {
 
     private NavController navController;
     private EditText txtEmail, txtPassword;
-    private Button btnLogin;
+    private Button btnLogin, btnBack;
     private TextView txtForgotPassword, register;
     LoadingDialog loadingDialog;
 
@@ -51,16 +52,27 @@ public class LogInFragment extends Fragment {
         txtEmail = view.findViewById(R.id.txtLoginEmail);
         txtPassword = view.findViewById(R.id.txtPassword);
         btnLogin = view.findViewById(R.id.btnLoginAccount);
+        btnBack = view.findViewById(R.id.btnBack);
         txtForgotPassword = view.findViewById(R.id.btnForgotPass);
         register = view.findViewById(R.id.btnToRegister);
         loadingDialog = new LoadingDialog(getActivity());
-
+        BounceView.addAnimTo(btnLogin);
+        back();
         login();
         forgotPassword();
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.action_logInFragment_to_signInFragment);
+            }
+        });
+    }
+
+    private void back() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.action_logInFragment_to_welcomeScreenFragment);
             }
         });
     }

@@ -3,71 +3,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginSignUp.RegisterFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".LoginSignUp.RegisterFragment">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_margin="10dp"/>
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/arrow_back"
+        android:backgroundTint="@color/blue_main" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nunito_bold"
         android:text="@string/register"
-        android:textSize="30sp"
-        android:layout_margin="10dp"/>
+        android:textColor="@color/blue_main"
+        android:textSize="30sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/first_name"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="@string/first_name" />
+
     <EditText
         android:id="@+id/txtFn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/last_name"
-        android:layout_marginLeft="10dp"/>
-    <EditText
-        android:id="@+id/txtLn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/email"
-        android:layout_marginLeft="10dp"/>
-    <EditText
-        android:id="@+id/txtEmailRegister"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:inputType="textEmailAddress"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_border"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/password"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="@string/last_name" />
+
+    <EditText
+        android:id="@+id/txtLn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_border" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="@string/email" />
+
+    <EditText
+        android:id="@+id/txtEmailRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_border"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="@string/password" />
+
     <EditText
         android:id="@+id/txtPasswordRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:inputType="textPassword"/>
-    <Button
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:padding="10dp"
+        android:background="@drawable/edit_text_border"
+        android:inputType="textPassword" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegisterAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/register"/>
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/btn_rounded"
+        android:fontFamily="@font/nunito_bold"
+        android:textColor="@color/white"
+        android:text="@string/register" />
 
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cubbysulotions.cliurches.R;
+import com.github.hariprasanths.bounceview.BounceView;
 
 public class WelcomeScreenFragment extends Fragment {
 
@@ -33,6 +34,8 @@ public class WelcomeScreenFragment extends Fragment {
         NavController navController = Navigation.findNavController(view);
         login = view.findViewById(R.id.btnLogin);
         register = view.findViewById(R.id.btnRegister);
+        BounceView.addAnimTo(login);
+        BounceView.addAnimTo(register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
