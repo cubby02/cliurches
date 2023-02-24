@@ -16,4 +16,9 @@
     <string name="home">Home</string>
     <string name="calendar">Calendar</string>
     <string name="receipts">Receipts</string>
+    <string name="share_what_s_on_your_mind">Share what\'s on your mind?</string>
+    <string name="snap_a_photo">Snap a Photo</string>
+    <string name="open_from_gallery">Open from Gallery</string>
+    <string name="walang_misa_ngayong_araw">Walang misa ngayong araw</string>
+    <string name="select_mass">Select Mass</string>
 </resources>
