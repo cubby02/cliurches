@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
@@ -20,12 +22,14 @@ public class HomeActivity extends AppCompatActivity {
 
     ChipNavigationBar navigationView;
     private TextView tabLabel;
+    private RelativeLayout topBarPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         tabLabel = findViewById(R.id.tabLabel);
+        topBarPanel = findViewById(R.id.topBarPanel);
 
         try {
             home();
@@ -45,7 +49,7 @@ public class HomeActivity extends AppCompatActivity {
                             tabLabel.setText("GALLERY");
                             break;
                         case R.id.nav_home:
-                            fragment = new ForumFragment();
+                            fragment = new ForumContainerFragment();
                             tabLabel.setText("HOME");
                             break;
                         case R.id.nav_calendar:
@@ -69,7 +73,23 @@ public class HomeActivity extends AppCompatActivity {
 
     public void home(){
         navigationView = findViewById(R.id.bottom_nav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new ForumFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new ForumContainerFragment()).commit();
         navigationView.setItemSelected(R.id.nav_home, true);
+    }
+
+    public void hideNavigationBar(boolean flag){
+        if(flag){
+            navigationView.setVisibility(View.GONE);
+        } else{
+            navigationView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void hideTopBarPanel(boolean flag){
+        if(flag){
+            topBarPanel.setVisibility(View.GONE);
+        } else{
+            topBarPanel.setVisibility(View.VISIBLE);
+        }
     }
 }

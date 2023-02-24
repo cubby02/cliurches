@@ -9,6 +9,7 @@
     android:background="#CACACA">
 
     <RelativeLayout
+        android:id="@+id/topBarPanel"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/white">
