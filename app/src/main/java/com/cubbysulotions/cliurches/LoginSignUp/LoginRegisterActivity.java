@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.cubbysulotions.cliurches.R;
 
-public class LoginSignUpActivity extends AppCompatActivity {
+public class LoginRegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_loginsignup);
     }
 }

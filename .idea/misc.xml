@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/activity_loginsignup.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_log_in.xml" value="0.1953125" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_log_in.xml" value="0.22" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_register.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_sign_in.xml" value="0.1953125" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.209375" />
       </map>
