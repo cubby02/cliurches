@@ -23,4 +23,6 @@
     <string name="select_mass">Select Mass</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque felis purus, dapibus at viverra nec, egestas vitae ipsum. In in risus mollis, iaculis mauris vitae, efficitur sem. Vivamus pharetra eleifend dui ac posuere. Maecenas in justo augue. Cras dignissim dui sit amet felis malesuada venenatis. Integer mattis ultrices lectus nec dignissim.</string>
     <string name="post">Post</string>
+    <string name="match_result">MATCH RESULT</string>
+    <string name="save_to_gallery">Save to Gallery</string>
 </resources>

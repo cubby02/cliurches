@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imgSearch"
+        android:id="@+id/imgSearchChurch"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:background="@color/black"
