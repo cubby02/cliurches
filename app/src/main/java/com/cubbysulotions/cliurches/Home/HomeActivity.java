@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
@@ -18,11 +19,13 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 public class HomeActivity extends AppCompatActivity {
 
     ChipNavigationBar navigationView;
+    private TextView tabLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        tabLabel = findViewById(R.id.tabLabel);
 
         try {
             home();
@@ -35,18 +38,23 @@ public class HomeActivity extends AppCompatActivity {
                     switch (i){
                         case R.id.camera:
                             fragment = new CameraFragment();
+                            tabLabel.setText("CAMERA");
                             break;
                         case R.id.nav_gallery:
                             fragment = new GalleryFragment();
+                            tabLabel.setText("GALLERY");
                             break;
                         case R.id.nav_home:
                             fragment = new ForumFragment();
+                            tabLabel.setText("HOME");
                             break;
                         case R.id.nav_calendar:
                             fragment = new CalendarFragment();
+                            tabLabel.setText("CALENDAR");
                             break;
                         case R.id.nav_receipts:
                             fragment = new RecieptsFragment();
+                            tabLabel.setText("RECEIPTS");
                             break;
                     }
                     assert fragment != null;
