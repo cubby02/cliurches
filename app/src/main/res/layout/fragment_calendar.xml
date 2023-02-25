@@ -37,16 +37,26 @@
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/txtNoMassLabel"
+                    android:layout_margin="40dp"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/walang_misa_ngayong_araw"
+                    android:fontFamily="@font/nunito_medium"
+                    android:textSize="15sp"
                     android:layout_gravity="center"/>
-                <Button
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnSelectMass"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="40dp"
+                    android:background="@drawable/btn_rounded"
+                    android:fontFamily="@font/nunito_bold"
                     android:text="@string/select_mass"
-                    android:layout_gravity="center"/>
+                    android:textColor="@color/white" />
+
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

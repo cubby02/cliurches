@@ -3,7 +3,6 @@ package com.cubbysulotions.cliurches.Camera;
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -37,7 +36,6 @@ import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -61,8 +59,9 @@ public class CameraFragment extends Fragment implements BackpressedListener {
     private final int IMAGE_PICK_CODE = 1000;
     private final int REQUEST_WRITE_STORAGE = 2;
     private String u_plantID; // unique plant id
-    private Uri contentUri;
-    private String url;
+
+    private Uri contentUri; // final image URI; for identification purposes
+
     private String currentPhotoPath;
     private Uri photoURI;
 
@@ -165,7 +164,7 @@ public class CameraFragment extends Fragment implements BackpressedListener {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
 //            File f = new File(currentPhotoPath);
             contentUri = photoURI;
-            imgSearch.setImageBitmap(setPic());
+            imgSearch.setImageBitmap(imgBitmap());
 //            saveImage(setPic());
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "IMAGE_" + timeStamp + "." + getFileExt(contentUri);
@@ -310,7 +309,7 @@ public class CameraFragment extends Fragment implements BackpressedListener {
 
 
     // the bitmap displayed in the imageView
-    private Bitmap setPic() {
+    private Bitmap imgBitmap() {
         // Get the dimensions of the View
         int targetW = imgSearch.getWidth();
         int targetH = imgSearch.getHeight();
