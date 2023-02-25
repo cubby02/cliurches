@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Home.ForumFragment"
     android:orientation="vertical"
     android:background="@color/blue_main">
@@ -39,11 +40,13 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgPFP"
+                        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_margin="20dp"
+                        android:src="@mipmap/ic_anon_logo_round"
                         android:background="@color/black" />
 
                     <TextView
