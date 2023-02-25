@@ -53,7 +53,7 @@
             <LinearLayout
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="5dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,6 +141,7 @@
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
             <TextView
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Payment Details"
@@ -148,14 +149,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/nunito_bold" />
+                android:fontFamily="@font/nunito_medium" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="5dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -195,7 +196,7 @@
                     android:text="P100.00"
                     android:textSize="20sp"
                     android:textColor="@color/blue_main"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginBottom="30dp"
                     android:fontFamily="@font/nunito_bold"/>
             </RelativeLayout>
         </LinearLayout>
