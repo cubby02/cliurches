@@ -9,24 +9,55 @@
 
     <ImageView
         android:id="@+id/imgSearchChurch"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_marginTop="50dp"
         android:src="@drawable/empty_img"
         android:scaleType="centerCrop"
         android:background="@color/black"
         android:layout_gravity="center"/>
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSnap"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/btn_rounded"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/nunito_extrabold"
+        android:textColor="@color/blue_main"
         android:text="@string/snap_a_photo"
         android:layout_gravity="center"/>
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnGallery"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/btn_rounded"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/nunito_extrabold"
+        android:textColor="@color/blue_main"
         android:text="@string/open_from_gallery"
+        android:layout_gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnIdentify"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/btn_rounded"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/nunito_extrabold"
+        android:textColor="@color/blue_main"
+        android:text="@string/identify"
         android:layout_gravity="center"/>
 
 

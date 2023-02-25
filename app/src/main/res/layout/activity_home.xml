@@ -15,7 +15,7 @@
         <RelativeLayout
             android:id="@+id/topBarPanel"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="50dp"
             android:background="@color/white">
 
             <ImageView
@@ -38,12 +38,12 @@
                 android:text="HOME"
                 android:textColor="@color/blue_main"
                 android:fontFamily="@font/nunito_medium"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSettings"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:background="@drawable/ic_baseline_settings_24"
                 android:backgroundTint="@color/blue_main"
                 android:layout_alignParentRight="true"
