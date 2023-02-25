@@ -19,13 +19,14 @@ import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import org.w3c.dom.Text;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 
-public class CalendarFragment extends Fragment {
+public class CalendarFragment extends Fragment implements BackpressedListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,5 +72,24 @@ public class CalendarFragment extends Fragment {
 
     private void toast(String msg){
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        ((HomeActivity) getActivity()).home();
+    }
+
+    public static BackpressedListener backpressedlistener;
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
     }
 }

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
+import com.cubbysulotions.cliurches.Calendar.MassDetailsFragment;
+import com.cubbysulotions.cliurches.Calendar.PaymentFragment;
 import com.cubbysulotions.cliurches.Camera.CameraContainerFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
 import com.cubbysulotions.cliurches.Gallery.GalleryFragment;
@@ -97,6 +99,25 @@ public class HomeActivity extends AppCompatActivity {
             topBarPanel.setVisibility(View.GONE);
         } else{
             topBarPanel.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(WritePostFragment.backpressedlistener !=null){
+            WritePostFragment.backpressedlistener.onBackPressed();
+        } else if(MassDetailsFragment.backpressedlistener !=null){
+            MassDetailsFragment.backpressedlistener.onBackPressed();
+        } else if(PaymentFragment.backpressedlistener !=null){
+            PaymentFragment.backpressedlistener.onBackPressed();
+        } else if(CalendarFragment.backpressedlistener !=null){
+            CalendarFragment.backpressedlistener.onBackPressed();
+        } else if(GalleryFragment.backpressedlistener !=null){
+            GalleryFragment.backpressedlistener.onBackPressed();
+        } else if(RecieptsFragment.backpressedlistener !=null){
+            RecieptsFragment.backpressedlistener.onBackPressed();
+        } else {
+            super.onBackPressed();
         }
     }
 }

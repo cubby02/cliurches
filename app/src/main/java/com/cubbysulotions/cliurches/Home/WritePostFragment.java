@@ -18,10 +18,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-public class WritePostFragment extends Fragment {
+public class WritePostFragment extends Fragment implements BackpressedListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,5 +80,26 @@ public class WritePostFragment extends Fragment {
 
     private void toast(String msg){
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        navController.navigate(R.id.action_writePostFragment2_to_forumFragment);
+        ((HomeActivity)getActivity()).hideNavigationBar(false);
+        ((HomeActivity)getActivity()).hideTopBarPanel(false);
+    }
+
+    public static BackpressedListener backpressedlistener;
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
     }
 }
