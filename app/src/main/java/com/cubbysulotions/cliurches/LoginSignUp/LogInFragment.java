@@ -25,7 +25,10 @@ import android.widget.Toast;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.UserSessionManagement;
 import com.github.hariprasanths.bounceview.BounceView;
+
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -57,6 +60,7 @@ public class LogInFragment extends Fragment {
         register = view.findViewById(R.id.btnToRegister);
         loadingDialog = new LoadingDialog(getActivity());
         BounceView.addAnimTo(btnLogin);
+
         back();
         login();
         forgotPassword();
@@ -126,6 +130,10 @@ public class LogInFragment extends Fragment {
             public void onClick(View view) {
                 try {
                     // TODO: add login code here
+
+                    UserSessionManagement user = new UserSessionManagement(1, "email.com");
+                    SessionManagement sessionManagement = new SessionManagement(getActivity());
+                    sessionManagement.saveSession(user);
 
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);

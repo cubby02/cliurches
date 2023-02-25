@@ -2,6 +2,7 @@ package com.cubbysulotions.cliurches.Home;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,7 +18,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
@@ -111,7 +114,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                                 editUserLayout.setVisibility(View.GONE);
                                 userDetailsLayout.setVisibility(View.VISIBLE);
                                 loading.setVisibility(View.INVISIBLE);
-                                toast("User details updated");
+                                toast("User's details updated");
                             }
                         }, 5000);
 
@@ -130,6 +133,12 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
             public void onClick(View view) {
                 try {
                     // TODO: Insert Logout code here
+                    SessionManagement sessionManagement = new SessionManagement(getActivity());
+                    sessionManagement.removeSession();
+
+                    Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().finish();
                 } catch (Exception e) {
                     toast("Something went wrong please try again");
                     Log.e(TAG, "editDetails: ", e);
