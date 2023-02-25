@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -42,7 +43,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class CameraFragment extends Fragment {
+public class CameraFragment extends Fragment implements BackpressedListener {
 
 
     @Override
@@ -140,9 +141,10 @@ public class CameraFragment extends Fragment {
                     }else{
                         requestCamPermission();
                     }
-//                    navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
-//                    ((HomeActivity)getActivity()).hideNavigationBar(true);
-//                    ((HomeActivity)getActivity()).hideTopBarPanel(true);
+
+                    //navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
+                    //((HomeActivity)getActivity()).hideNavigationBar(true);
+                    //((HomeActivity)getActivity()).hideTopBarPanel(true);
                 } catch (Exception e){
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);
@@ -338,5 +340,24 @@ public class CameraFragment extends Fragment {
 
     private void toast(String msg ){
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        ((HomeActivity) getActivity()).home();
+    }
+
+    public static BackpressedListener backpressedlistener;
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
     }
 }

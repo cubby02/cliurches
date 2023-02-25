@@ -19,10 +19,11 @@ import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-public class MatchResultFragment extends Fragment {
+public class MatchResultFragment extends Fragment implements BackpressedListener {
 
 
     @Override
@@ -98,5 +99,26 @@ public class MatchResultFragment extends Fragment {
 
     private void toast(String msg){
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        navController.navigate(R.id.action_matchResultFragment_to_cameraFragment);
+        ((HomeActivity)getActivity()).hideNavigationBar(false);
+        ((HomeActivity)getActivity()).hideTopBarPanel(false);
+    }
+
+    public static BackpressedListener backpressedlistener;
+
+    @Override
+    public void onPause() {
+        backpressedlistener = null;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        backpressedlistener = this;
     }
 }

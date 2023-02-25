@@ -23,5 +23,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
-
+    <style name="error_appearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

@@ -6,10 +6,14 @@ import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
@@ -17,6 +21,7 @@ import com.cubbysulotions.cliurches.Calendar.MassDetailsFragment;
 import com.cubbysulotions.cliurches.Calendar.PaymentFragment;
 import com.cubbysulotions.cliurches.Camera.CameraContainerFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
+import com.cubbysulotions.cliurches.Camera.MatchResultFragment;
 import com.cubbysulotions.cliurches.Gallery.GalleryFragment;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
@@ -29,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
     ChipNavigationBar navigationView;
     private TextView tabLabel;
     private RelativeLayout topBarPanel;
+    private Button btnSettings;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         tabLabel = findViewById(R.id.tabLabel);
         topBarPanel = findViewById(R.id.topBarPanel);
+        btnSettings = findViewById(R.id.btnSettings);
+
+        settings();
 
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -80,6 +90,20 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private void settings() {
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    SettingsBottomSheetDialog settingsBottomSheetDialog = new SettingsBottomSheetDialog();
+                    settingsBottomSheetDialog.show(getSupportFragmentManager(), settingsBottomSheetDialog.getTag());
+                } catch (Exception e) {
+                    Log.e(TAG, "onCreate: ", e);
+                }
+            }
+        });
+    }
+
     public void home(){
         navigationView = findViewById(R.id.bottom_nav);
         getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new ForumContainerFragment()).commit();
@@ -116,8 +140,28 @@ public class HomeActivity extends AppCompatActivity {
             GalleryFragment.backpressedlistener.onBackPressed();
         } else if(RecieptsFragment.backpressedlistener !=null){
             RecieptsFragment.backpressedlistener.onBackPressed();
+        } else if(CameraFragment.backpressedlistener !=null){
+            CameraFragment.backpressedlistener.onBackPressed();
+        } else if(MatchResultFragment.backpressedlistener !=null){
+            MatchResultFragment.backpressedlistener.onBackPressed();
         } else {
-            super.onBackPressed();
+
+
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Click again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
 }

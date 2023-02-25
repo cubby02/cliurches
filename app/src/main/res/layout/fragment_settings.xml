@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/userDetailsMain">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:src="#B5B5B5"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:id="@+id/userDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/border"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/week"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#D6D6D6" />
+
+        <LinearLayout
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topPanel"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_baseline_person_24"
+                app:tint="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtUserFullName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/nunito_black"
+                android:padding="10dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:text="Jane Doe" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_baseline_email_24"
+                app:tint="@color/blue" />
+
+            <TextView
+                android:id="@+id/txtUserEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/nunito_regular"
+                android:padding="10dp"
+                android:textAlignment="textStart"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:text="janedoe@email.com.ph" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/topPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:layout_toRightOf="@id/btnCloseUserDetails"
+                android:fontFamily="@font/nunito_medium"
+                android:text="User details"
+                android:textColor="@color/black"
+                android:textSize="23sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCloseUserDetails"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/ic_baseline_close_24"
+                android:backgroundTint="@color/blue"
+                android:textAllCaps="false" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnEditUserDetails"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_baseline_edit_24"
+                android:backgroundTint="@color/blue"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/border"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/logoutICon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_logout_line_icon"
+                app:tint="@color/blue" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogoutAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_toRightOf="@id/logoutICon"
+                android:background="@null"
+                android:fontFamily="@font/nunito_regular"
+                android:padding="10dp"
+                android:text="Logout"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/editUser"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/topPanel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="25dp"
+                android:layout_toRightOf="@id/btnCancelEdit"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Edit user details"
+                android:textColor="@color/black"
+                android:textSize="23sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancelEdit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/ic_baseline_close_24"
+                android:backgroundTint="@color/blue"
+                android:textAllCaps="false" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveEdit"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/ic_baseline_check_24"
+                android:backgroundTint="@color/blue"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/emailEditLayout"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:visibility="invisible"
+            app:boxBackgroundColor="@null"
+            app:boxBackgroundMode="filled"
+            app:errorTextAppearance="@style/error_appearance"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/nunito_regular"
+                android:text="Updating..."
+                android:textColor="@color/black"
+                android:inputType="textEmailAddress"/>
+
+            <com.github.ybq.android.spinkit.SpinKitView
+                android:id="@+id/progress"
+                style="@style/SpinKitView.Small.ThreeBounce"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                app:SpinKit_Color="@color/blue" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lnameEditLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fnameEditLayout"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            app:boxBackgroundColor="@null"
+            app:boxBackgroundMode="filled"
+            app:errorTextAppearance="@style/error_appearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEditLname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="Last Name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailEditLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lnameEditLayout"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            app:boxBackgroundColor="@null"
+            app:boxBackgroundMode="filled"
+            app:errorTextAppearance="@style/error_appearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEditEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="Email"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fnameEditLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topPanel1"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            app:boxBackgroundColor="@null"
+            app:boxBackgroundMode="filled"
+            app:errorTextAppearance="@style/error_appearance">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtEditFname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:hint="First Name"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

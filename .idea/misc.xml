@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.1485" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.1485" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1485" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/activity_home.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/activity_loginsignup.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/activity_main.xml" value="0.209375" />
@@ -23,6 +26,7 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_payment.xml" value="0.25" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_reciepts.xml" value="0.1953125" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_register.xml" value="0.209375" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_settings.xml" value="0.22" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_sign_in.xml" value="0.1953125" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/fragment_write_post.xml" value="0.25" />
@@ -30,11 +34,12 @@
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/item_receipts.xml" value="0.1" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/receipts_item.xml" value="0.33" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/reset_password.xml" value="0.209375" />
+        <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/layout/user_details.xml" value="0.209375" />
         <entry key="..\:/Users/asus/AndroidStudioProjects/CLIURCHES/app/src/main/res/menu/item_menu.xml" value="0.209375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
