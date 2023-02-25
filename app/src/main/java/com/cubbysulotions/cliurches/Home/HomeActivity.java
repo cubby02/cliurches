@@ -3,6 +3,8 @@ package com.cubbysulotions.cliurches.Home;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
         topBarPanel = findViewById(R.id.topBarPanel);
 
         try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                getWindow().setStatusBarColor(Color.parseColor("#50343434"));
+            }
             home();
             navigationView.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
                 @Override

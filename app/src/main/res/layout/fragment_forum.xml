@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Home.ForumFragment"
     android:orientation="vertical"
-    android:background="@color/blue">
+    android:background="@color/blue_main">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -19,8 +19,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="What's happening?"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <androidx.cardview.widget.CardView
@@ -46,7 +50,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="@string/share_what_s_on_your_mind" />
+                        android:text="@string/share_what_s_on_your_mind"
+                        android:fontFamily="@font/nunito_medium"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

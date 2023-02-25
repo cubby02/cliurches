@@ -8,19 +8,19 @@
 
     <Button
         android:id="@+id/btnBackToForum"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/black" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/arrow_back"
+        android:backgroundTint="@color/blue_main" />
 
     <ImageView
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/btnBackToForum"
+        android:layout_below="@+id/btnBackToForum"
+        android:layout_marginTop="20dp"
         android:background="#43777777" />
 
     <Button

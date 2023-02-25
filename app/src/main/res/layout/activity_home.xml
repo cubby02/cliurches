@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,50 +8,64 @@
     android:orientation="vertical"
     android:background="#CACACA">
 
-    <RelativeLayout
-        android:id="@+id/topBarPanel"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/white">
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@color/black"
-            android:layout_centerVertical="true"
-            android:layout_margin="10dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/topBarPanel"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tabLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/logo"
-            android:text="HOME"
-            android:textSize="20sp" />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/cliurches_logo" />
 
-        <Button
-            android:id="@+id/btnSettings"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tabLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/logo"
+                android:text="HOME"
+                android:textColor="@color/blue_main"
+                android:fontFamily="@font/nunito_medium"
+                android:textSize="20sp" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/body_container"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSettings"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_baseline_settings_24"
+                android:backgroundTint="@color/blue_main"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp" />
+        </RelativeLayout>
 
-    <com.ismaeldivita.chipnavigation.ChipNavigationBar
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:background="@color/white"
-        app:cnb_menuResource="@menu/item_menu" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/body_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottom_nav"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="bottom"
+            android:background="@color/white"
+            app:cnb_menuResource="@menu/item_menu" />
+    </LinearLayout>
 
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

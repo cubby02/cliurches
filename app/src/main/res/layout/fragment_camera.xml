@@ -4,13 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Camera.CameraFragment"
-    android:background="@color/blue"
+    android:background="@color/blue_main"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/imgSearchChurch"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/empty_img"
+        android:scaleType="centerCrop"
         android:background="@color/black"
         android:layout_gravity="center"/>
     <Button
