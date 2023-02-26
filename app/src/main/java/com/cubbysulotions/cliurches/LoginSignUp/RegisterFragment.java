@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,10 +78,12 @@ public class RegisterFragment extends Fragment {
                 public void onClick(View view) {
                     try {
                         if(isClicked){
-                            toast("show");
+                            txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            btnTogglePassword.setBackground(getResources().getDrawable(R.drawable.eye_off));
                             isClicked = false;
                         } else {
-                            toast("hide");
+                            txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            btnTogglePassword.setBackground(getResources().getDrawable(R.drawable.eye_on));
                             isClicked = true;
                         }
                     } catch (Exception e) {
