@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_main"
+    android:orientation="vertical"
+    tools:context=".Admin.MassScheduleFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackToAdmin"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/arrow_back"
+            android:backgroundTint="@color/blue_main" />
+
+        <TextView
+            android:id="@+id/tabLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/mass_schedule"
+            android:textColor="@color/blue_main"
+            android:fontFamily="@font/nunito_medium"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Church"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_marginLeft="20dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <Spinner
+                    android:id="@+id/spinnerSelectedChurch"
+                    android:layout_margin="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_date"
+                android:textSize="20sp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/txtSelectedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="00/00/00"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:padding="15dp"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_time"
+                android:textSize="20sp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"/>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <LinearLayout
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/AM_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="5:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_530"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="5:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="6:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_630"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="6:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="7:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_730"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="7:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="8:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_830"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="8:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="9:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_930"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="9:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="10:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_1030"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="10:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="11:00 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                        <CheckBox
+                            android:id="@+id/AM_1130"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="11:30 AM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginStart="60dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <CheckBox
+                            android:id="@+id/PM_12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="12:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_1230"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="12:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="2:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_230"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="2:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="3:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_330"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="3:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="4:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_430"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="4:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="5:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_530"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="5:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="6:00 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+                        <CheckBox
+                            android:id="@+id/PM_630"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="6:30 PM"
+                            android:fontFamily="@font/nunito_medium"
+                            android:checked="false" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnScheduleMass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/btn_rounded"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:textColor="@color/blue_main"
+                android:text="@string/schedule_mass"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

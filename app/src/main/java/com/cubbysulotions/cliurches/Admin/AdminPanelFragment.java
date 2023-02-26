@@ -1,4 +1,6 @@
-package com.cubbysulotions.cliurches.Calendar;
+package com.cubbysulotions.cliurches.Admin;
+
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.os.Bundle;
 
@@ -14,33 +16,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
-import org.w3c.dom.Text;
-
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
-
-public class CalendarFragment extends Fragment implements BackpressedListener {
+public class AdminPanelFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        return inflater.inflate(R.layout.fragment_admin_panel, container, false);
     }
 
     private NavController navController;
-    private Button btnSelectMass;
-    private TextView txtNoMassLabel;
-    private CalendarView calendarView;
+    private Button btnCompletePayment, btnPendingPayment, btnScheduleMass;
     private Spinner spinnerSelectedChurch;
 
     @Override
@@ -48,13 +41,30 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(view);
-        btnSelectMass = view.findViewById(R.id.btnSelectMass);
-        txtNoMassLabel = view.findViewById(R.id.txtNoMassLabel);
-        calendarView = view.findViewById(R.id.calendarView);
+        btnCompletePayment = view.findViewById(R.id.btnCompletePayment);
+        btnScheduleMass = view.findViewById(R.id.btnScheduleMass);
+        btnPendingPayment = view.findViewById(R.id.btnPendingPayment);
         spinnerSelectedChurch = view.findViewById(R.id.spinnerSelectedChurch);
 
-        selectMass();
+        btnCompletePayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_adminPanelFragment_to_completedPaymentFragment);
+                ((AdminActivity) getActivity()).hideTopBarPanel(true);
+            }
+        });
+
+        btnPendingPayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.action_adminPanelFragment_to_pendingPaymentFragment);
+                ((AdminActivity) getActivity()).hideTopBarPanel(true);
+            }
+        });
+
+        scheduleMass();
         selectChurch();
+
     }
 
     private void selectChurch() {
@@ -73,16 +83,16 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
         }
     }
 
-    private void selectMass() {
-        btnSelectMass.setOnClickListener(new View.OnClickListener() {
+    private void scheduleMass() {
+        btnScheduleMass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
                     // TODO: add select mass code here
 
-                    navController.navigate(R.id.action_calendarFragment_to_massDetailsFragment);
-                    ((HomeActivity)getActivity()).hideNavigationBar(true);
-                    ((HomeActivity)getActivity()).hideTopBarPanel(true);
+                    navController.navigate(R.id.action_adminPanelFragment_to_massScheduleFragment);
+                    ((AdminActivity) getActivity()).hideTopBarPanel(true);
+
                 } catch (Exception e) {
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);
@@ -91,26 +101,8 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
         });
     }
 
-    private void toast(String msg){
+    private void toast(String msg) {
         Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
     }
 
-    @Override
-    public void onBackPressed() {
-        ((HomeActivity) getActivity()).home();
-    }
-
-    public static BackpressedListener backpressedlistener;
-
-    @Override
-    public void onPause() {
-        backpressedlistener = null;
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        backpressedlistener = this;
-    }
 }

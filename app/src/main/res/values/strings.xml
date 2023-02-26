@@ -38,6 +38,15 @@
     <string name="additional_message">Additional Message</string>
     <string name="enter_message">Enter message</string>
     <string name="full_name">Full Name</string>
+    <string name="admin_panel">ADMIN PANEL</string>
+    <string name="reservation_details">Reservation Details</string>
+    <string name="pending_payment">Pending Payment</string>
+    <string name="completed_payment">Completed Payment</string>
+    <string name="schedule_mass">Schedule Mass</string>
+    <string name="select_church">Select Church</string>
+    <string name="completed_payment_caps">COMPLETED PAYMENT</string>
+    <string name="pending_payment_caps">PENDING PAYMENT</string>
+    <string name="mass_schedule">MASS SCHEDULE</string>
 
     <string-array name="time_array">
         <item>6:00 - 7:00 AM</item>
@@ -47,6 +56,13 @@
         <item>3:00 - 4:00 PM</item>
         <item>4:00 - 5:00 PM</item>
         <item>5:00 - 6:00 PM</item>
+    </string-array>
+
+    <string-array name="church_array">
+        <item>Bauan - Immaculate Concepcion Parish</item>
+        <item>Aplaya - Our Mother of Perpetual Help Parish</item>
+        <item>Bolo - Holy Family Parish</item>
+        <item>San Pascual - Baylon Parish</item>
     </string-array>
 
 </resources>
