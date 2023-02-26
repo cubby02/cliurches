@@ -16,9 +16,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.github.hariprasanths.bounceview.BounceView;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -32,7 +41,7 @@ public class RegisterFragment extends Fragment {
     }
 
     private NavController navController;
-    private Button btnBack, btnRegister;
+    private Button btnBack, btnRegister, btnTogglePassword;
     private EditText txtFN, txtLN, txtEmail, txtPassword;
     LoadingDialog loadingDialog;
 
@@ -43,6 +52,7 @@ public class RegisterFragment extends Fragment {
         navController = Navigation.findNavController(view);
         btnBack = view.findViewById(R.id.btnBack);
         btnRegister = view.findViewById(R.id.btnRegisterAccount);
+        btnTogglePassword = view.findViewById(R.id.btnTogglePassword);
         txtFN = view.findViewById(R.id.txtFn);
         txtLN = view.findViewById(R.id.txtLn);
         txtEmail = view.findViewById(R.id.txtEmailRegister);
@@ -51,8 +61,33 @@ public class RegisterFragment extends Fragment {
         BounceView.addAnimTo(btnBack);
         BounceView.addAnimTo(btnRegister);
 
+        boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
+        Log.d(TAG, "onViewCreated: " + isInternet);
+
         register();
+        togglePassword();
         back();
+    }
+
+    private boolean isClicked = true;
+    private void togglePassword() {
+            btnTogglePassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        if(isClicked){
+                            toast("show");
+                            isClicked = false;
+                        } else {
+                            toast("hide");
+                            isClicked = true;
+                        }
+                    } catch (Exception e) {
+                    Log.e(TAG, "togglePassword: ", e);
+                }
+                }
+            });
+
     }
 
     private void back() {
@@ -69,9 +104,70 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add register code here
+                    if(txtFN.getText().toString().isEmpty() || txtLN.getText().toString().isEmpty()
+                            || txtEmail.getText().toString().isEmpty() || txtPassword.getText().toString().isEmpty()){
+                        txtFN.setError("Required");
+                        txtLN.setError("Required");
+                        txtEmail.setError("Required");
+                        txtPassword.setError("Required");
+                    }
+                    else {
+                        loadingDialog.startLoading("Please wait...");
+                        boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
 
-                    navController.navigate(R.id.action_signInFragment_to_logInFragment);
+                        if(isInternet){
+                            txtFN.setError(null);
+                            txtLN.setError(null);
+                            txtEmail.setError(null);
+                            txtPassword.setError(null);
+
+                            String firstName = null;
+                            String lastName = null;
+                            String email = null;
+                            String password = null;
+                            try {
+                                firstName = URLEncoder.encode(txtFN.getText().toString().replace("'","\\'"), "utf-8");
+                                lastName = URLEncoder.encode(txtLN.getText().toString().replace("'","\\'"), "utf-8");
+                                password = URLEncoder.encode(txtPassword.getText().toString().replace("'","\\'"), "utf-8");
+                                email = URLEncoder.encode(txtEmail.getText().toString().replace("'","\\'"), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                            String JSON_URL = "https://cliurches-app.tech/api/new_user/?email="+ email +"&password="+ password +"&firstname="+ firstName +"&lastname="+ lastName +"";
+                            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                            StringRequest postRequest = new StringRequest(
+                                    Request.Method.POST,
+                                    JSON_URL,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            if(response.equals("{\"status\":\"email already exist\"}")){
+                                                loadingDialog.stopLoading();
+                                                toast("Email already exist, try again");
+                                            } else {
+                                                toast("Registered Successfully");
+                                                loadingDialog.stopLoading();
+                                                navController.navigate(R.id.action_signInFragment_to_logInFragment);
+                                            }
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    loadingDialog.stopLoading();
+                                    toast("Something went wrong, please try again");
+                                    Log.e(TAG, "onErrorResponse: ", error);
+                                }
+                            }
+                            );
+
+                            requestQueue.add(postRequest);
+                        }
+                        else {
+                            loadingDialog.stopLoading();
+                            toast("Please try again");
+                        }
+                    }
                 } catch (Exception e){
                     toast("Something went wrong");
                     Log.e(TAG, "onClick register: ", e);

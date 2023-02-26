@@ -47,6 +47,8 @@ public class LogInFragment extends Fragment {
     private TextView txtForgotPassword, register;
     LoadingDialog loadingDialog;
 
+    private boolean isInternet;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -64,6 +66,9 @@ public class LogInFragment extends Fragment {
         back();
         login();
         forgotPassword();
+
+        boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
+        Log.d(TAG, "onViewCreated: " + isInternet);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,15 +134,22 @@ public class LogInFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add login code here
+                    boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
 
+                    if(isInternet){
+                        toast("Welcome!");
+                    } else {
+                        toast("Please try again");
+                    }
+
+                    /*
                     UserSessionManagement user = new UserSessionManagement(1, "1234567abc");
                     SessionManagement sessionManagement = new SessionManagement(getActivity());
                     sessionManagement.saveSession(user);
 
                     Intent intent = new Intent(getActivity(), HomeActivity.class);
                     startActivity(intent);
-                    getActivity().finish();
+                    getActivity().finish(); */
                 } catch (Exception e) {
                     Log.e(TAG, "onClick Login: ", e);
                 }

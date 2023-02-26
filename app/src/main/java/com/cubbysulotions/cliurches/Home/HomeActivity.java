@@ -131,6 +131,8 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public void onBackPressed() {
         if(WritePostFragment.backpressedlistener !=null){
