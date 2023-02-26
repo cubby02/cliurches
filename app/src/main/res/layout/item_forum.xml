@@ -57,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lorem"
+            android:textColor="@color/black"
             android:fontFamily="@font/nunito_medium"
             android:layout_margin="15dp"/>
 
@@ -78,6 +79,8 @@
                 android:id="@+id/txtNumberOfLikes"
                 android:layout_toRightOf="@id/btnLike"
                 android:layout_width="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
                 android:layout_height="wrap_content"
                 android:text="6 Likes"/>
         </RelativeLayout>
