@@ -64,6 +64,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
+
                     SettingsBottomSheetDialog settingsBottomSheetDialog = new SettingsBottomSheetDialog();
                     settingsBottomSheetDialog.show(getSupportFragmentManager(), settingsBottomSheetDialog.getTag());
                 } catch (Exception e) {
