@@ -59,7 +59,7 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:text="Jane Doe" />
+                tools:text="Jane Doe" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +90,7 @@
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:text="janedoe@email.com.ph" />
+                tools:text="janedoe@email.com.ph" />
         </LinearLayout>
 
         <RelativeLayout
@@ -140,7 +140,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/border"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
 
             <ImageView
                 android:id="@+id/logoutICon"

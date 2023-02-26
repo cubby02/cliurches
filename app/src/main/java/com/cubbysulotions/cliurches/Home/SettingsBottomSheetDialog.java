@@ -18,6 +18,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
@@ -27,12 +33,20 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
     View rootView;
     BottomSheetDialog dialog;
     BottomSheetBehavior<View> bottomSheetBehavior;
+    private String fullName, user_email;
 
     public SettingsBottomSheetDialog() {}
 
@@ -81,12 +95,60 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
         lName = view.findViewById(R.id.txtEditLname);
         email = view.findViewById(R.id.txtEditEmail);
 
+        populateDetails();
         editDetails();
         cancelEdit();
         closeDetails();
         saveDetails();
         logout();
 
+    }
+
+    private void populateDetails() {
+        try {
+            SessionManagement sessionManagement = new SessionManagement(getActivity());
+            String api = null;
+            try {
+                api = URLEncoder.encode(sessionManagement.getSession2().toString().replace("'","\\'"), "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            String URL = "https://cliurches-app.tech/api/user_details/?api_key="+ api +"";
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                    Request.Method.GET,
+                    URL,
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            try {
+                                JSONObject object = response.getJSONObject(0);
+
+                                fullName = object.getString("fullname");
+                                user_email = object.getString("email");
+
+                                txtUserFullName.setText(fullName);
+                                txtUserEmail.setText(user_email);
+
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+            );
+            requestQueue.add(jsonArrayRequest);
+
+        } catch (Exception e) {
+            Log.e(TAG, "populateDetails: ", e);
+            toast("Something went wrong");
+        }
     }
 
     private void saveDetails() {
@@ -183,6 +245,8 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                 try {
                     editUserLayout.setVisibility(View.VISIBLE);
                     userDetailsLayout.setVisibility(View.GONE);
+                    fName.setText(fullName);
+                    email.setText(user_email);
                 } catch (Exception e) {
                     toast("Something went wrong please try again");
                     Log.e(TAG, "editDetails: ", e);
