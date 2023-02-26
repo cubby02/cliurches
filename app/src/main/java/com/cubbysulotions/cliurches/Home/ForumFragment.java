@@ -112,6 +112,7 @@ public class ForumFragment extends Fragment {
                                     item.setPostContent(postObject.getString("postContent"));
                                     item.setLikes(postObject.getString("likes"));
                                     item.setCategory(postObject.getString("category"));
+                                    item.setStatus(postObject.getString("isLiked"));
 
                                     postsList.add(item);
 

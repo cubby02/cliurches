@@ -46,7 +46,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
     View rootView;
     BottomSheetDialog dialog;
     BottomSheetBehavior<View> bottomSheetBehavior;
-    private String fullName, user_email;
+    private String first_name, last_name, user_email;
 
     public SettingsBottomSheetDialog() {}
 
@@ -126,10 +126,11 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                             try {
                                 JSONObject object = response.getJSONObject(0);
 
-                                fullName = object.getString("fullname");
+                                first_name = object.getString("FirstName");
+                                last_name = object.getString("LastName");
                                 user_email = object.getString("email");
 
-                                txtUserFullName.setText(fullName);
+                                txtUserFullName.setText(first_name + " " + last_name );
                                 txtUserEmail.setText(user_email);
 
                             } catch (JSONException e) {
@@ -245,7 +246,8 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                 try {
                     editUserLayout.setVisibility(View.VISIBLE);
                     userDetailsLayout.setVisibility(View.GONE);
-                    fName.setText(fullName);
+                    fName.setText(first_name);
+                    lName.setText(last_name);
                     email.setText(user_email);
                 } catch (Exception e) {
                     toast("Something went wrong please try again");

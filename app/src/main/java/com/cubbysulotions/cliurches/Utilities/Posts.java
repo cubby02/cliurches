@@ -11,6 +11,8 @@ public class Posts {
     private String likes;
     private String category;
 
+    private String status;
+
     public String getPostId() {
         return postId;
     }
@@ -96,5 +98,13 @@ public class Posts {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

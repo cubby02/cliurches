@@ -83,11 +83,15 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
         public void onBindViewHolder(@NonNull PostsCustomAdapter.ViewHolder holder, int position) {
             Posts item = posts.get(position);
 
-
+            boolean isLiked = Boolean.parseBoolean(item.getStatus());
             holder.txtTime.setText(DateTimeUtils.timeAgo(item.getDateStamp(), item.getTimeStamp()));
             holder.txtName.setText(item.getFullname());
             holder.txtPost.setText(item.getPostContent());
             holder.txtNumberOfLikes.setText(item.getLikes() + " Likes"); //temp
+
+            if(isLiked){
+                holder.btnLike.setBackground(context.getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
+            }
 
             holder.btnLike.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -115,10 +119,13 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
-                                        int likes = Integer.parseInt(item.getLikes());
-                                        likes++;
-
-                                        holder.txtNumberOfLikes.setText(likes + " Likes");
+                                        if(response.equals("{\"status\":\"success\"}")){
+                                            int likes = Integer.parseInt(item.getLikes());
+                                            likes++;
+                                            holder.txtNumberOfLikes.setText(likes + " Likes");
+                                        } else {
+                                            Toast.makeText(context, "Already like", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }, new Response.ErrorListener() {
                                 @Override
