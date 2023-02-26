@@ -1,63 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Camera.CameraFragment"
     android:background="@color/blue_main"
     android:orientation="vertical">
-
-    <ImageView
-        android:id="@+id/imgSearchChurch"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/empty_img"
-        android:scaleType="centerCrop"
-        android:background="@color/black"
-        android:layout_gravity="center"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnSnap"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/btn_rounded"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/nunito_extrabold"
-        android:textColor="@color/blue_main"
-        android:text="@string/snap_a_photo"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnGallery"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/btn_rounded"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/nunito_extrabold"
-        android:textColor="@color/blue_main"
-        android:text="@string/open_from_gallery"
-        android:layout_gravity="center"/>
+        <ImageView
+            android:id="@+id/imgSearchChurch"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/empty_img"
+            android:scaleType="centerCrop"
+            android:background="@color/black"
+            android:layout_gravity="center"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnIdentify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        android:background="@drawable/btn_rounded"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/nunito_extrabold"
-        android:textColor="@color/blue_main"
-        android:text="@string/identify"
-        android:layout_gravity="center"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSnap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@color/blue_main"
+            android:text="@string/snap_a_photo"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnGallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@color/blue_main"
+            android:text="@string/open_from_gallery"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnIdentify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/nunito_extrabold"
+            android:textColor="@color/blue_main"
+            android:text="@string/identify"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"/>
 
 
-</LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

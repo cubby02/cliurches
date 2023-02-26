@@ -59,16 +59,31 @@
             android:fontFamily="@font/nunito_medium"
             android:text="@string/password" />
 
-        <EditText
-            android:id="@+id/txtPassword"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:padding="10dp"
-            android:background="@drawable/edit_text_border"
-            android:inputType="textPassword" />
+            android:layout_marginEnd="20dp">
+
+            <Button
+                android:id="@+id/btnTogglePassword"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/eye_on"
+                android:layout_marginRight="15dp"/>
+
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@drawable/edit_text_border"
+                android:inputType="textPassword" />
+
+        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLoginAccount"

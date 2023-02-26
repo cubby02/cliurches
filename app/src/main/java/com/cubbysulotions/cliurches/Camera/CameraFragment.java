@@ -35,13 +35,16 @@ import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import org.tensorflow.lite.DataType;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class CameraFragment extends Fragment implements BackpressedListener {
+public class CameraFragment<CliurchesMlModelV1> extends Fragment implements BackpressedListener {
 
 
     @Override
@@ -126,7 +129,6 @@ public class CameraFragment extends Fragment implements BackpressedListener {
                 }
             }
         });
-
     }
 
     private void snapPhoto() {

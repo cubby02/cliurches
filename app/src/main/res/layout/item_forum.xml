@@ -5,7 +5,7 @@
     app:cardCornerRadius="15dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="20dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,8 +18,8 @@
             <com.google.android.material.imageview.ShapeableImageView
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                 android:id="@+id/imageView2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 app:srcCompat="@mipmap/ic_anon_logo_round" />
 
             <TextView
@@ -28,10 +28,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/imageView2"
                 android:fontFamily="@font/nunito_bold"
-                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
                 android:textColor="@color/black"
-                android:text="Jane Doe"
-                android:textSize="20sp" />
+                android:text="Jane Doe" />
 
             <TextView
                 android:id="@+id/txtTime"
@@ -39,28 +39,32 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtName"
                 android:layout_toRightOf="@id/imageView2"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:text="3 hours ago"
-                android:textSize="13sp"/>
+                android:textSize="10sp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMore"
-                android:layout_width="40dp"
-                android:layout_margin="5dp"
-                android:backgroundTint="@color/blue_main"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/ic_baseline_more_horiz_24"
-                android:layout_alignParentEnd="true"/>
+                android:backgroundTint="@color/blue_main" />
 
         </RelativeLayout>
+
         <TextView
             android:id="@+id/txtPost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lorem"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/black"
-            android:fontFamily="@font/nunito_medium"
-            android:layout_margin="15dp"/>
+            android:fontFamily="@font/nunito_medium" />
 
         <RelativeLayout
             android:layout_margin="15dp"
@@ -69,8 +73,8 @@
 
             <ImageView
                 android:id="@+id/btnLike"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:backgroundTint="@color/blue_main"
                 android:background="@drawable/ic_baseline_favorite_border_24"/>
 
@@ -81,6 +85,7 @@
                 android:layout_toRightOf="@id/btnLike"
                 android:layout_width="wrap_content"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 android:fontFamily="@font/nunito_medium"
                 android:layout_height="wrap_content"
                 android:text="6 Likes"/>

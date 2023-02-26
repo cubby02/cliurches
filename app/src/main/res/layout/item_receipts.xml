@@ -1,109 +1,265 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="300dp">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_margin="10dp"
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="Receipt"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/txtview18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Order ID:"
-                android:textSize="25sp"/>
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Order ID" />
             <TextView
                 android:id="@+id/txtOrderID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@+id/txtview18"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/nunito_medium"
                 android:text="#123456789"
-                android:textSize="25sp"
-                android:layout_marginLeft="20dp"/>
-        </LinearLayout>
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/txtview19"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date:" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Recipient" />
+            <TextView
+                android:id="@+id/txtRecipient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_toRightOf="@+id/txtview19"
+                android:textAlignment="textEnd"
+                android:text="John Doe"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@id/txtview23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Date" />
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_toRightOf="@id/txtview23"
+                android:textAlignment="textEnd"
                 android:text="February 24, 2023"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/txtview21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Date:" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Time" />
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@id/txtview21"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/nunito_medium"
                 android:text="5:00 PM - 6:00 PM"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalye ng Padasal"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/txtview24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recipient:" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Name" />
             <TextView
-                android:id="@+id/txtRecipient"
+                android:id="@+id/txtPadasalParaKay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="John Doe"
+                android:layout_toRightOf="@id/txtview24"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Jane Doe"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Payment Details"
-            android:textSize="25sp"
-            android:layout_marginLeft="10dp"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
             <TextView
+                android:id="@+id/txtview23"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Uri ng Padasal" />
+            <TextView
+                android:id="@+id/txtUriNgPadasal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtview23"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Para sa Pasasalamat"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/txtview27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Additional Message" />
+            <TextView
+                android:id="@+id/txtAddMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtview27"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Lorem Ipsum"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Payment Details"
+            android:fontFamily="@font/nunito_bold"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+            <TextView
+                android:id="@+id/txtview29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
                 android:text="Payment Method:" />
             <TextView
                 android:id="@+id/txtMOP"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtview29"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
                 android:text="GCash"
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp">
 
             <TextView
+                android:id="@+id/txtView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
                 android:text="Total:" />
             <TextView
                 android:id="@+id/txtTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txtView30"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
                 android:text="P100.00"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>

@@ -121,6 +121,64 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/padasal_para_kay"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/nunito_medium"
+        android:layout_marginLeft="20dp"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@color/white"
+            android:fontFamily="@font/nunito_medium"
+            android:hint="@string/full_name" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Uri ng padasal"
+        android:textSize="20sp"
+        android:fontFamily="@font/nunito_medium"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"/>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="8dp">
+
+        <Spinner
+            android:id="@+id/spinnerPadasal"
+            android:layout_margin="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.card.MaterialCardView>
+
 
     <TextView
         android:layout_width="wrap_content"

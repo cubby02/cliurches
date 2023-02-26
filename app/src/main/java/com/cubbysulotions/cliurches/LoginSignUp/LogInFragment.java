@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +58,7 @@ public class LogInFragment extends Fragment {
 
     private NavController navController;
     private EditText txtEmail, txtPassword;
-    private Button btnLogin, btnBack;
+    private Button btnLogin, btnBack, btnTogglePassword;
     private TextView txtForgotPassword, register;
     LoadingDialog loadingDialog;
 
@@ -71,12 +73,14 @@ public class LogInFragment extends Fragment {
         btnBack = view.findViewById(R.id.btnBack);
         txtForgotPassword = view.findViewById(R.id.btnForgotPass);
         register = view.findViewById(R.id.btnToRegister);
+        btnTogglePassword = view.findViewById(R.id.btnTogglePassword);
         loadingDialog = new LoadingDialog(getActivity());
         BounceView.addAnimTo(btnLogin);
 
         back();
         login();
         forgotPassword();
+        togglePassword();
 
         boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
         Log.d(TAG, "onViewCreated: " + isInternet);
@@ -87,6 +91,29 @@ public class LogInFragment extends Fragment {
                 navController.navigate(R.id.action_logInFragment_to_signInFragment);
             }
         });
+    }
+
+    private boolean isClicked = true;
+    private void togglePassword() {
+        btnTogglePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    if(isClicked){
+                        txtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        btnTogglePassword.setBackground(getResources().getDrawable(R.drawable.eye_off));
+                        isClicked = false;
+                    } else {
+                        txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        btnTogglePassword.setBackground(getResources().getDrawable(R.drawable.eye_on));
+                        isClicked = true;
+                    }
+                } catch (Exception e) {
+                    Log.e(TAG, "togglePassword: ", e);
+                }
+            }
+        });
+
     }
 
     private void back() {

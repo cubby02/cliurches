@@ -53,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
         settings();
 
+
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(Color.parseColor("#50343434"));

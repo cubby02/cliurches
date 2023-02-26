@@ -86,10 +86,11 @@
                 android:id="@+id/txtChurchName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@id/btnGoogleSearch"
                 android:fontFamily="@font/nunito_regular"
                 android:textColor="@color/black"
@@ -120,10 +121,22 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnGoogleSearch"
-                android:layout_width="120dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="@color/blue_main"
+                android:layout_toLeftOf="@id/btnMaps"
+                android:background="@drawable/ic_baseline_info_24"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="15dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnMaps"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:backgroundTint="@color/blue_main"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/gsearch_btn"
+                android:background="@drawable/ic_baseline_map_24"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp" />
