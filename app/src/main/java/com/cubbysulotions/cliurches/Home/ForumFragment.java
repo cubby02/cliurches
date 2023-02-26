@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 
 public class ForumFragment extends Fragment {
 
@@ -44,6 +45,11 @@ public class ForumFragment extends Fragment {
         imgPFP = view.findViewById(R.id.imgPFP);
 
         writePost();
+
+        SessionManagement sessionManagement = new SessionManagement(getActivity());
+        String api_key = sessionManagement.getSession2();
+
+        toast("Message: " + api_key);
     }
 
     private void writePost() {

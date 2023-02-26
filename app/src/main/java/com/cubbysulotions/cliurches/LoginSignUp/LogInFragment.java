@@ -131,7 +131,7 @@ public class LogInFragment extends Fragment {
                 try {
                     // TODO: add login code here
 
-                    UserSessionManagement user = new UserSessionManagement(1, "email.com");
+                    UserSessionManagement user = new UserSessionManagement(1, "1234567abc");
                     SessionManagement sessionManagement = new SessionManagement(getActivity());
                     sessionManagement.saveSession(user);
 

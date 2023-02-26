@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home.ForumContainerFragment">
+    tools:context=".Home.ForumContainerFragment"
+    android:id="@+id/forumContainer">
 
 
     <androidx.fragment.app.FragmentContainerView

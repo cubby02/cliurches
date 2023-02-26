@@ -106,7 +106,12 @@ public class HomeActivity extends AppCompatActivity {
 
     public void home(){
         navigationView = findViewById(R.id.bottom_nav);
-        getSupportFragmentManager().beginTransaction().replace(R.id.body_container, new ForumContainerFragment()).commit();
+
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.body_container, new ForumContainerFragment())
+                .commit();
         navigationView.setItemSelected(R.id.nav_home, true);
     }
 

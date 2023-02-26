@@ -22,12 +22,17 @@ public class SessionManagement {
         String username = users.getUsername();
 
         editor.putInt(SESSION_KEY, id)
+                .putString(SESSION_KEY_2, username)
                 .commit();
     }
 
     public int getSession(){
         //return user id whose session is saved
         return sharedPreferences.getInt(SESSION_KEY, -1); //-1 is the default value of the shared preferences
+    }
+
+    public String getSession2(){
+        return sharedPreferences.getString(SESSION_KEY_2, "");
     }
 
 

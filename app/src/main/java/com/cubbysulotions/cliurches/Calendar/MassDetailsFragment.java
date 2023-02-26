@@ -115,7 +115,6 @@ public class MassDetailsFragment extends Fragment implements BackpressedListener
 
     private void selectTime() {
         try {
-            // TODO: add choose payment code here
             // Create an ArrayAdapter using the string array and a default spinner layout
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                     R.array.time_array, android.R.layout.simple_spinner_item);

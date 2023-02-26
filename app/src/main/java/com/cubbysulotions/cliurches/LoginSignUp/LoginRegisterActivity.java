@@ -28,9 +28,11 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
         SessionManagement sessionManagement = new SessionManagement(LoginRegisterActivity.this);
         int userID = sessionManagement.getSession();
+        String user_api_key = sessionManagement.getSession2();
 
         if(userID != -1){
             Intent intent = new Intent(this, HomeActivity.class);
+            intent.putExtra("api_key", user_api_key);
             startActivity(intent);
             finish();
         }
