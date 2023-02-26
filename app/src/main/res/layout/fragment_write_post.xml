@@ -69,7 +69,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="15dp"
-                android:background="@drawable/btn_rounded"
+                android:background="@drawable/btn_rounded_disabled"
                 android:fontFamily="@font/nunito_bold"
                 android:text="@string/post"
                 android:textColor="@color/white"

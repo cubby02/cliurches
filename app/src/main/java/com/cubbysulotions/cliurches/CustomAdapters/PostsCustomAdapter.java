@@ -1,6 +1,7 @@
 package com.cubbysulotions.cliurches.CustomAdapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.DateTimeUtils;
 import com.cubbysulotions.cliurches.Utilities.Posts;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.ViewHolder>{
@@ -55,12 +62,14 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
             }
         }
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onBindViewHolder(@NonNull PostsCustomAdapter.ViewHolder holder, int position) {
             Posts item = posts.get(position);
 
+
+            holder.txtTime.setText(DateTimeUtils.timeAgo(item.getDateStamp(), item.getTimeStamp()));
             holder.txtName.setText(item.getFullname());
-            holder.txtTime.setText(item.getTimeStamp()); //temp
             holder.txtPost.setText(item.getPostContent());
             holder.txtNumberOfLikes.setText(item.getLikes() + " Likes"); //temp
 

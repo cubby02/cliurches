@@ -40,7 +40,8 @@
                 android:layout_below="@+id/txtName"
                 android:layout_toRightOf="@id/imageView2"
                 android:layout_marginStart="20dp"
-                android:text="3 hours ago" />
+                android:text="3 hours ago"
+                android:textSize="13sp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnMore"

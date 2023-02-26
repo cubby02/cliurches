@@ -1,5 +1,6 @@
 package com.cubbysulotions.cliurches.Home;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,14 +15,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -39,18 +52,9 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
     private ImageView imgPFP;
     private EditText txtPost;
     private TextView txtCharNum;
-    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
 
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            //This sets a textview to the current length
-            txtCharNum.setText(String.valueOf(s.length()));
-        }
-
-        public void afterTextChanged(Editable s) {
-        }
-    };
+    private LoadingDialog loadingDialog;
+    private String api_key;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -61,6 +65,10 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
         imgPFP = view.findViewById(R.id.imgPFP);
         txtPost = view.findViewById(R.id.txtPost);
         txtCharNum = view.findViewById(R.id.txtCharNum);
+        loadingDialog = new LoadingDialog(getActivity());
+
+        SessionManagement sessionManagement = new SessionManagement(getActivity());
+        api_key = sessionManagement.getSession2();
 
         txtPost.addTextChangedListener(mTextEditorWatcher);
 
@@ -73,23 +81,89 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add post code here
-                    String JSON_URL = "https://cliurches-app.tech/";
-
-                    if(txtPost.getText().toString().isEmpty()){
-                        toast("");
+                    loadingDialog.startLoading("Posting...");
+                    String post = null;
+                    String api = null;
+                    try {
+                        post = URLEncoder.encode(txtPost.getText().toString().replace("'","\\'"), "utf-8");
+                        api = URLEncoder.encode(api_key.replace("'","\\'"), "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     }
 
+                    String JSON_URL = "https://cliurches-app.tech/api/create_post/?title=[post title]&content="+ post +"&category=[post category]&api_key="+ api +"";
 
-                    navController.navigate(R.id.action_writePostFragment2_to_forumFragment);
-                    ((HomeActivity)getActivity()).hideNavigationBar(false);
-                    ((HomeActivity)getActivity()).hideTopBarPanel(false);
+                    RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                    StringRequest postRequest = new StringRequest(
+                            Request.Method.POST,
+                            JSON_URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+
+                                    toast("Content posted");
+                                    loadingDialog.stopLoading();
+
+                                    closeKeyboard();
+                                    navController.navigate(R.id.action_writePostFragment2_to_forumFragment);
+                                    ((HomeActivity)getActivity()).hideNavigationBar(false);
+                                    ((HomeActivity)getActivity()).hideTopBarPanel(false);
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            loadingDialog.stopLoading();
+                            toast("Something went wrong, please try again");
+                            Log.e(TAG, "onErrorResponse: ", error);
+                        }
+                    }
+                    );
+
+                    requestQueue.add(postRequest);
                 } catch (Exception e) {
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);
                 }
             }
         });
+    }
+
+    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //This sets a textview to the current length
+            txtCharNum.setText(String.valueOf(s.length()));
+            if(s.length() > 0){
+                btnPost.setEnabled(true);
+                btnPost.setBackground(getResources().getDrawable(R.drawable.btn_rounded));
+            } else {
+                btnPost.setEnabled(false);
+                btnPost.setBackground(getResources().getDrawable(R.drawable.btn_rounded_disabled));
+            }
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+    };
+
+    private void closeKeyboard()
+    {
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = getActivity().getCurrentFocus();
+
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
     private void back() {
