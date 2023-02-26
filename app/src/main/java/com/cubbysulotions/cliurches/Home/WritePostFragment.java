@@ -74,6 +74,12 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
             public void onClick(View view) {
                 try {
                     // TODO: add post code here
+                    String JSON_URL = "https://cliurches-app.tech/";
+
+                    if(txtPost.getText().toString().isEmpty()){
+                        toast("");
+                    }
+
 
                     navController.navigate(R.id.action_writePostFragment2_to_forumFragment);
                     ((HomeActivity)getActivity()).hideNavigationBar(false);

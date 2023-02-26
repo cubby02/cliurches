@@ -15,6 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
 import com.cubbysulotions.cliurches.Calendar.MassDetailsFragment;
@@ -23,6 +28,7 @@ import com.cubbysulotions.cliurches.Camera.CameraContainerFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
 import com.cubbysulotions.cliurches.Camera.MatchResultFragment;
 import com.cubbysulotions.cliurches.Gallery.GalleryFragment;
+import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
@@ -52,6 +58,7 @@ public class HomeActivity extends AppCompatActivity {
                 getWindow().setStatusBarColor(Color.parseColor("#50343434"));
             }
             home();
+
             navigationView.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(int i) {
@@ -171,4 +178,5 @@ public class HomeActivity extends AppCompatActivity {
             }, 2000);
         }
     }
+
 }

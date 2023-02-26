@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,25 +11,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
-            <ImageView
-                android:id="@+id/imgProfile"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@color/black"/>
+
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Jane Doe"
-                android:textSize="20dp"
-                android:layout_toRightOf="@id/imgProfile"/>
+                android:textSize="20dp" />
 
             <TextView
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtName"
-                android:layout_toRightOf="@id/imgProfile"
                 android:text="3 hours ago"
                 android:textSize="20dp" />
             <Button

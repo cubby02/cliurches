@@ -3,6 +3,7 @@ package com.cubbysulotions.cliurches.Utilities;
 public class Posts {
     private String postId;
     private String timeStamp;
+    private String dateStamp;
     private String userId;
     private String fullname;
     private String postTitle;
@@ -29,6 +30,14 @@ public class Posts {
         this.timeStamp = timeStamp;
     }
 
+
+    public String getDateStamp() {
+        return dateStamp;
+    }
+
+    public void setDateStamp(String dateStamp) {
+        this.dateStamp = dateStamp;
+    }
 
     public String getUserId() {
         return userId;
