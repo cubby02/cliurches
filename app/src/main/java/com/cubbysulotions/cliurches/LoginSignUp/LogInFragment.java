@@ -22,13 +22,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.UserSessionManagement;
 import com.github.hariprasanths.bounceview.BounceView;
+import com.google.gson.JsonObject;
 
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -46,8 +59,6 @@ public class LogInFragment extends Fragment {
     private Button btnLogin, btnBack;
     private TextView txtForgotPassword, register;
     LoadingDialog loadingDialog;
-
-    private boolean isInternet;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -134,22 +145,74 @@ public class LogInFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 try {
-                    boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
-
-                    if(isInternet){
-                        toast("Welcome!");
+                    if(txtEmail.getText().toString().isEmpty() || txtPassword.getText().toString().isEmpty()){
+                        txtEmail.setError("Required");
+                        txtPassword.setError("Required");
                     } else {
-                        toast("Please try again");
+                        loadingDialog.startLoading("Please wait...");
+                        boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
+
+                        if(isInternet){
+                            txtEmail.setError(null);
+                            txtPassword.setError(null);
+
+                            String email = null;
+                            String password = null;
+                            try {
+                                password = URLEncoder.encode(txtPassword.getText().toString().replace("'","\\'"), "utf-8");
+                                email = URLEncoder.encode(txtEmail.getText().toString().replace("'","\\'"), "utf-8");
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
+
+                            String JSON_URL = "https://cliurches-app.tech/api/login/?email="+ email +"&password="+ password+"";
+                            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                                    Request.Method.GET,
+                                    JSON_URL,
+                                    null,
+                                    new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            loadingDialog.stopLoading();
+                                            try {
+                                                String status = response.getString("status");
+
+                                                if (status.equals("wrong credentials")){
+                                                    toast("Wrong credentials");
+                                                } else if (status.equals("not verified")){
+                                                    toast("Please verify your email");
+                                                } else {
+                                                    UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"));
+                                                    SessionManagement sessionManagement = new SessionManagement(getActivity());
+                                                    sessionManagement.saveSession(user);
+
+                                                    toast("User logged in");
+
+                                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                                    startActivity(intent);
+                                                    getActivity().finish();
+                                                }
+                                            } catch (JSONException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }
+                                    }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        loadingDialog.stopLoading();
+                                        toast("Something went wrong, please try again");
+                                        Log.e(TAG, "onErrorResponse: ", error);
+                                    }
+                                }
+                            );
+
+                            requestQueue.add(jsonObjectRequest);
+                        } else {
+                            loadingDialog.stopLoading();
+                            toast("Please try again");
+                        }
                     }
-
-                    /*
-                    UserSessionManagement user = new UserSessionManagement(1, "1234567abc");
-                    SessionManagement sessionManagement = new SessionManagement(getActivity());
-                    sessionManagement.saveSession(user);
-
-                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                    startActivity(intent);
-                    getActivity().finish(); */
                 } catch (Exception e) {
                     Log.e(TAG, "onClick Login: ", e);
                 }

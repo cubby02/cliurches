@@ -49,7 +49,6 @@ public class ForumFragment extends Fragment {
         SessionManagement sessionManagement = new SessionManagement(getActivity());
         String api_key = sessionManagement.getSession2();
 
-        toast("Message: " + api_key);
     }
 
     private void writePost() {
