@@ -29,6 +29,7 @@ import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.Posts;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,7 +91,7 @@ public class ForumFragment extends Fragment {
         try {
             postsList.clear();
             String JSON_URL = "https://cliurches-app.tech/api/view_timeline/?&api_key="+ api_key +"";
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
                     JSON_URL,
@@ -132,7 +133,7 @@ public class ForumFragment extends Fragment {
                 }
             }
             );
-            requestQueue.add(jsonArrayRequest);
+            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonArrayRequest);
         } catch (Exception e){
             toast("Something went wrong");
             Log.e(TAG, "showAllPosts: ", e);

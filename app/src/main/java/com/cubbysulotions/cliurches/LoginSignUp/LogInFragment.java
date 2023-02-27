@@ -35,6 +35,7 @@ import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.UserSessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 import com.github.hariprasanths.bounceview.BounceView;
 import com.google.gson.JsonObject;
 
@@ -193,7 +194,6 @@ public class LogInFragment extends Fragment {
                             }
 
                             String JSON_URL = "https://cliurches-app.tech/api/login/?email="+ email +"&password="+ password+"";
-                            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                                     Request.Method.GET,
                                     JSON_URL,
@@ -204,7 +204,6 @@ public class LogInFragment extends Fragment {
                                             loadingDialog.stopLoading();
                                             try {
                                                 String status = response.getString("status");
-
                                                 if (status.equals("wrong credentials")){
                                                     toast("Wrong credentials");
                                                 } else if (status.equals("not verified")){
@@ -234,7 +233,7 @@ public class LogInFragment extends Fragment {
                                 }
                             );
 
-                            requestQueue.add(jsonObjectRequest);
+                            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);
                         } else {
                             loadingDialog.stopLoading();
                             toast("Please try again");

@@ -26,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 import com.github.hariprasanths.bounceview.BounceView;
 
 import java.io.UnsupportedEncodingException;
@@ -139,7 +140,7 @@ public class RegisterFragment extends Fragment {
                             }
 
                             String JSON_URL = "https://cliurches-app.tech/api/new_user/?email="+ email +"&password="+ password +"&firstname="+ firstName +"&lastname="+ lastName +"";
-                            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
                             StringRequest postRequest = new StringRequest(
                                     Request.Method.POST,
                                     JSON_URL,
@@ -165,7 +166,7 @@ public class RegisterFragment extends Fragment {
                             }
                             );
 
-                            requestQueue.add(postRequest);
+                            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(postRequest);
                         }
                         else {
                             loadingDialog.stopLoading();

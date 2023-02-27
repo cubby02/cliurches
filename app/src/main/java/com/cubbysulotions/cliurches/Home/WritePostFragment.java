@@ -32,6 +32,7 @@ import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -92,8 +93,6 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
                     }
 
                     String JSON_URL = "https://cliurches-app.tech/api/create_post/?title=[post title]&content="+ post +"&category=[post category]&api_key="+ api +"";
-
-                    RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                     StringRequest postRequest = new StringRequest(
                             Request.Method.POST,
                             JSON_URL,
@@ -119,7 +118,7 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
                     }
                     );
 
-                    requestQueue.add(postRequest);
+                    VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(postRequest);
                 } catch (Exception e) {
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);

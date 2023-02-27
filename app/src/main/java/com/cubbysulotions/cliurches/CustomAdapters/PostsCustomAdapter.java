@@ -1,15 +1,19 @@
 package com.cubbysulotions.cliurches.CustomAdapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.DateTimeUtils;
 import com.cubbysulotions.cliurches.Utilities.Posts;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -80,7 +85,7 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
-        public void onBindViewHolder(@NonNull PostsCustomAdapter.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull PostsCustomAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
             Posts item = posts.get(position);
 
             boolean isLiked = Boolean.parseBoolean(item.getStatus());
@@ -112,7 +117,7 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                         }
 
                         String URL  = "https://cliurches-app.tech/api/sendlike/?postid="+ postID +"&api_key="+ api +"";
-                        RequestQueue requestQueue = Volley.newRequestQueue(context);
+
                         StringRequest stringRequest = new StringRequest(
                                 Request.Method.POST,
                                 URL,
@@ -135,10 +140,73 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                                 }
                             }
                         );
-                        requestQueue.add(stringRequest);
+                        VolleySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(stringRequest);
                     } catch (Exception e) {
                         Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
                         Log.e(TAG, "onClick: ", e);
+                    }
+                }
+            });
+
+            holder.btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    try {
+                        PopupMenu popupMenu = new PopupMenu(context, view);
+                        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                            @Override
+                            public boolean onMenuItemClick(MenuItem menuItem) {
+                                switch (menuItem.getItemId()){
+                                    case R.id.delete:
+                                        SessionManagement sessionManagement = new SessionManagement(context);
+                                        String api_key = sessionManagement.getSession2();
+
+                                        String postID = null;
+                                        String api = null;
+                                        try {
+                                            postID = URLEncoder.encode(item.getPostId().replace("'","\\'"), "utf-8");
+                                            api = URLEncoder.encode(api_key.toString().replace("'","\\'"), "utf-8");
+                                        } catch (UnsupportedEncodingException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        String URL  = "https://cliurches-app.tech/api/delete_post/?postid="+ postID +"&api_key="+ api +"";
+
+                                        StringRequest stringRequest = new StringRequest(
+                                                Request.Method.POST,
+                                                URL,
+                                                new Response.Listener<String>() {
+                                                    @Override
+                                                    public void onResponse(String response) {
+                                                        if(response.equals("[\"status\",\"success\"]")){
+                                                            posts.remove(position);
+                                                            notifyItemRemoved(position);
+                                                            notifyItemRangeRemoved(position, posts.size());
+                                                        } else {
+                                                            Toast.makeText(context, "Invalid", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                }, new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Log.e(TAG, "onErrorResponse: ", error);
+                                            }
+                                        }
+                                        );
+                                        VolleySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(stringRequest);
+
+                                        return true;
+                                    default:
+                                        return false;
+                                }
+                            }
+                        });
+
+                        popupMenu.inflate(R.menu.items_more);
+                        popupMenu.show();
+                    } catch (Exception e) {
+                        Log.e(TAG, "onClick: ", e);
+                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
