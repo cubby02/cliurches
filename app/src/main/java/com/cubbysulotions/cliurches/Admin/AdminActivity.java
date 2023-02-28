@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -39,8 +40,9 @@ import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button btnLogoutAccount, btnSortList;
+    private Button btnLogoutAccount, btnSortList, btnSavePaymentMethod;
     private TextView tabLabel;
+    private EditText txtNameRecipient;
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -52,9 +54,12 @@ public class AdminActivity extends AppCompatActivity {
         topBarPanel = findViewById(R.id.topBarPanel);
         tabLabel = findViewById(R.id.tabLabel);
         btnSortList = findViewById(R.id.btnSortList);
+        btnSavePaymentMethod = findViewById(R.id.btnSavePaymentMethod);
+        txtNameRecipient = findViewById(R.id.txtNameRecipient);
 
         sortList();
         settings();
+        setPaymentMethod();
 
         try{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -65,6 +70,23 @@ public class AdminActivity extends AppCompatActivity {
             Log.e(TAG, "onCreate: ", e);
         }
 
+    }
+
+    private void setPaymentMethod() {
+        btnSavePaymentMethod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    if(txtNameRecipient.getText().toString().isEmpty()){
+                        txtNameRecipient.setError("Required");
+                    } else {
+                        //TODO:insert code hehe
+                    }
+                }catch (Exception e){
+                    Log.e(TAG, "onClick: ", e);
+                }
+            }
+        });
     }
 
     private void settings() {
@@ -102,8 +124,33 @@ public class AdminActivity extends AppCompatActivity {
                     RadioButton rbAllLists = dialog.findViewById(R.id.rbAllLists);
                     RadioButton rbDeclined = dialog.findViewById(R.id.rbDeclined);
 
-                    String id = String.valueOf(radioGroupSort.getCheckedRadioButtonId());
-                    Log.d("radioButton",id);
+                    dialog.show();
+
+                    rbApproved.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO: add code
+                            Log.d("radioButton","Approvedd");
+
+                        }
+                    });
+
+                    rbAllLists.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO: add code
+                            Log.d("radioButton","AllList");
+
+                        }
+                    });
+
+                    rbDeclined.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //TODO: add code
+                            Log.d("radioButton","Declined");
+                        }
+                    });
 
                 }catch(Exception e){
                     Log.e("error", "onClick", e);
