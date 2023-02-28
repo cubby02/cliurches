@@ -183,7 +183,7 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                                                             notifyItemRemoved(position);
                                                             notifyItemRangeRemoved(position, posts.size());
                                                         } else {
-                                                            Toast.makeText(context, "Invalid", Toast.LENGTH_SHORT).show();
+                                                            Toast.makeText(context, "You can't do that.", Toast.LENGTH_SHORT).show();
                                                         }
                                                     }
                                                 }, new Response.ErrorListener() {

@@ -209,12 +209,13 @@ public class LogInFragment extends Fragment {
                                             loadingDialog.stopLoading();
                                             try {
                                                 String status = response.getString("status");
-                                                String role = response.getString("acc_type");
+
                                                 if (status.equals("wrong credentials")){
                                                     toast("Wrong credentials");
                                                 } else if (status.equals("not verified")){
                                                     toast("Please verify your email");
                                                 } else {
+                                                    String role = response.getString("acc_type");
                                                     UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"), role, txtEmail.getText().toString());
                                                     SessionManagement sessionManagement = new SessionManagement(getActivity());
                                                     sessionManagement.saveSession(user);
@@ -232,6 +233,7 @@ public class LogInFragment extends Fragment {
                                                             startActivity(intent2);
                                                             getActivity().finish();
                                                             break;
+
                                                     }
                                                 }
                                             } catch (JSONException e) {
