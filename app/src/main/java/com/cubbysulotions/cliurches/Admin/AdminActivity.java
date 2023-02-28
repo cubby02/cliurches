@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,6 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
 import com.cubbysulotions.cliurches.Calendar.MassDetailsFragment;
@@ -37,12 +40,12 @@ import com.cubbysulotions.cliurches.Home.SettingsBottomSheetDialog;
 import com.cubbysulotions.cliurches.Home.WritePostFragment;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button btnLogoutAccount, btnSortList, btnSavePaymentMethod;
+    private Button btnLogoutAccount, btnSortList;
     private TextView tabLabel;
-    private EditText txtNameRecipient;
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
 
@@ -54,12 +57,9 @@ public class AdminActivity extends AppCompatActivity {
         topBarPanel = findViewById(R.id.topBarPanel);
         tabLabel = findViewById(R.id.tabLabel);
         btnSortList = findViewById(R.id.btnSortList);
-        btnSavePaymentMethod = findViewById(R.id.btnSavePaymentMethod);
-        txtNameRecipient = findViewById(R.id.txtNameRecipient);
 
         sortList();
         settings();
-        setPaymentMethod();
 
         try{
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -70,23 +70,6 @@ public class AdminActivity extends AppCompatActivity {
             Log.e(TAG, "onCreate: ", e);
         }
 
-    }
-
-    private void setPaymentMethod() {
-        btnSavePaymentMethod.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    if(txtNameRecipient.getText().toString().isEmpty()){
-                        txtNameRecipient.setError("Required");
-                    } else {
-                        //TODO:insert code hehe
-                    }
-                }catch (Exception e){
-                    Log.e(TAG, "onClick: ", e);
-                }
-            }
-        });
     }
 
     private void settings() {
@@ -110,6 +93,7 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
+                    /*
                     Dialog dialog = new Dialog(AdminActivity.this);
                     //We have added a title in the custom layout. So let's disable the default title.
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -124,33 +108,28 @@ public class AdminActivity extends AppCompatActivity {
                     RadioButton rbAllLists = dialog.findViewById(R.id.rbAllLists);
                     RadioButton rbDeclined = dialog.findViewById(R.id.rbDeclined);
 
-                    dialog.show();
+                    String id = String.valueOf(radioGroupSort.getCheckedRadioButtonId());
+                    toast("radioButton" + id);
 
-                    rbApproved.setOnClickListener(new View.OnClickListener() {
+                    dialog.show(); */
+
+                    String URL = "https://cliurches-app.tech/api/media/identify/?imageUrl=https://cliurches-app.tech/api/media/gallery/bauan.JPG";
+                    StringRequest request = new StringRequest(
+                            Request.Method.GET,
+                            URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    toast(response);
+                                }
+                            }, new Response.ErrorListener() {
                         @Override
-                        public void onClick(View v) {
-                            //TODO: add code
-                            Log.d("radioButton","Approvedd");
-
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e(TAG, "onErrorResponse: ", error);
                         }
-                    });
-
-                    rbAllLists.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //TODO: add code
-                            Log.d("radioButton","AllList");
-
-                        }
-                    });
-
-                    rbDeclined.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //TODO: add code
-                            Log.d("radioButton","Declined");
-                        }
-                    });
+                    }
+                    );
+                    VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
 
                 }catch(Exception e){
                     Log.e("error", "onClick", e);

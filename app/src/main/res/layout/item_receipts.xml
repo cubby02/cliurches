@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -116,6 +117,31 @@
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/txtview21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Parish" />
+            <TextView
+                android:id="@+id/txtChurch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_toRightOf="@id/txtview21"
+                android:textAlignment="textEnd"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Church"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -202,6 +228,31 @@
                 android:layout_alignParentEnd="true"/>
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/txtview27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Status" />
+            <TextView
+                android:id="@+id/txtStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/txtview27"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_medium"
+                android:text="Lorem Ipsum"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -270,6 +321,7 @@
             android:background="@color/gray"/>
 
         <RelativeLayout
+            android:id="@+id/adminButtons"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
@@ -304,19 +356,19 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnUserCancel"
-            android:layout_height="40dp"
-            android:visibility="gone"
             android:layout_width="wrap_content"
-            android:background="@drawable/btn_rounded"
-            android:backgroundTint="@color/red"
-            android:text="Cancel Order"
+            android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_rounded"
+            android:backgroundTint="@color/red"
+            android:fontFamily="@font/nunito_bold"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
-            android:layout_marginEnd="20dp"
+            android:text="Cancel Order"
             android:textColor="@color/white"
-            android:fontFamily="@font/nunito_bold"/>
+            android:visibility="gone" />
 
     </LinearLayout>
 
