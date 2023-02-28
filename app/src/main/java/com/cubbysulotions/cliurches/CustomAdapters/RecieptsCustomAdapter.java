@@ -60,7 +60,7 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
         public TextView txtOrderID, txtRecipient, txtDate, txtTime,
                 txtPadasalParaKay, txtUriNgPadasal, txtAddMessage,
                 txtStatus, txtChurch;
-        public Button btnCancel;
+        public Button btnCancel, btnAccept, btnDecline;
         public RelativeLayout adminButtons;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +75,8 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
             adminButtons = itemView.findViewById(R.id.adminButtons);
             txtStatus = itemView.findViewById(R.id.txtStatus);
             txtChurch = itemView.findViewById(R.id.txtChurch);
+            btnAccept = itemView.findViewById(R.id.btnAccept);
+            btnDecline = itemView.findViewById(R.id.btnDecline);
 
         }
     }
@@ -96,6 +98,10 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
                     holder.adminButtons.setVisibility(View.VISIBLE);
                     holder.btnCancel.setVisibility(View.GONE);
                     break;
+            }
+
+            if (item.getStatus().equals("approved") || item.getStatus().equals("declined")){
+                holder.adminButtons.setVisibility(View.GONE);
             }
 
             holder.txtOrderID.setText("#" + item.getId());
@@ -151,6 +157,90 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
                                         notifyItemRemoved(position);
                                         notifyItemRangeRemoved(position, pamisaList.size());
                                         Toast.makeText(context, "Schedule cancelled", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context, "Invalid", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e(TAG, "onErrorResponse: ", error);
+                        }
+                    }
+                    );
+                    VolleySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(stringRequest);
+                }
+            });
+
+            holder.btnAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SessionManagement sessionManagement = new SessionManagement(context);
+                    String api_key = sessionManagement.getSession2();
+
+                    String postID = null;
+                    String api = null;
+                    try {
+                        postID = URLEncoder.encode(item.getId().replace("'","\\'"), "utf-8");
+                        api = URLEncoder.encode(api_key.replace("'","\\'"), "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    String URL  = "https://cliurches-app.tech/api/admin/approve/?id="+ postID +"&api_key=" + api+"";
+
+                    StringRequest stringRequest = new StringRequest(
+                            Request.Method.POST,
+                            URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if(response.equals("[\"status\",\"success\"]")){
+                                        Toast.makeText(context, "Approved", Toast.LENGTH_SHORT).show();
+                                        holder.txtStatus.setText("approved");
+                                        holder.adminButtons.setVisibility(View.GONE);
+                                    } else {
+                                        Toast.makeText(context, "Invalid", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e(TAG, "onErrorResponse: ", error);
+                        }
+                    }
+                    );
+                    VolleySingleton.getInstance(context.getApplicationContext()).addToRequestQueue(stringRequest);
+                }
+            });
+
+            holder.btnDecline.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SessionManagement sessionManagement = new SessionManagement(context);
+                    String api_key = sessionManagement.getSession2();
+
+                    String postID = null;
+                    String api = null;
+                    try {
+                        postID = URLEncoder.encode(item.getId().replace("'","\\'"), "utf-8");
+                        api = URLEncoder.encode(api_key.replace("'","\\'"), "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    String URL  = "https://cliurches-app.tech/api/admin/decline/?id="+ postID +"&api_key=" + api+"";
+
+                    StringRequest stringRequest = new StringRequest(
+                            Request.Method.POST,
+                            URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if(response.equals("[\"status\",\"success\"]")){
+                                        Toast.makeText(context, "Declined", Toast.LENGTH_SHORT).show();
+                                        holder.txtStatus.setText("declined");
+                                        holder.adminButtons.setVisibility(View.GONE);
                                     } else {
                                         Toast.makeText(context, "Invalid", Toast.LENGTH_SHORT).show();
                                     }

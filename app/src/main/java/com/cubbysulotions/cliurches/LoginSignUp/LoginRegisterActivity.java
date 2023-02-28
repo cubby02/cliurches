@@ -68,6 +68,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         int userID = sessionManagement.getSession();
         String user_api_key = sessionManagement.getSession2();
         String role = sessionManagement.getAccountType();
+        String admin_name = sessionManagement.getAdminName();
 
         if(userID != -1){
             switch (role){
@@ -80,6 +81,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 case "admin":
                     Intent intent2 = new Intent(this, AdminActivity.class);
                     intent2.putExtra("api_key", user_api_key);
+                    intent2.putExtra("admin_name", admin_name);
                     startActivity(intent2);
                     finish();
                     break;

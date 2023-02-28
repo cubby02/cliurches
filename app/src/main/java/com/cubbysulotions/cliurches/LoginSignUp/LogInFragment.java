@@ -28,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.Admin.AdminActivity;
@@ -41,6 +42,7 @@ import com.github.hariprasanths.bounceview.BounceView;
 import com.google.gson.JsonObject;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,6 +65,8 @@ public class LogInFragment extends Fragment {
     private Button btnLogin, btnBack, btnTogglePassword;
     private TextView txtForgotPassword, register;
     LoadingDialog loadingDialog;
+
+    String user_email;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -211,7 +215,7 @@ public class LogInFragment extends Fragment {
                                                 } else if (status.equals("not verified")){
                                                     toast("Please verify your email");
                                                 } else {
-                                                    UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"), role);
+                                                    UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"), role, txtEmail.getText().toString());
                                                     SessionManagement sessionManagement = new SessionManagement(getActivity());
                                                     sessionManagement.saveSession(user);
 

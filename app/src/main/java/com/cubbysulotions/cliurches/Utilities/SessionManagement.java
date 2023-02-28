@@ -11,6 +11,7 @@ public class SessionManagement {
     String SESSION_KEY_2 = "session_username";
 
     String SESSION_KEY_3 = "acc_type";
+    String SESSION_KEY_4 = "admin_name";
 
 
     public SessionManagement(Context context){
@@ -23,10 +24,12 @@ public class SessionManagement {
         int id = users.getId();
         String username = users.getUsername();
         String acc_type = users.getAcc_type();
+        String admin = users.getAdmin_name();
 
         editor.putInt(SESSION_KEY, id)
                 .putString(SESSION_KEY_2, username)
                 .putString(SESSION_KEY_3, acc_type)
+                .putString(SESSION_KEY_4, admin)
                 .commit();
     }
 
@@ -41,6 +44,10 @@ public class SessionManagement {
 
     public String getAccountType(){
         return sharedPreferences.getString(SESSION_KEY_3, "");
+    }
+
+    public String getAdminName(){
+        return sharedPreferences.getString(SESSION_KEY_4, "");
     }
 
 

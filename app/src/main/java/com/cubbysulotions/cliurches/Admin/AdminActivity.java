@@ -4,6 +4,8 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.graphics.Color;
@@ -26,6 +28,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Calendar.CalendarContainerFragment;
 import com.cubbysulotions.cliurches.Calendar.CalendarFragment;
@@ -34,14 +37,24 @@ import com.cubbysulotions.cliurches.Calendar.PaymentFragment;
 import com.cubbysulotions.cliurches.Camera.CameraContainerFragment;
 import com.cubbysulotions.cliurches.Camera.CameraFragment;
 import com.cubbysulotions.cliurches.Camera.MatchResultFragment;
+import com.cubbysulotions.cliurches.CustomAdapters.RecieptsCustomAdapter;
 import com.cubbysulotions.cliurches.Gallery.GalleryFragment;
 import com.cubbysulotions.cliurches.Home.ForumContainerFragment;
 import com.cubbysulotions.cliurches.Home.SettingsBottomSheetDialog;
 import com.cubbysulotions.cliurches.Home.WritePostFragment;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.UserPamisa;
 import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
     private Button btnLogoutAccount, btnSortList;
@@ -49,22 +62,37 @@ public class AdminActivity extends AppCompatActivity {
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
 
+    private RecyclerView adminReciepts;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecieptsCustomAdapter recieptsCustomAdapter;
+    List<UserPamisa> pamisaList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        btnLogoutAccount = findViewById(R.id.btnLogoutAccount);
-        topBarPanel = findViewById(R.id.topBarPanel);
-        tabLabel = findViewById(R.id.tabLabel);
-        btnSortList = findViewById(R.id.btnSortList);
 
-        sortList();
-        settings();
 
         try{
+            btnLogoutAccount = findViewById(R.id.btnLogoutAccount);
+            topBarPanel = findViewById(R.id.topBarPanel);
+            tabLabel = findViewById(R.id.tabLabel);
+            btnSortList = findViewById(R.id.btnSortList);
+            adminReciepts = findViewById(R.id.adminReciepts);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(Color.parseColor("#50343434"));
             }
+
+            pamisaList = new ArrayList<>();
+            recieptsCustomAdapter = new RecieptsCustomAdapter(pamisaList, this);
+            layoutManager = new GridLayoutManager(this, 1, GridLayoutManager.VERTICAL, false);
+            adminReciepts.setLayoutManager(layoutManager);
+            adminReciepts.setAdapter(recieptsCustomAdapter);
+
+            sortList();
+            settings();
+            populate("Allpamisa");
 
         } catch (Exception e) {
             Log.e(TAG, "onCreate: ", e);
@@ -72,12 +100,67 @@ public class AdminActivity extends AppCompatActivity {
 
     }
 
+    private void populate(String type) {
+        try {
+            pamisaList.clear();
+            SessionManagement sessionManagement = new SessionManagement(this);
+            String api_key = sessionManagement.getSession2();
+            String church = sessionManagement.getAdminName();
+
+            String JSON_URL = "https://cliurches-app.tech/api/admin/"+type+"/?parish="+church+"&api_key="+ api_key +"";
+
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                    Request.Method.GET,
+                    JSON_URL,
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            for (int i = 0; i < response.length(); i++){
+                                try {
+                                    JSONObject pamisaObject = response.getJSONObject(i);
+
+                                    UserPamisa item = new UserPamisa();
+
+                                    item.setId(pamisaObject.getString("id"));
+                                    item.setRecipient(pamisaObject.getString("recipient"));
+                                    item.setDate(pamisaObject.getString("time"));
+                                    item.setTime(pamisaObject.getString("date"));
+                                    item.setForwhom(pamisaObject.getString("forwhom"));
+                                    item.setComment(pamisaObject.getString("comment"));
+                                    item.setStatus(pamisaObject.getString("status"));
+                                    item.setParish(pamisaObject.getString("parish"));
+                                    item.setType(pamisaObject.getString("type"));
+
+                                    pamisaList.add(item);
+
+                                } catch (JSONException e){
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            recieptsCustomAdapter.updateDataSet(pamisaList);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    toast("Something went wrong");
+                    Log.e(TAG, "onErrorResponse: ", error);
+                }
+            }
+            );
+            VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonArrayRequest);
+        } catch (Exception e){
+            toast("Something went wrong");
+            Log.e(TAG, "showAllPosts: ", e);
+        }
+    }
+
     private void settings() {
         btnLogoutAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-
                     SettingsBottomSheetDialog settingsBottomSheetDialog = new SettingsBottomSheetDialog();
                     settingsBottomSheetDialog.show(getSupportFragmentManager(), settingsBottomSheetDialog.getTag());
                 } catch (Exception e) {
@@ -87,13 +170,12 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
-
     private void sortList() {
         btnSortList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try{
-                    /*
+
                     Dialog dialog = new Dialog(AdminActivity.this);
                     //We have added a title in the custom layout. So let's disable the default title.
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -108,28 +190,31 @@ public class AdminActivity extends AppCompatActivity {
                     RadioButton rbAllLists = dialog.findViewById(R.id.rbAllLists);
                     RadioButton rbDeclined = dialog.findViewById(R.id.rbDeclined);
 
-                    String id = String.valueOf(radioGroupSort.getCheckedRadioButtonId());
-                    toast("radioButton" + id);
-
-                    dialog.show(); */
-
-                    String URL = "https://cliurches-app.tech/api/media/identify/?imageUrl=https://cliurches-app.tech/api/media/gallery/bauan.JPG";
-                    StringRequest request = new StringRequest(
-                            Request.Method.GET,
-                            URL,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    toast(response);
-                                }
-                            }, new Response.ErrorListener() {
+                    rbApproved.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e(TAG, "onErrorResponse: ", error);
+                        public void onClick(View view) {
+                            populate("approvedList");
+                            dialog.dismiss();
                         }
-                    }
-                    );
-                    VolleySingleton.getInstance(getApplicationContext()).addToRequestQueue(request);
+                    });
+
+                    rbAllLists.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            populate("Allpamisa");
+                            dialog.dismiss();
+                        }
+                    });
+
+                    rbDeclined.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            populate("declinedList");
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
 
                 }catch(Exception e){
                     Log.e("error", "onClick", e);
