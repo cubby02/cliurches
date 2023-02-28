@@ -33,7 +33,7 @@ import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button btnSettings;
+    private Button btnLogoutAccount;
     private TextView tabLabel;
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
@@ -42,7 +42,7 @@ public class AdminActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        btnSettings = findViewById(R.id.btnSettings);
+        btnLogoutAccount = findViewById(R.id.btnLogoutAccount);
         topBarPanel = findViewById(R.id.topBarPanel);
         tabLabel = findViewById(R.id.tabLabel);
 
@@ -60,7 +60,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     private void settings() {
-        btnSettings.setOnClickListener(new View.OnClickListener() {
+        btnLogoutAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
@@ -84,13 +84,6 @@ public class AdminActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(CompletedPaymentFragment.backpressedlistener !=null){
-            CompletedPaymentFragment.backpressedlistener.onBackPressed();
-        } else if(MassScheduleFragment.backpressedlistener !=null){
-            MassScheduleFragment.backpressedlistener.onBackPressed();
-        } else if(PendingPaymentFragment.backpressedlistener !=null) {
-            PendingPaymentFragment.backpressedlistener.onBackPressed();
-        } else {
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
@@ -105,6 +98,6 @@ public class AdminActivity extends AppCompatActivity {
                     doubleBackToExitPressedOnce=false;
                 }
             }, 2000);
-        }
+
     }
 }

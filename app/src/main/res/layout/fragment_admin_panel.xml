@@ -25,133 +25,83 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/reservation_details"
+                android:text="@string/set_payment_method"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnCompletePayment"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_rounded"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/nunito_extrabold"
-                android:text="@string/completed_payment"
-                android:textColor="@color/blue_main" />
+                app:cardElevation="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPendingPayment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_rounded"
-                android:backgroundTint="@color/white"
-                android:fontFamily="@font/nunito_extrabold"
-                android:text="@string/pending_payment"
-                android:textColor="@color/blue_main" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Mass Schedule"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <com.google.android.material.card.MaterialCardView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@color/white"
-                    app:cardCornerRadius="20dp">
+                    android:layout_height="match_parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <EditText
+                        android:id="@+id/txtNameRecipient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/btnSavePaymentMethod"
+                        android:layout_margin="15dp"
+                        android:background="@color/white"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/nunito_medium"
+                        android:hint="e.g. Gcash, COD" />
+
+
+                    <ImageView
+                        android:id="@+id/btnSavePaymentMethod"
+                        android:layout_width="wrap_content"
+                        android:layout_margin="15dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:backgroundTint="@color/blue_main"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_baseline_save_24"/>
 
-                        <CalendarView
-                            android:id="@+id/calendarView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
 
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="#636363" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            android:fontFamily="@font/nunito_medium"
-                            android:text="@string/select_church"
-                            android:textSize="15sp" />
+                </RelativeLayout>
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginBottom="8dp"
-                            app:cardElevation="1dp">
 
-                            <Spinner
-                                android:id="@+id/spinnerSelectedChurch"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="15dp" />
+            </com.google.android.material.card.MaterialCardView>
 
-                        </com.google.android.material.card.MaterialCardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/rvMassScheds"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/reservation_list"
+                    android:layout_toLeftOf="@+id/btnSortList"
+                    android:layout_alignParentStart="true"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
-                        <TextView
-                            android:id="@+id/txtNoMassLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="40dp"
-                            android:fontFamily="@font/nunito_medium"
-                            android:text="@string/walang_misa_ngayong_araw"
-                            android:textSize="15sp"
-                            android:visibility="gone" />
+                <ImageView
+                    android:id="@+id/btnSortList"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="20dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/ic_baseline_sort_24"/>
 
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnScheduleMass"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="40dp"
-                            android:background="@drawable/btn_rounded"
-                            android:fontFamily="@font/nunito_bold"
-                            android:text="@string/schedule_mass"
-                            android:textColor="@color/white" />
+            </RelativeLayout>
 
-                    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-                </com.google.android.material.card.MaterialCardView>
-            </androidx.core.widget.NestedScrollView>
+
         </LinearLayout>
     </ScrollView>
 

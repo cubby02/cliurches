@@ -50,6 +50,12 @@
     <string name="padasal_para_kay">Padasal para kay</string>
     <string name="detalye_ng_pamisa_sentence">Detalye ng Pamisa</string>
     <string name="name">Name</string>
+    <string name="reservation_list">Reservation List</string>
+    <string name="set_payment_method">Set Payment Method</string>
+    <string name="sort_by">Sort By</string>
+    <string name="approved">Approved</string>
+    <string name="declined">Declined</string>
+    <string name="all_pending">All Pending</string>
 
     <string-array name="time_array">
         <item>6:00 - 7:00 AM</item>

@@ -40,14 +40,14 @@
             android:textSize="18sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSettings"
+            android:id="@+id/btnLogoutAccount"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:background="@drawable/ic_baseline_settings_24"
+            android:background="@drawable/ic_baseline_login_24"
             android:backgroundTint="@color/blue_main"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="15dp" />
 
     </RelativeLayout>
 
@@ -56,8 +56,6 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/admin_nav"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="1dp" />
     </LinearLayout>

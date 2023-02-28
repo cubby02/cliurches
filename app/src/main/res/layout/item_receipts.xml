@@ -263,6 +263,44 @@
                 android:text="P100.00"
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
+
+        <ImageView
+            android:layout_marginBottom="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp">
+
+           <androidx.appcompat.widget.AppCompatButton
+               android:id="@+id/btnAccept"
+               android:layout_height="match_parent"
+               android:layout_width="wrap_content"
+               android:background="@drawable/btn_rounded"
+               android:backgroundTint="@color/green"
+               android:text="Accept"
+               android:textColor="@color/white"
+               android:layout_marginStart="20dp"
+               android:fontFamily="@font/nunito_bold"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnDecline"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:background="@drawable/btn_rounded"
+                android:layout_alignParentEnd="true"
+                android:backgroundTint="@color/red"
+                android:text="Decline"
+                android:layout_marginEnd="20dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_bold"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
