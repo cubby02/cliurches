@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cubbysulotions.cliurches.Admin.AdminActivity;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
@@ -204,20 +205,30 @@ public class LogInFragment extends Fragment {
                                             loadingDialog.stopLoading();
                                             try {
                                                 String status = response.getString("status");
+                                                String role = response.getString("acc_type");
                                                 if (status.equals("wrong credentials")){
                                                     toast("Wrong credentials");
                                                 } else if (status.equals("not verified")){
                                                     toast("Please verify your email");
                                                 } else {
-                                                    UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"));
+                                                    UserSessionManagement user = new UserSessionManagement(1, response.getString("api_key"), role);
                                                     SessionManagement sessionManagement = new SessionManagement(getActivity());
                                                     sessionManagement.saveSession(user);
 
                                                     toast("User logged in");
 
-                                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
-                                                    startActivity(intent);
-                                                    getActivity().finish();
+                                                    switch (role){
+                                                        case "user":
+                                                            Intent intent = new Intent(getActivity(), HomeActivity.class);
+                                                            startActivity(intent);
+                                                            getActivity().finish();
+                                                            break;
+                                                        case "admin":
+                                                            Intent intent2 = new Intent(getActivity(), AdminActivity.class);
+                                                            startActivity(intent2);
+                                                            getActivity().finish();
+                                                            break;
+                                                    }
                                                 }
                                             } catch (JSONException e) {
                                                 throw new RuntimeException(e);

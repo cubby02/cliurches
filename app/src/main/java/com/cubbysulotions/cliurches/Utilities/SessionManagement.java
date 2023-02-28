@@ -10,6 +10,8 @@ public class SessionManagement {
     String SESSION_KEY = "session_id";
     String SESSION_KEY_2 = "session_username";
 
+    String SESSION_KEY_3 = "acc_type";
+
 
     public SessionManagement(Context context){
         sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -20,9 +22,11 @@ public class SessionManagement {
         //save session of user whenever user is logged in
         int id = users.getId();
         String username = users.getUsername();
+        String acc_type = users.getAcc_type();
 
         editor.putInt(SESSION_KEY, id)
                 .putString(SESSION_KEY_2, username)
+                .putString(SESSION_KEY_3, acc_type)
                 .commit();
     }
 
@@ -33,6 +37,10 @@ public class SessionManagement {
 
     public String getSession2(){
         return sharedPreferences.getString(SESSION_KEY_2, "");
+    }
+
+    public String getAccountType(){
+        return sharedPreferences.getString(SESSION_KEY_3, "");
     }
 
 
