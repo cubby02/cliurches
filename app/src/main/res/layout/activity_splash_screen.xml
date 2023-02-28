@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/church_bg"
+        android:src="@drawable/church_bg_collage"
         android:alpha="0.2"
         android:scaleType="centerCrop"/>
 
