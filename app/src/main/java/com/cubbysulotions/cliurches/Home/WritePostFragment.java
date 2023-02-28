@@ -170,6 +170,7 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.action_writePostFragment2_to_forumFragment);
+                closeKeyboard();
                 ((HomeActivity)getActivity()).hideNavigationBar(false);
                 ((HomeActivity)getActivity()).hideTopBarPanel(false);
             }

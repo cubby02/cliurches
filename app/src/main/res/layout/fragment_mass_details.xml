@@ -35,193 +35,203 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/selected_date"
-        android:textSize="20sp"
-        android:fontFamily="@font/nunito_medium"
-        android:textColor="@color/white"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"/>
-
-    <com.google.android.material.card.MaterialCardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
-
-        <TextView
-            android:id="@+id/txtSelectedDate"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="00/00/00"
-            android:textSize="15sp"
-            android:textColor="@color/black"
-            android:padding="15dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_date"
+                android:textSize="20sp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"/>
 
-    </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/selected_time"
-        android:textSize="20sp"
-        android:fontFamily="@font/nunito_medium"
-        android:textColor="@color/white"
-        android:layout_marginLeft="20dp"/>
+                <TextView
+                    android:id="@+id/txtSelectedDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="00/00/00"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:padding="15dp"/>
 
+            </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
-
-        <Spinner
-            android:id="@+id/spinnerSelectedTime"
-            android:layout_margin="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_of_recipient"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nunito_medium"
-        android:layout_marginLeft="20dp"/>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
-
-        <EditText
-            android:id="@+id/txtNameRecipient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@color/white"
-            android:fontFamily="@font/nunito_medium"
-            android:hint="@string/full_name" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/padasal_para_kay"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nunito_medium"
-        android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selected_time"
+                android:textSize="20sp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"/>
 
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
 
-        <EditText
-            android:id="@+id/txtName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@color/white"
-            android:fontFamily="@font/nunito_medium"
-            android:hint="@string/full_name" />
+                <Spinner
+                    android:id="@+id/spinnerSelectedTime"
+                    android:layout_margin="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-    </com.google.android.material.card.MaterialCardView>
+            </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_of_recipient"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_marginLeft="20dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Uri ng padasal"
-        android:textSize="20sp"
-        android:fontFamily="@font/nunito_medium"
-        android:textColor="@color/white"
-        android:layout_marginLeft="20dp"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
 
+                <EditText
+                    android:id="@+id/txtNameRecipient"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/nunito_medium"
+                    android:hint="@string/full_name" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
+            </com.google.android.material.card.MaterialCardView>
 
-        <Spinner
-            android:id="@+id/spinnerPadasal"
-            android:layout_margin="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/additional_message"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nunito_medium"
-        android:layout_marginLeft="20dp"/>
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="2dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="8dp">
-
-        <EditText
-            android:id="@+id/txtMessage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@color/white"
-            android:fontFamily="@font/nunito_medium"
-            android:hint="@string/enter_message" />
-
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/padasal_para_kay"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_marginLeft="20dp"/>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnPayment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/btn_rounded"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/nunito_extrabold"
-        android:textColor="@color/blue_main"
-        android:text="@string/proceed_to_payment"
-        android:layout_gravity="center"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/nunito_medium"
+                    android:hint="@string/name" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Uri ng padasal"
+                android:textSize="20sp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"/>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <Spinner
+                    android:id="@+id/spinnerPadasal"
+                    android:layout_margin="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/additional_message"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_medium"
+                android:layout_marginLeft="20dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="2dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
+
+                <EditText
+                    android:id="@+id/txtMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:background="@color/white"
+                    android:fontFamily="@font/nunito_medium"
+                    android:hint="Optional" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/btn_rounded"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/nunito_extrabold"
+                android:textColor="@color/blue_main"
+                android:text="@string/proceed_to_payment"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -56,30 +56,48 @@
                 android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Order ID:"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/nunito_bold"
-                    android:textSize="20sp"/>
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/txtPaymentOrderID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="#123456789"
+                    android:text="Summary"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_bold"
                     android:textSize="20sp"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_gravity="center"/>
             </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Church"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium" />
+
+                <TextView
+                    android:id="@+id/txtChurch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="5:00 PM - 6:00 PM"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+
                 android:layout_marginEnd="20dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -140,6 +158,51 @@
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Uri ng Padasal"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+
+                <TextView
+                    android:id="@+id/txtPadasal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="GCash"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="For whom"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium" />
+
+                <TextView
+                    android:id="@+id/txtForWhom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:fontFamily="@font/nunito_medium"
+                    android:text="John Doe"
+                    android:textColor="@color/black" />
+            </RelativeLayout>
             <TextView
                 android:visibility="gone"
                 android:layout_width="wrap_content"
@@ -151,6 +214,8 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunito_medium" />
 
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -160,12 +225,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Payment Method"
+                    android:text="Additional Message"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
 
                 <TextView
-                    android:id="@+id/txtPaymentMOP"
+                    android:id="@+id/txtAddMess"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"

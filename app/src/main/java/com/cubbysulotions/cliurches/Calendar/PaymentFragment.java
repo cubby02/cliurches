@@ -16,11 +16,28 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static com.cubbysulotions.cliurches.Calendar.CalendarFragment.SELECTED_CHURCH;
+import static com.cubbysulotions.cliurches.Calendar.CalendarFragment.SELECTED_DATE;
+import static com.cubbysulotions.cliurches.Calendar.MassDetailsFragment.ADD_MESS;
+import static com.cubbysulotions.cliurches.Calendar.MassDetailsFragment.FOR_WHOM;
+import static com.cubbysulotions.cliurches.Calendar.MassDetailsFragment.NAME;
+import static com.cubbysulotions.cliurches.Calendar.MassDetailsFragment.SELECTED_TIME;
+import static com.cubbysulotions.cliurches.Calendar.MassDetailsFragment.URI_PADASAL;
 
 public class PaymentFragment extends Fragment implements BackpressedListener {
 
@@ -34,7 +51,8 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
 
     private NavController navController;
     private Button btnComplete, btnBack;
-    private TextView txtOrderID, txtSelectedDate, txtSelectedTime, txtName, txtMOP, txtTotal;
+    private TextView txtOrderID, txtSelectedDate, txtSelectedTime, txtName, txtWhom, txtPadasal, txtAddMess, txtTotal, txtChurch;
+    private LoadingDialog loadingDialog;
 
 
     @Override
@@ -47,11 +65,32 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
         txtSelectedDate = view.findViewById(R.id.txtPaymentDate);
         txtSelectedTime = view.findViewById(R.id.txtPaymentTime);
         txtName = view.findViewById(R.id.txtPaymentRecipient);
-        txtMOP = view.findViewById(R.id.txtPaymentMOP);
+        txtWhom = view.findViewById(R.id.txtForWhom);
+        txtPadasal = view.findViewById(R.id.txtPadasal);
+        txtAddMess = view.findViewById(R.id.txtAddMess);
         txtTotal = view.findViewById(R.id.txtPaymentTotal);
+        txtChurch = view.findViewById(R.id.txtChurch);
+        loadingDialog = new LoadingDialog(getActivity());
 
+        populate();
         back();
         proceed();
+    }
+
+    private void populate() {
+        try {
+
+            txtSelectedDate.setText(getArguments().getString(SELECTED_DATE));
+            txtSelectedTime.setText(getArguments().getString(SELECTED_TIME));
+            txtName.setText(getArguments().getString(NAME));
+            txtWhom.setText(getArguments().getString(FOR_WHOM));
+            txtPadasal.setText(getArguments().getString(URI_PADASAL));
+            txtAddMess.setText(getArguments().getString(ADD_MESS));
+
+        } catch (Exception e) {
+            Log.e(TAG, "populate: ", e);
+            toast("Something went wrong");
+        }
     }
 
     private void proceed() {
@@ -59,11 +98,60 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add proceed code here
-                    ((HomeActivity)getActivity()).hideNavigationBar(false);
-                    ((HomeActivity)getActivity()).hideTopBarPanel(false);
-                    navController.navigate(R.id.action_paymentFragment_to_calendarFragment);
+                    loadingDialog.startLoading("Please wait...");
+
+
+                    SessionManagement sessionManagement = new SessionManagement(getActivity());
+                    String api_key = sessionManagement.getSession2();
+
+                    String selectedDate_url = null;
+                    String selectedTime_url = null;
+                    String selectedChurch_url = null;
+                    String name_url = null;
+                    String forWhom_url = null;
+                    String selectedPadasal_url = null;
+                    String additional_url = null;
+                    String api_url = null;
+
+                    try {
+                        selectedTime_url = URLEncoder.encode(getArguments().getString(SELECTED_DATE).replace("'","\\'"), "utf-8");
+                        selectedDate_url = URLEncoder.encode(getArguments().getString(SELECTED_TIME).replace("'","\\'"), "utf-8");
+                        selectedChurch_url = URLEncoder.encode(getArguments().getString(SELECTED_CHURCH).replace("'","\\'"), "utf-8");
+                        api_url = URLEncoder.encode(api_key.replace("'","\\'"), "utf-8");
+                        name_url = URLEncoder.encode(getArguments().getString(NAME).toString().replace("'","\\'"), "utf-8");
+                        forWhom_url = URLEncoder.encode(getArguments().getString(FOR_WHOM).replace("'","\\'"), "utf-8");
+                        selectedPadasal_url = URLEncoder.encode(getArguments().getString(URI_PADASAL).toString().replace("'","\\'"), "utf-8");
+                        additional_url = URLEncoder.encode(getArguments().getString(ADD_MESS).replace("'","\\'"), "utf-8");
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    String URL = "https://cliurches-app.tech/api/pamisa/?parish="+ selectedChurch_url +"&recipient="+name_url +"&forwhom="+ forWhom_url +"&date="+ selectedDate_url +"&time=" + selectedTime_url +"&type=" + selectedPadasal_url +"&comment=" + additional_url +"&api_key="+ api_url+"";
+                    StringRequest stringRequest = new StringRequest(
+                            Request.Method.POST,
+                            URL,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    loadingDialog.stopLoading();
+                                    ((HomeActivity)getActivity()).hideNavigationBar(false);
+                                    ((HomeActivity)getActivity()).hideTopBarPanel(false);
+                                    toast("Mass scheduled!");
+                                    navController.navigate(R.id.action_paymentFragment_to_calendarFragment);
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e(TAG, "onErrorResponse: ", error);
+                            loadingDialog.stopLoading();
+                        }
+                    }
+                    );
+                    VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
+
+
                 } catch (Exception e) {
+                    loadingDialog.stopLoading();
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);
                 }
@@ -76,7 +164,18 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
             @Override
             public void onClick(View view) {
                 try {
-                    navController.navigate(R.id.action_paymentFragment_to_massDetailsFragment);
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(SELECTED_CHURCH, getArguments().getString(SELECTED_CHURCH));
+                    bundle.putString(SELECTED_DATE, getArguments().getString(SELECTED_DATE));
+                    bundle.putString(SELECTED_TIME, getArguments().getString(SELECTED_TIME));
+                    bundle.putString(NAME, getArguments().getString(NAME));
+                    bundle.putString(FOR_WHOM, getArguments().getString(FOR_WHOM));
+                    bundle.putString(URI_PADASAL, getArguments().getString(URI_PADASAL));
+                    bundle.putString(ADD_MESS, getArguments().getString(ADD_MESS));
+
+
+                    navController.navigate(R.id.action_paymentFragment_to_massDetailsFragment, bundle);
                 } catch (Exception e) {
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);
@@ -91,7 +190,17 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
 
     @Override
     public void onBackPressed() {
-        navController.navigate(R.id.action_paymentFragment_to_massDetailsFragment);
+        Bundle bundle = new Bundle();
+        bundle.putString(SELECTED_CHURCH, getArguments().getString(SELECTED_CHURCH));
+        bundle.putString(SELECTED_DATE, getArguments().getString(SELECTED_DATE));
+        bundle.putString(SELECTED_TIME, getArguments().getString(SELECTED_TIME));
+        bundle.putString(NAME, getArguments().getString(NAME));
+        bundle.putString(FOR_WHOM, getArguments().getString(FOR_WHOM));
+        bundle.putString(URI_PADASAL, getArguments().getString(URI_PADASAL));
+        bundle.putString(ADD_MESS, getArguments().getString(ADD_MESS));
+
+
+        navController.navigate(R.id.action_paymentFragment_to_massDetailsFragment, bundle);
     }
 
     public static BackpressedListener backpressedlistener;

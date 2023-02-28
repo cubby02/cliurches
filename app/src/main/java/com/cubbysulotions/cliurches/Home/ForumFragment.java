@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -72,6 +73,7 @@ public class ForumFragment extends Fragment {
         rvPosts = view.findViewById(R.id.posts);
         imgPFP = view.findViewById(R.id.imgPFP);
 
+
         postsList = new ArrayList<>();
         postsCustomAdapter = new PostsCustomAdapter(postsList, getActivity());
         layoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
@@ -85,7 +87,11 @@ public class ForumFragment extends Fragment {
         writePost();
 
         showAllPosts();
+        
+
     }
+
+
 
     private void showAllPosts() {
         try {
@@ -123,6 +129,7 @@ public class ForumFragment extends Fragment {
                             }
 
                             Collections.reverse(postsList);
+
                             postsCustomAdapter.updateDataSet(postsList);
                         }
                     }, new Response.ErrorListener() {

@@ -19,7 +19,7 @@ public class DateTimeUtils {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String formattedShortDate(String date){
         SimpleDateFormat format1 = new SimpleDateFormat("MM/dd/yyyy");
-        SimpleDateFormat format2 = new SimpleDateFormat("MMM d");
+        SimpleDateFormat format2 = new SimpleDateFormat("MMM d, yyyy");
         Date stringDate = null;
         try {
             stringDate = format1.parse(date);

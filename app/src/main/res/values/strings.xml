@@ -49,6 +49,7 @@
     <string name="mass_schedule">MASS SCHEDULE</string>
     <string name="padasal_para_kay">Padasal para kay</string>
     <string name="detalye_ng_pamisa_sentence">Detalye ng Pamisa</string>
+    <string name="name">Name</string>
 
     <string-array name="time_array">
         <item>6:00 - 7:00 AM</item>
@@ -69,7 +70,7 @@
 
     <string-array name="padasal_array">
         <item>Para sa pasasalamat</item>
-        <item>Para sa patay</item>
+        <item>Para sa kaluluwa</item>
         <item>Para sa petition</item>
     </string-array>
 

@@ -25,10 +25,15 @@ import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 
 public class CalendarFragment extends Fragment implements BackpressedListener {
+
+    public static final String SELECTED_DATE = "selected_date";
+    public static final String SELECTED_CHURCH = "selected_church";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,6 +47,7 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
     private TextView txtNoMassLabel;
     private CalendarView calendarView;
     private Spinner spinnerSelectedChurch;
+    private String selectedDate, selectedChurch;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -55,6 +61,18 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
 
         selectMass();
         selectChurch();
+        selectDate();
+    }
+
+    private void selectDate() {
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(i, i1, i2);
+                selectedDate = (i1 + 1) + "/" + i2 + "/" + i;
+            }
+        });
     }
 
     private void selectChurch() {
@@ -67,6 +85,8 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
             // Apply the adapter to the spinner
             spinnerSelectedChurch.setAdapter(adapter);
 
+
+
         } catch (Exception e) {
             toast("Something went wrong, please try again");
             Log.e(TAG, "onClick: ", e);
@@ -78,9 +98,32 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add select mass code here
+                    switch ((int) spinnerSelectedChurch.getSelectedItemId()){
+                        case 0:
+                            selectedChurch = "bauan";
+                            break;
+                        case 1:
+                            selectedChurch = "aplaya";
+                            break;
+                        case 2:
+                            selectedChurch = "bolo";
+                            break;
+                        case 3:
+                            selectedChurch = "sanpascual";
+                            break;
+                    }
 
-                    navController.navigate(R.id.action_calendarFragment_to_massDetailsFragment);
+
+                    Bundle bundle = new Bundle();
+                    if (selectedDate == null) {
+                        Calendar calendar = Calendar.getInstance();
+                        selectedDate = (calendar.get(Calendar.MONTH) + 1) + "/"+ calendar.get(Calendar.DAY_OF_MONTH) + "/" + calendar.get(Calendar.YEAR);
+                    }
+
+                    bundle.putString(SELECTED_DATE, selectedDate);
+                    bundle.putString(SELECTED_CHURCH, selectedChurch);
+
+                    navController.navigate(R.id.action_calendarFragment_to_massDetailsFragment, bundle);
                     ((HomeActivity)getActivity()).hideNavigationBar(true);
                     ((HomeActivity)getActivity()).hideTopBarPanel(true);
                 } catch (Exception e) {
