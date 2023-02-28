@@ -5,14 +5,20 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.app.Dialog;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +39,7 @@ import com.cubbysulotions.cliurches.Reciepts.RecieptsFragment;
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button btnLogoutAccount;
+    private Button btnLogoutAccount, btnSortList;
     private TextView tabLabel;
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
@@ -45,7 +51,9 @@ public class AdminActivity extends AppCompatActivity {
         btnLogoutAccount = findViewById(R.id.btnLogoutAccount);
         topBarPanel = findViewById(R.id.topBarPanel);
         tabLabel = findViewById(R.id.tabLabel);
+        btnSortList = findViewById(R.id.btnSortList);
 
+        sortList();
         settings();
 
         try{
@@ -74,13 +82,40 @@ public class AdminActivity extends AppCompatActivity {
         });
     }
 
-    public void hideTopBarPanel(boolean flag){
-        if(flag){
-            topBarPanel.setVisibility(View.GONE);
-        } else{
-            topBarPanel.setVisibility(View.VISIBLE);
-        }
+
+    private void sortList() {
+        btnSortList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    Dialog dialog = new Dialog(AdminActivity.this);
+                    //We have added a title in the custom layout. So let's disable the default title.
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
+                    dialog.setCancelable(true);
+                    //Mention the name of the layout of your custom dialog.
+                    dialog.setContentView(R.layout.dialog_sort_by);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                    RadioGroup radioGroupSort = dialog.findViewById(R.id.radioGroupSort);
+                    RadioButton rbApproved = dialog.findViewById(R.id.rbApproved);
+                    RadioButton rbAllLists = dialog.findViewById(R.id.rbAllLists);
+                    RadioButton rbDeclined = dialog.findViewById(R.id.rbDeclined);
+
+                    String id = String.valueOf(radioGroupSort.getCheckedRadioButtonId());
+                    Log.d("radioButton",id);
+
+                }catch(Exception e){
+                    Log.e("error", "onClick", e);
+                }
+            }
+        });
     }
+
+    private void toast(String msg) {
+        Toast.makeText(AdminActivity.this, msg, Toast.LENGTH_LONG).show();
+    }
+
 
     @Override
     public void onBackPressed() {

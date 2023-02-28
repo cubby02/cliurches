@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_main"
     tools:context=".Admin.AdminActivity">
 
     <LinearLayout
@@ -51,13 +52,103 @@
 
     </RelativeLayout>
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <ScrollView
+            android:scrollbars="none"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="1dp" />
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/set_payment_method"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:id="@+id/txtNameRecipient"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/btnSavePaymentMethod"
+                            android:layout_margin="15dp"
+                            android:background="@color/white"
+                            android:layout_alignParentStart="true"
+                            android:fontFamily="@font/nunito_medium"
+                            android:hint="e.g. Gcash, COD" />
+
+
+                        <ImageView
+                            android:id="@+id/btnSavePaymentMethod"
+                            android:layout_width="wrap_content"
+                            android:layout_margin="15dp"
+                            android:layout_height="match_parent"
+                            android:backgroundTint="@color/blue_main"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/ic_baseline_save_24"/>
+
+
+
+                    </RelativeLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/reservation_list"
+                        android:layout_toLeftOf="@+id/btnSortList"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSortList"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:backgroundTint="@color/white"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/ic_baseline_sort_24"/>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
     </LinearLayout>
 
 
