@@ -102,7 +102,9 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
 
             if (item.getStatus().equals("approved") || item.getStatus().equals("declined")){
                 holder.adminButtons.setVisibility(View.GONE);
+                holder.btnCancel.setVisibility(View.GONE);
             }
+
 
             holder.txtOrderID.setText("#" + item.getId());
             holder.txtRecipient.setText(item.getRecipient());
