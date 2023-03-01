@@ -60,6 +60,8 @@
     <string name="bank_name">Bank Name</string>
     <string name="account_name">Account Name</string>
     <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="please"><i>Please add details</i></string>
+    <string name="please2"><i>Please contact church admin</i></string>
 
     <string-array name="time_array">
         <item>6:00 - 7:00 AM</item>

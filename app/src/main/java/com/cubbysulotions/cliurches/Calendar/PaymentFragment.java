@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
@@ -26,6 +27,10 @@ import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -51,7 +56,7 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
 
     private NavController navController;
     private Button btnComplete, btnBack;
-    private TextView txtOrderID, txtSelectedDate, txtSelectedTime, txtName, txtWhom, txtPadasal, txtAddMess, txtTotal, txtChurch;
+    private TextView txtOrderID, txtSelectedDate, txtSelectedTime, txtName, txtWhom, txtPadasal, txtAddMess, txtTotal, txtChurch, txtBankName, txtAccountName, txtAccountNumber;
     private LoadingDialog loadingDialog;
 
 
@@ -71,6 +76,9 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
         txtTotal = view.findViewById(R.id.txtPaymentTotal);
         txtChurch = view.findViewById(R.id.txtChurch);
         loadingDialog = new LoadingDialog(getActivity());
+        txtAccountName = view.findViewById(R.id.txtAccountName);
+        txtAccountNumber = view.findViewById(R.id.txtAccountNumber);
+        txtBankName = view.findViewById(R.id.txtBankName);
 
         populate();
         back();
@@ -86,9 +94,63 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
             txtWhom.setText(getArguments().getString(FOR_WHOM));
             txtPadasal.setText(getArguments().getString(URI_PADASAL));
             txtAddMess.setText(getArguments().getString(ADD_MESS));
+            populatePaymentMethod();
 
         } catch (Exception e) {
             Log.e(TAG, "populate: ", e);
+            toast("Something went wrong");
+        }
+    }
+
+    private void populatePaymentMethod() {
+        try {
+            SessionManagement sessionManagement = new SessionManagement(getActivity());
+            String api_key = sessionManagement.getSession2();
+
+
+            String selectedChurch_url = null;
+            String api_url = null;
+
+
+            try {
+                selectedChurch_url = URLEncoder.encode(getArguments().getString(SELECTED_CHURCH).replace("'","\\'"), "utf-8");
+                api_url = URLEncoder.encode(api_key.replace("'","\\'"), "utf-8");
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            String URL = "https://cliurches-app.tech/api/paymentMethod/?parish="+ selectedChurch_url +"&api_key="+api_url+"";
+
+            JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                    Request.Method.GET,
+                    URL,
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            try {
+                                JSONObject object = response.getJSONObject(0);
+
+                                txtBankName.setText(object.getString("method"));
+                                txtAccountName.setText(object.getString("account_name"));
+                                txtAccountNumber.setText(object.getString("account_number"));
+                                txtTotal.setText("P" + object.getString("donation") + ".00");
+
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            }
+            );
+            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonArrayRequest);
+        } catch (Exception e){
+            Log.e(TAG, "populatePaymentMethod: ", e);
             toast("Something went wrong");
         }
     }

@@ -53,6 +53,8 @@
     </RelativeLayout>
 
         <ScrollView
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:scrollbars="none"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -61,6 +63,166 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="Parish Payment method"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnEditPaymentMethod"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/ic_baseline_edit_24"
+                        android:backgroundTint="@color/white" />
+                </RelativeLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_height="match_parent">
+
+
+                        <TextView
+                            android:id="@+id/paymentMethod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Payment Details"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginStart="20dp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/nunito_bold"
+                            android:textSize="18sp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="15dp">
+                            <TextView
+                                android:id="@+id/txt3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bank Name"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_medium"/>
+
+                            <TextView
+                                android:id="@+id/txtBankNameStatic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_toEndOf="@id/txt3"
+                                android:fontFamily="@font/nunito_medium"
+                                android:text="@string/please"
+                                android:textAlignment="textEnd"
+                                android:textColor="@color/black" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="5dp">
+                            <TextView
+                                android:id="@+id/txt2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Account Name"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_medium"/>
+
+                            <TextView
+                                android:id="@+id/txtAccountNameStatic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_toEndOf="@id/txt2"
+                                android:textAlignment="textEnd"
+                                android:text="@string/please"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_medium"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="5dp">
+                            <TextView
+                                android:id="@+id/txt1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Account Number"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_medium"/>
+
+                            <TextView
+                                android:id="@+id/txtAccountNumberStatic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_toEndOf="@id/txt1"
+                                android:textAlignment="textEnd"
+                                android:layout_alignParentEnd="true"
+                                android:text="@string/please"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_medium"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="20dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Donation"
+                                android:textSize="20sp"
+                                android:textColor="@color/blue_main"
+                                android:fontFamily="@font/nunito_bold"/>
+
+                            <TextView
+                                android:id="@+id/txtPaymentTotalStatic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:text="P0.00"
+                                android:textSize="20sp"
+                                android:textColor="@color/blue_main"
+                                android:layout_marginBottom="30dp"
+                                android:fontFamily="@font/nunito_bold"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <RelativeLayout
                     android:layout_marginTop="30dp"
@@ -112,9 +274,9 @@
                         android:layout_height="match_parent">
 
                         <EditText
-
+                            android:inputType="textPersonName"
                             android:id="@+id/txtBankName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="15dp"
@@ -123,7 +285,8 @@
                             android:layout_marginBottom="15dp"
                             android:background="@color/white"
                             android:fontFamily="@font/nunito_medium"
-                            android:hint="Bank Name" />
+                            android:hint="Bank Name"
+                            android:maxLines="1"/>
 
 
                     </RelativeLayout>
@@ -152,9 +315,9 @@
                         android:layout_height="match_parent">
 
                         <EditText
-
+                            android:inputType="number"
                             android:id="@+id/txtAccountNumber"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="15dp"
@@ -163,7 +326,8 @@
                             android:layout_marginBottom="15dp"
                             android:background="@color/white"
                             android:fontFamily="@font/nunito_medium"
-                            android:hint="Account Number" />
+                            android:hint="Account Number"
+                            android:maxLines="1"/>
 
                     </RelativeLayout>
 
@@ -176,6 +340,8 @@
                     android:fontFamily="@font/nunito_bold"
                     android:text="@string/account_name"
                     android:textColor="@color/white" />
+
+
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -191,9 +357,9 @@
                         android:layout_height="match_parent">
 
                         <EditText
-
+                            android:inputType="textPersonName"
                             android:id="@+id/txtAccountName"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
                             android:layout_marginStart="15dp"
@@ -202,7 +368,49 @@
                             android:layout_marginBottom="15dp"
                             android:background="@color/white"
                             android:fontFamily="@font/nunito_medium"
-                            android:hint="Account Name" />
+                            android:hint="Account Name"
+                            android:maxLines="1"
+                            />
+
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Donation Amount"
+                    android:textColor="@color/white" />
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+                            android:inputType="numberDecimal"
+                            android:id="@+id/txtDoantionAmount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/nunito_medium"
+                            android:hint="Donation Amount"
+                            android:maxLines="1"/>
 
 
                     </RelativeLayout>

@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/lorem_ipsum"
+                    tools:text="@string/lorem_ipsum"
                     android:layout_toEndOf="@id/txt10"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -114,7 +114,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="January 01, 2023"
+                    tools:text="January 01, 2023"
                     android:layout_toEndOf="@id/txt9"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/lorem_ipsum"
+                    tools:text="@string/lorem_ipsum"
                     android:layout_toEndOf="@id/txt8"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -164,7 +164,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="John Doe"
+                    tools:text="John Doe"
                     android:layout_toEndOf="@id/txt7"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -191,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/lorem_ipsum"
+                    tools:text="@string/lorem_ipsum"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
             </RelativeLayout>
@@ -218,7 +218,7 @@
                     android:fontFamily="@font/nunito_medium"
                     android:layout_toEndOf="@id/txt5"
                     android:textAlignment="textEnd"
-                    android:text="John Doe"
+                    tools:text="John Doe"
                     android:textColor="@color/black" />
             </RelativeLayout>
             <TextView
@@ -251,7 +251,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/lorem_ipsum"
+                    tools:text="@string/lorem_ipsum"
                     android:layout_toEndOf="@id/txt4"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -288,7 +288,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="BDO"
+                    android:text="@string/please2"
                     android:layout_toEndOf="@id/txt3"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -316,7 +316,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_toEndOf="@id/txt2"
                     android:textAlignment="textEnd"
-                    android:text="Lorem Ipsum"
+                    android:text="@string/please2"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
             </RelativeLayout>
@@ -342,7 +342,7 @@
                     android:layout_toEndOf="@id/txt1"
                     android:textAlignment="textEnd"
                     android:layout_alignParentEnd="true"
-                    android:text="40951234567434561234"
+                    android:text="@string/please2"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
             </RelativeLayout>
@@ -357,7 +357,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total"
+                    android:text="Donation"
                     android:textSize="20sp"
                     android:textColor="@color/blue_main"
                     android:fontFamily="@font/nunito_bold"/>
@@ -367,7 +367,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="P100.00"
+                    android:text="P0.00"
                     android:textSize="20sp"
                     android:textColor="@color/blue_main"
                     android:layout_marginBottom="30dp"
