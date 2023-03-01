@@ -4,6 +4,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.cubbysulotions.cliurches.Calendar.CalendarFragment.SELECTED_CHURCH;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,6 +74,7 @@ public class AdminActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
     private EditText txtBankName, txtAccountNumber,txtAccountName, txtDonationAmount;
     private TextView txtTotal, txtBankNameStatic, txtAccountNameStatic, txtAccountNumberStatic;
+    private CardView cardViewSetPayment;
 
     private RecyclerView adminReciepts;
     private RecyclerView.LayoutManager layoutManager;
@@ -87,7 +89,7 @@ public class AdminActivity extends AppCompatActivity {
 
 
         try{
-            btnSavePaymentMethod = findViewById(R.id.btnEditPaymentMethod);
+            btnEditPaymentMethod = findViewById(R.id.btnEditPaymentMethod);
             btnLogoutAccount = findViewById(R.id.btnLogoutAccount);
             topBarPanel = findViewById(R.id.topBarPanel);
             tabLabel = findViewById(R.id.tabLabel);
@@ -103,6 +105,7 @@ public class AdminActivity extends AppCompatActivity {
             txtAccountNumberStatic = findViewById(R.id.txtAccountNumberStatic);
             txtBankNameStatic = findViewById(R.id.txtBankNameStatic);
             txtTotal = findViewById(R.id.txtPaymentTotalStatic);
+            cardViewSetPayment = findViewById(R.id.cardViewSetPayment);
 
 
 
@@ -116,6 +119,7 @@ public class AdminActivity extends AppCompatActivity {
             adminReciepts.setLayoutManager(layoutManager);
             adminReciepts.setAdapter(recieptsCustomAdapter);
 
+            setPayment();
             sortList();
             settings();
             savePayment();
@@ -127,6 +131,23 @@ public class AdminActivity extends AppCompatActivity {
             Log.e(TAG, "onCreate: ", e);
         }
 
+    }
+
+    private void setPayment() {
+        btnEditPaymentMethod.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    if(cardViewSetPayment.getVisibility() == View.GONE){
+                        cardViewSetPayment.setVisibility(View.VISIBLE);
+                    }else{
+                        cardViewSetPayment.setVisibility(View.GONE);
+                    }
+                }catch(Exception e){
+                    Log.e("Error", "setPayment", e);
+                }
+            }
+        });
     }
 
     private void populatePaymentMethod() {

@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:layout_marginTop="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -99,7 +104,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginTop="5dp">
             <TextView
-                android:id="@+id/txtview21"
+                android:id="@+id/txtview33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -110,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:layout_toRightOf="@id/txtview21"
+                android:layout_toRightOf="@id/txtview33"
                 android:textAlignment="textEnd"
                 android:fontFamily="@font/nunito_medium"
                 android:text="5:00 PM - 6:00 PM"
@@ -235,7 +240,7 @@
             android:layout_marginEnd="15dp"
             android:layout_marginTop="5dp">
             <TextView
-                android:id="@+id/txtview27"
+                android:id="@+id/txtview37"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -245,7 +250,7 @@
                 android:id="@+id/txtStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/txtview27"
+                android:layout_toRightOf="@id/txtview37"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunito_medium"
