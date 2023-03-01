@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -57,10 +58,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdminActivity extends AppCompatActivity {
-    private Button btnLogoutAccount, btnSortList;
+    private Button btnLogoutAccount, btnSortList,btnSavePaymentMethod;
     private TextView tabLabel;
     private RelativeLayout topBarPanel;
     boolean doubleBackToExitPressedOnce = false;
+    private EditText txtBankName, txtAccountNumber,txtAccountName;
 
     private RecyclerView adminReciepts;
     private RecyclerView.LayoutManager layoutManager;
@@ -79,6 +81,10 @@ public class AdminActivity extends AppCompatActivity {
             tabLabel = findViewById(R.id.tabLabel);
             btnSortList = findViewById(R.id.btnSortList);
             adminReciepts = findViewById(R.id.adminReciepts);
+            btnSavePaymentMethod = findViewById(R.id.btnSavePaymentMethod);
+            txtBankName = findViewById(R.id.txtBankName);
+            txtAccountNumber = findViewById(R.id.txtAccountNumber);
+            txtAccountName = findViewById(R.id.txtAccountName);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(Color.parseColor("#50343434"));

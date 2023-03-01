@@ -62,15 +62,41 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/set_payment_method"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSavePaymentMethod"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/ic_baseline_save_24"
+                        android:backgroundTint="@color/white" />
+                </RelativeLayout>
+
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/nunito_bold"
-                    android:text="@string/set_payment_method"
-                    android:textColor="@color/white"
-                    android:textSize="20sp" />
+                    android:text="@string/bank_name"
+                    android:textColor="@color/white" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
@@ -87,7 +113,7 @@
 
                         <EditText
 
-                            android:id="@+id/txtNameRecipient"
+                            android:id="@+id/txtBankName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -95,28 +121,91 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginEnd="15dp"
                             android:layout_marginBottom="15dp"
-                            android:layout_toLeftOf="@+id/btnSavePaymentMethod"
                             android:background="@color/white"
                             android:fontFamily="@font/nunito_medium"
-                            android:hint="e.g. Gcash, COD" />
-
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/btnSavePaymentMethod"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginStart="15dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="15dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/ic_baseline_save_24"
-                            android:backgroundTint="@color/blue_main" />
-
+                            android:hint="Bank Name" />
 
 
                     </RelativeLayout>
 
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Account Number"
+                    android:textColor="@color/white" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+
+                            android:id="@+id/txtAccountNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/nunito_medium"
+                            android:hint="Account Number" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/account_name"
+                    android:textColor="@color/white" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardElevation="2dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <EditText
+
+                            android:id="@+id/txtAccountName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/white"
+                            android:fontFamily="@font/nunito_medium"
+                            android:hint="Account Name" />
+
+
+                    </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 

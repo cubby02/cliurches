@@ -53,7 +53,7 @@
             <LinearLayout
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -62,7 +62,7 @@
                     android:id="@+id/txtPaymentOrderID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Summary"
+                    android:text="Reservation Summary"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_bold"
                     android:textSize="20sp"
@@ -78,6 +78,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp">
                 <TextView
+                    android:id="@+id/txt10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Church"
@@ -89,7 +90,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="5:00 PM - 6:00 PM"
+                    android:text="@string/lorem_ipsum"
+                    android:layout_toEndOf="@id/txt10"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
@@ -100,6 +103,7 @@
 
                 android:layout_marginEnd="20dp">
                 <TextView
+                    android:id="@+id/txt9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date"
@@ -110,7 +114,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="February 24, 2023"
+                    android:text="January 01, 2023"
+                    android:layout_toEndOf="@id/txt9"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
@@ -121,6 +127,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/txt8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time"
@@ -132,7 +139,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="5:00 PM - 6:00 PM"
+                    android:text="@string/lorem_ipsum"
+                    android:layout_toEndOf="@id/txt8"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
@@ -143,6 +152,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/txt7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Recipient"
@@ -155,6 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:text="John Doe"
+                    android:layout_toEndOf="@id/txt7"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium" />
             </RelativeLayout>
@@ -165,6 +177,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/txt6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Uri ng Padasal"
@@ -173,10 +186,12 @@
 
                 <TextView
                     android:id="@+id/txtPadasal"
+                    android:layout_toEndOf="@id/txt6"
+                    android:textAlignment="textEnd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="GCash"
+                    android:text="@string/lorem_ipsum"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
             </RelativeLayout>
@@ -188,6 +203,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/txt5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="For whom"
@@ -200,6 +216,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:fontFamily="@font/nunito_medium"
+                    android:layout_toEndOf="@id/txt5"
+                    android:textAlignment="textEnd"
                     android:text="John Doe"
                     android:textColor="@color/black" />
             </RelativeLayout>
@@ -214,8 +232,6 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunito_medium" />
 
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -223,6 +239,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginTop="5dp">
                 <TextView
+                    android:id="@+id/txt4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Additional Message"
@@ -234,10 +251,102 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="GCash"
+                    android:text="@string/lorem_ipsum"
+                    android:layout_toEndOf="@id/txt4"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_medium"/>
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/paymentMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Details"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_bold"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bank Name"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+
+                <TextView
+                    android:id="@+id/txtBankName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="BDO"
+                    android:layout_toEndOf="@id/txt3"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account Name"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+
+                <TextView
+                    android:id="@+id/txtAccountName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_toEndOf="@id/txt2"
+                    android:textAlignment="textEnd"
+                    android:text="Lorem Ipsum"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp">
+                <TextView
+                    android:id="@+id/txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account Number"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+
+                <TextView
+                    android:id="@+id/txtAccountNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/txt1"
+                    android:textAlignment="textEnd"
+                    android:layout_alignParentEnd="true"
+                    android:text="40951234567434561234"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nunito_medium"/>
+            </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
