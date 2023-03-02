@@ -13,9 +13,16 @@ public class LoadingDialog {
 
     Context context;
     Dialog dialog;
+    TextView label;
 
     public LoadingDialog(Context myContext){
         context = myContext;
+    }
+
+    public void changeLabel(String loadingLabel){
+        label.setText(loadingLabel +"...");
+
+        dialog.show();
     }
 
     public void startLoading(String loadingLabel){
@@ -29,8 +36,8 @@ public class LoadingDialog {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         //initialize the textview
+        label = dialog.findViewById(R.id.txtLoading);
 
-        final TextView label = dialog.findViewById(R.id.textView26);
         label.setText(loadingLabel +"...");
 
         dialog.show();

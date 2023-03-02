@@ -19,6 +19,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
@@ -38,6 +39,7 @@ import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 import com.cubbysulotions.cliurches.Utilities.ImageResizer;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
@@ -65,7 +67,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_camera, container, false);
     }
-
+    private LoadingDialog loadingDialog;
     private NavController navController;
     private ImageView imgSearch;
     private Button btnCamera, btnGallery, btnIdentify;
@@ -78,6 +80,8 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private Uri contentUri; // final image URI; for identification purposes
     private String currentPhotoPath;
     private Uri photoURI;
+
+    private Handler handler;
 
     private Uri imageURI;
     private Bitmap bitmap, bitmapReduced;
@@ -102,6 +106,8 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             public void onClick(View v) {
                 if (bitmap == null){
                     toast("Please upload or snap a photo");
+                    customLoading();
+
                 } else {
                     identifyChurch();
                 }
@@ -120,6 +126,39 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             salt.append(charList.charAt(index));
         }
         return salt.toString();
+
+    }
+
+    private void customLoading(){
+        try{
+            loadingDialog = new LoadingDialog(getActivity());
+            handler = new Handler();
+            loadingDialog.startLoading("Please wait");
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.changeLabel("Analyzing Image");
+                }
+            }, 2000);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.changeLabel("Fetching Data");
+                }
+            }, 4000);
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    loadingDialog.changeLabel("Matching Results");
+                }
+            }, 6000);
+
+        }catch(Exception e){
+            Log.e(TAG,"loading",e);
+        }
+
 
     }
 
