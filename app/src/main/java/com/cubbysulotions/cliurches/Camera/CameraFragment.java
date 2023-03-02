@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -53,8 +54,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -177,39 +181,61 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             String api_url = null;
             String fileName = null;
             String encodeImage = null;
-            try {
-                api_url = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
-                fileName = URLEncoder.encode(set_image_filename().replace("'","\\'"), "utf-8");
 
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+            //url fragments
+            //api_url = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
+            //fileName = URLEncoder.encode(set_image_filename().replace("'","\\'"), "utf-8");
 
-                byte[] imgBytes = byteArrayOutputStream.toByteArray();
-                encodeImage = Base64.encodeToString(imgBytes, Base64.DEFAULT);
-            } catch (UnsupportedEncodingException | OutOfMemoryError e) {
-                e.printStackTrace();
-            }
+            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            //bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
-            String URL = "https://cliurches-app.tech/api/media/upload/?image="+ encodeImage +"&name="+ fileName +"&api_key="+ api_url +"";
-            //Log.e(TAG, "identifyChurch: " + URL);
+            //byte[] imgBytes = byteArrayOutputStream.toByteArray();
+            //encodeImage =  new String(imgBytes, StandardCharsets.UTF_8);
 
+
+            String URL = "https://cliurches-app.tech/api/media/upload/";
+            //Log.e(TAG, "identifyChurch: " + encodeImage);
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            Log.e(TAG, "onResponse: " + response);
                             navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
                             ((HomeActivity)getActivity()).hideNavigationBar(true);
                             ((HomeActivity)getActivity()).hideTopBarPanel(true);
                         }
                     }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e(TAG, "onErrorResponse: ", error);
-                    }
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(TAG, "onErrorResponse: ", error);
                 }
-            );
+            }
+            ){
+                @Nullable
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+
+                    String filename = set_image_filename();
+                    SessionManagement sessionManagement = new SessionManagement(getActivity());
+
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                    byte[] imgBytes = byteArrayOutputStream.toByteArray();
+                    String encode = new String(imgBytes, StandardCharsets.UTF_8);
+
+                    Map<String, String> params = new HashMap<>();
+                    params.put("name", filename);
+                    params.put("image", encode);
+                    params.put("api_key", sessionManagement.getSession2());
+
+
+                    return  params;
+                }
+            };
             VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
 
             //navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
