@@ -106,7 +106,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             public void onClick(View v) {
                 if (bitmap == null){
                     toast("Please upload or snap a photo");
-                    customLoading();
+                    //customLoading();
 
                 } else {
                     identifyChurch();
@@ -171,7 +171,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 //        startActivity(intent);
             // TODO: add take picture code here
 
-            /*
+
             SessionManagement sessionManagement = new SessionManagement(getActivity());
 
             String api_url = null;
@@ -191,6 +191,8 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             }
 
             String URL = "https://cliurches-app.tech/api/media/upload/?image="+ encodeImage +"&name="+ fileName +"&api_key="+ api_url +"";
+            //Log.e(TAG, "identifyChurch: " + URL);
+
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     URL,
@@ -208,11 +210,11 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                     }
                 }
             );
-            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest); */
+            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
 
-            navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
-            ((HomeActivity)getActivity()).hideNavigationBar(true);
-            ((HomeActivity)getActivity()).hideTopBarPanel(true);
+            //navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
+            //((HomeActivity)getActivity()).hideNavigationBar(true);
+            //((HomeActivity)getActivity()).hideTopBarPanel(true);
 
         } catch (Exception e){
             toast("Something went wrong, please try again");
