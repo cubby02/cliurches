@@ -225,7 +225,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                     bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
                     byte[] imgBytes = byteArrayOutputStream.toByteArray();
-                    String encode = new String(imgBytes, StandardCharsets.UTF_8);
+                    String encode = Base64.encodeToString(imgBytes, Base64.DEFAULT);
 
                     Map<String, String> params = new HashMap<>();
                     params.put("name", filename);
@@ -316,7 +316,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                 e.printStackTrace();
             }
         }
-        if(requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK){
+        if(requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
             contentUri = data.getData();
             imgSearch.setImageURI(contentUri);
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
