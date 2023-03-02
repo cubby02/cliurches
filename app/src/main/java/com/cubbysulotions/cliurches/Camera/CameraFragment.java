@@ -20,6 +20,7 @@ import androidx.navigation.Navigation;
 
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,19 +30,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
+import com.cubbysulotions.cliurches.Utilities.ImageResizer;
+import com.cubbysulotions.cliurches.Utilities.SessionManagement;
+import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 //import org.tensorflow.lite.DataType;
 //import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 
 public class CameraFragment<CliurchesMlModelV1> extends Fragment implements BackpressedListener {
@@ -64,10 +76,11 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private String u_plantID; // unique plant id
 
     private Uri contentUri; // final image URI; for identification purposes
-
     private String currentPhotoPath;
     private Uri photoURI;
 
+    private Uri imageURI;
+    private Bitmap bitmap, bitmapReduced;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -87,9 +100,27 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
         btnIdentify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                identifyChurch();
+                if (bitmap == null){
+                    toast("Please upload or snap a photo");
+                } else {
+                    identifyChurch();
+                }
+
             }
         });
+    }
+
+    //random string generator
+    protected String set_image_filename() {
+        String charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 8) {
+            int index = (int) (rnd.nextFloat() * charList.length());
+            salt.append(charList.charAt(index));
+        }
+        return salt.toString();
+
     }
 
     private void identifyChurch() {
@@ -101,9 +132,49 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 //        startActivity(intent);
             // TODO: add take picture code here
 
+            /*
+            SessionManagement sessionManagement = new SessionManagement(getActivity());
+
+            String api_url = null;
+            String fileName = null;
+            String encodeImage = null;
+            try {
+                api_url = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
+                fileName = URLEncoder.encode(set_image_filename().replace("'","\\'"), "utf-8");
+
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+
+                byte[] imgBytes = byteArrayOutputStream.toByteArray();
+                encodeImage = Base64.encodeToString(imgBytes, Base64.DEFAULT);
+            } catch (UnsupportedEncodingException | OutOfMemoryError e) {
+                e.printStackTrace();
+            }
+
+            String URL = "https://cliurches-app.tech/api/media/upload/?image="+ encodeImage +"&name="+ fileName +"&api_key="+ api_url +"";
+            StringRequest stringRequest = new StringRequest(
+                    Request.Method.POST,
+                    URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
+                            ((HomeActivity)getActivity()).hideNavigationBar(true);
+                            ((HomeActivity)getActivity()).hideTopBarPanel(true);
+                        }
+                    }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e(TAG, "onErrorResponse: ", error);
+                    }
+                }
+            );
+            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest); */
+
             navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
             ((HomeActivity)getActivity()).hideNavigationBar(true);
             ((HomeActivity)getActivity()).hideTopBarPanel(true);
+
         } catch (Exception e){
             toast("Something went wrong, please try again");
             Log.e(TAG, "onClick: ", e);
@@ -136,7 +207,6 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add take picture code here
                     if(checkCamPermissions()){
                         takePicture();
                     }else{
@@ -171,12 +241,27 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "IMAGE_" + timeStamp + "." + getFileExt(contentUri);
 
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), contentUri);
+                bitmapReduced = ImageResizer.reduceBitmapSize(bitmap, 240000);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         if(requestCode == IMAGE_PICK_CODE && resultCode == Activity.RESULT_OK){
             contentUri = data.getData();
             imgSearch.setImageURI(contentUri);
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String imageFileName = "IMAGE_" + timeStamp + "." + getFileExt(contentUri);
+
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), contentUri);
+                bitmapReduced = ImageResizer.reduceBitmapSize(bitmap, 240000);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
         if(requestCode == REQUEST_WRITE_STORAGE && resultCode == Activity.RESULT_OK){
