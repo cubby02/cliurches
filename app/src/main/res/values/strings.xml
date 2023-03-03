@@ -64,6 +64,8 @@
     <string name="please"><i>Please add details</i></string>
     <string name="please2"><i>Please contact church admin</i></string>
 
+    <string name="notice">This AI-powered program has been designed to analyze data flow graphs and deduce the most likely location based on the image\'s features.</string>
+
     <!-- BAUAN CHURCH -->
     <string name="bauan">Bauan - Immaculate Concepcion Parish</string>
     <string name="bauan_desc">Bauan Catholic Church Immaculate Conception is a historic and well-known religious landmark located in the town of Bauan, Batangas, Philippines. Established in the late 16th century by Spanish Augustinian missionaries, the church\'s current facade combines Baroque and Neoclassical styles. Dedicated to the Immaculate Conception, the church\'s interior features religious art, including paintings, statues, and stained glass windows. The church\'s bell tower, built in the 1800s, showcases a unique blend of Spanish and Filipino influences. Today, the church serves as a place of worship for the local Catholic community and a popular tourist attraction. Its historical and cultural significance has been recognized by the Philippine government, which declared it a National Cultural Treasure in 2001.</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,6 +12,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
+
         <ImageView
             android:id="@+id/imgSearchChurch"
             android:layout_width="250dp"
@@ -20,6 +23,33 @@
             android:scaleType="centerCrop"
             android:background="@color/black"
             android:layout_gravity="center"/>
+
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginTop="3dp"
+                android:id="@+id/info"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_baseline_info_24"
+                app:tint="@color/white" />
+            <TextView
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/info"
+                android:text="@string/notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunito_regular"
+                android:textSize="14sp"
+                android:textStyle="italic"/>
+        </RelativeLayout>
+
+
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSnap"
