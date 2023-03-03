@@ -11,11 +11,14 @@ import androidx.navigation.Navigation;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -66,10 +69,15 @@ public class RegisterFragment extends Fragment {
 
         boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
         Log.d(TAG, "onViewCreated: " + isInternet);
-
-        register();
         togglePassword();
         back();
+
+        btnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register();
+            }
+        });
     }
 
     private boolean isClicked = true;
@@ -95,6 +103,24 @@ public class RegisterFragment extends Fragment {
 
     }
 
+    private void imeDone(){
+        try{
+            txtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    boolean handled = false;
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        register();
+                        handled = true;
+                    }
+                    return handled;
+                }
+            });
+        }catch(Exception e){
+            Log.e(TAG, "imeAction", e);
+        }
+    }
+
     private void back() {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,9 +131,6 @@ public class RegisterFragment extends Fragment {
     }
 
     private void register() {
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 try {
                     if(txtFN.getText().toString().isEmpty() || txtLN.getText().toString().isEmpty()
                             || txtEmail.getText().toString().isEmpty() || txtPassword.getText().toString().isEmpty()){
@@ -177,8 +200,6 @@ public class RegisterFragment extends Fragment {
                     toast("Something went wrong");
                     Log.e(TAG, "onClick register: ", e);
                 }
-            }
-        });
     }
 
     private void toast(String msg){

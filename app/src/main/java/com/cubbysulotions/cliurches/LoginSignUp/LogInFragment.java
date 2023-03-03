@@ -15,10 +15,12 @@ import androidx.navigation.Navigation;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -83,13 +85,20 @@ public class LogInFragment extends Fragment {
         loadingDialog = new LoadingDialog(getActivity());
         BounceView.addAnimTo(btnLogin);
 
+        imeDone();
         back();
-        login();
         forgotPassword();
         togglePassword();
 
         boolean isInternet = ((LoginRegisterActivity)getActivity()).checkInternet();
         Log.d(TAG, "onViewCreated: " + isInternet);
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +106,24 @@ public class LogInFragment extends Fragment {
                 navController.navigate(R.id.action_logInFragment_to_signInFragment);
             }
         });
+    }
+
+    private void imeDone(){
+        try{
+            txtPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    boolean handled = false;
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        login();
+                        handled = true;
+                    }
+                    return handled;
+                }
+            });
+        }catch(Exception e){
+            Log.e(TAG, "imeAction", e);
+        }
     }
 
     private boolean isClicked = true;
@@ -174,9 +201,6 @@ public class LogInFragment extends Fragment {
     }
 
     private void login() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 try {
                     if(txtEmail.getText().toString().isEmpty() || txtPassword.getText().toString().isEmpty()){
                         txtEmail.setError("Required");
@@ -259,8 +283,6 @@ public class LogInFragment extends Fragment {
                 } catch (Exception e) {
                     Log.e(TAG, "onClick Login: ", e);
                 }
-            }
-        });
     }
 
     private void toast(String msg){

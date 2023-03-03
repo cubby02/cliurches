@@ -65,6 +65,7 @@ public class CalendarFragment extends Fragment implements BackpressedListener {
     }
 
     private void selectDate() {
+        calendarView.setMinDate(calendarView.getDate());
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {

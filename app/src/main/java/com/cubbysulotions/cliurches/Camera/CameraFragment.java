@@ -122,7 +122,6 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                 if (bitmap == null){
                     toast("Please upload or snap a photo");
 
-
                 } else {
                     loadingDialog = new LoadingDialog(getActivity());
                     handler = new Handler();

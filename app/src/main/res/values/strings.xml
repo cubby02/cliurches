@@ -22,6 +22,7 @@
     <string name="walang_misa_ngayong_araw">Walang misa ngayong araw</string>
     <string name="select_mass">Select Mass</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque felis purus, dapibus at viverra nec, egestas vitae ipsum. In in risus mollis, iaculis mauris vitae, efficitur sem. Vivamus pharetra eleifend dui ac posuere. Maecenas in justo augue. Cras dignissim dui sit amet felis malesuada venenatis. Integer mattis ultrices lectus nec dignissim.</string>
+   <string name="lorem_long">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</string>
     <string name="post">Post</string>
     <string name="match_result">MATCH RESULT</string>
     <string name="save_to_gallery">Save to Gallery</string>

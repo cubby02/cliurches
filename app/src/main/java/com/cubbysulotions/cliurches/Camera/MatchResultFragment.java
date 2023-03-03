@@ -1,13 +1,9 @@
 package com.cubbysulotions.cliurches.Camera;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static com.cubbysulotions.cliurches.Camera.CameraFragment.IMG_URL;
+
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,13 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
 import com.squareup.picasso.Picasso;
-
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-import static com.cubbysulotions.cliurches.Camera.CameraFragment.IMG_URL;
 
 public class MatchResultFragment extends Fragment implements BackpressedListener {
 

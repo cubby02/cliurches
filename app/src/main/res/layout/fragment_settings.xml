@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/week"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="#D6D6D6" />
 
         <LinearLayout
@@ -36,12 +36,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/topPanel"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="5dp"
@@ -54,11 +53,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_weight="2"
-                android:fontFamily="@font/nunito_black"
+                android:fontFamily="@font/nunito_medium"
                 android:padding="10dp"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="25sp"
                 tools:text="Jane Doe" />
         </LinearLayout>
 
@@ -67,12 +65,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/name"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="5dp"
@@ -89,7 +86,6 @@
                 android:padding="10dp"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
-                android:textSize="20sp"
                 tools:text="janedoe@email.com.ph" />
         </LinearLayout>
 
@@ -106,17 +102,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="15dp"
                 android:layout_toRightOf="@id/btnCloseUserDetails"
-                android:fontFamily="@font/nunito_medium"
+                android:fontFamily="@font/nunito_bold"
                 android:text="User details"
-                android:textColor="@color/black"
-                android:textSize="23sp" />
+                android:textSize="18sp"
+                android:textColor="@color/black" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnCloseUserDetails"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_centerVertical="true"
+                android:layout_height="25dp"
+                android:layout_marginStart="5dp"
                 android:layout_alignParentStart="true"
                 android:background="@drawable/ic_baseline_close_24"
                 android:backgroundTint="@color/blue"
@@ -125,8 +123,9 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEditUserDetails"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/ic_baseline_edit_24"
                 android:backgroundTint="@color/blue"
@@ -139,14 +138,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/border"
-            android:layout_marginTop="5dp"
             android:orientation="horizontal"
             android:layout_marginBottom="20dp">
 
             <ImageView
                 android:id="@+id/logoutICon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="5dp"
@@ -161,13 +159,12 @@
                 android:layout_marginEnd="10dp"
                 android:layout_toRightOf="@id/logoutICon"
                 android:background="@null"
-                android:fontFamily="@font/nunito_regular"
+                android:fontFamily="@font/nunito_bold"
                 android:padding="10dp"
                 android:text="Logout"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textColor="@color/black" />
 
 
         </RelativeLayout>
