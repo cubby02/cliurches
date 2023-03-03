@@ -64,6 +64,30 @@
     <string name="please"><i>Please add details</i></string>
     <string name="please2"><i>Please contact church admin</i></string>
 
+    <!-- BAUAN CHURCH -->
+    <string name="bauan">Bauan - Immaculate Concepcion Parish</string>
+    <string name="bauan_desc">Bauan Catholic Church Immaculate Conception is a historic and well-known religious landmark located in the town of Bauan, Batangas, Philippines. Established in the late 16th century by Spanish Augustinian missionaries, the church\'s current facade combines Baroque and Neoclassical styles. Dedicated to the Immaculate Conception, the church\'s interior features religious art, including paintings, statues, and stained glass windows. The church\'s bell tower, built in the 1800s, showcases a unique blend of Spanish and Filipino influences. Today, the church serves as a place of worship for the local Catholic community and a popular tourist attraction. Its historical and cultural significance has been recognized by the Philippine government, which declared it a National Cultural Treasure in 2001.</string>
+    <string name="bauan_googleSearch">https://www.google.com/search?client=firefox-b-d&amp;q=bauan+-+Immaculate+Concepcion+Parish</string>
+    <string name="bauan_maps">https://www.google.com/maps/place/Bauan+Catholic+Church+Immaculate+Conception/@13.7891858,121.0078704,15z/data=!4m5!3m4!1s0x0:0xb291bdb756cebd5e!8m2!3d13.7891858!4d121.0078704</string>
+
+    <!-- APLAYA CHURCH -->
+    <string name="aplaya">Aplaya - Our Mother of Perpetual Help Parish</string>
+    <string name="aplaya_desc">Our Mother of Perpetual Help Parish is a Catholic church located in Aplaya Bauan, Batangas, Philippines. The church was established in 1988 and is dedicated to the Our Mother of Perpetual Help. It offers daily mass, confession, and Eucharistic adoration, and has a range of services and activities for its parishioners. The parish is particularly known for its Novena to Our Mother of Perpetual Help held every Wednesday. It also provides social services to the community and has a well-established Catholic school, the Our Mother of Perpetual Help Academy. Overall, the parish is a vibrant and active religious community that plays an important role in the spiritual and social life of the area.</string>
+    <string name="aplaya_googleSearch">https://www.google.com/search?client=firefox-b-d&amp;q=Aplaya+-+Our+Mother+of+Perpetual+Help+Parish</string>
+    <string name="aplaya_maps">https://www.google.com/maps/place/Our+Mother+of+Perpetual+Help+Parish+Church/@13.7814848,121.0092695,15z/data=!4m2!3m1!1s0x0:0xf658a95b52cde11?sa=X&amp;ved=2ahUKEwiDzp2Iu7_9AhUYF7cAHeE2C6AQ_BJ6BAheEAg</string>
+
+    <!-- BOLO CHURCH -->
+    <string name="bolo">Bolo - Holy Family Parish</string>
+    <string name="bolo_desc">Holy Family Parish is a Catholic church located in Bolo, Batangas, Philippines. The church is dedicated to the Holy Family of Jesus, Mary, and Joseph. It was established in 1961 and has become an important religious center in the area. The church building has a simple and traditional design and features a bell tower and stained glass windows. The parish offers daily mass, confession, and other religious services and activities. It has a choir, a youth ministry, and various religious groups and organizations. The parish also provides social services to the community, including assistance to the poor and the sick. Overall, Holy Family Parish is a welcoming and active religious community that serves the spiritual and social needs of Bolo, Batangas.</string>
+    <string name="bolo_googleSearch">https://www.google.com/search?q=Bolo+-+Holy+Family+Parish&amp;client=firefox-b-d&amp;sxsrf=AJOqlzXIYdtLczbe8jH8nCC1H0cXNnDc5Q%3A1677836224190&amp;ei=wL8BZM6jC-C93LUPhpmdmA0&amp;ved=0ahUKEwjOg4mBu7_9AhXgHrcAHYZMB9MQ4dUDCA8&amp;uact=5&amp;oq=Bolo+-+Holy+Family+Parish&amp;gs_lcp=Cgxnd3Mtd2l6LXNlcnAQAzIKCAAQRxDWBBCwAzIKCAAQRxDWBBCwA0oECEEYAFC9Ali9AmChBGgBcAF4AIABAIgBAJIBAJgBAKABAqABAcgBAsABAQ&amp;sclient=gws-wiz-serp</string>
+    <string name="bolo_maps">https://www.google.com/maps/place/Holy+Family+Parish+Church/@13.7903892,120.98203,15z/data=!4m2!3m1!1s0x0:0x15934e08eca2c589?sa=X&amp;ved=2ahUKEwj7ysOpu7_9AhXzmuYKHXP_AcYQ_BJ6BAhJEAg</string>
+
+    <!-- SAN PASCUAL CHURCH -->
+    <string name="sanPascual">San Pascual - Baylon Parish</string>
+    <string name="sanPascual_desc">Baylon Parish is a Catholic church located in San Pascual, Batangas, Philippines. The church is dedicated to Saint Vincent Ferrer and Saint Joseph, the patron saints of the parish. The church was established in 1913 and has become a significant religious center in the area. The parish has a simple yet elegant design and features a bell tower and a large crucifix. It offers daily mass, confession, and other religious services and activities, and has a choir, a youth ministry, and various religious groups and organizations. The parish also provides social services to the community, including assistance to the poor and the sick. Overall, Baylon Parish is a welcoming and active religious community that plays an important role in the spiritual and social life of San Pascual, Batangas.</string>
+    <string name="sanPascual_googleSearch">https://www.google.com/search?client=firefox-b-d&amp;q=San+Pascual+-+Baylon+Parish</string>
+    <string name="sanPascual_maps">https://www.google.com/maps/place/San+Pascual+Baylon+Parish+Church/@13.7836418,121.02897,15z/data=!4m2!3m1!1s0x0:0x800eebeb7d1dbee3?sa=X&amp;ved=2ahUKEwjnp-q_u7_9AhXzDLcAHUTvC-0Q_BJ6BQiQARAI</string>
+
     <string-array name="time_array">
         <item>6:00 - 7:00 AM</item>
         <item>7:00 - 8:00 AM</item>

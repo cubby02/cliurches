@@ -35,7 +35,7 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
     }
 
     private NavController navController;
-    private Button btnBack, btnSave, btnSearch;
+    private Button btnBack, btnSave, btnSearch, btnMaps;
     private TextView txtChurch, txtChurchDescription;
     private ImageView imgChurch;
 
@@ -46,16 +46,15 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
         btnBack = view.findViewById(R.id.btnBackToCamera);
         btnSave = view.findViewById(R.id.btnSaveToGallery);
         btnSearch = view.findViewById(R.id.btnGoogleSearch);
+        btnMaps = view.findViewById(R.id.btnMaps);
         txtChurch = view.findViewById(R.id.txtChurchName);
-        txtChurchDescription = view.findViewById(R.id.txtChurchDes);
+        txtChurchDescription = view.findViewById(R.id.txtChurchOverview);
         imgChurch = view.findViewById(R.id.imgSearch);
 
         Picasso.get().load(getArguments().getString(IMG_URL)).into(imgChurch);
-
         back();
         search();
         save();
-
 
     }
 
