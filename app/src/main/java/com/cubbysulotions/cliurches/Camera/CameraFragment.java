@@ -91,9 +91,12 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private Uri photoURI;
 
     private Handler handler;
+    private Runnable cancelHandler;
 
     private Uri imageURI;
     private Bitmap bitmap, bitmapReduced;
+
+    private boolean isAnalyzing;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -103,7 +106,10 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
         btnCamera = view.findViewById(R.id.btnSnap);
         btnGallery = view.findViewById(R.id.btnGallery);
         btnIdentify = view.findViewById(R.id.btnIdentify);
+        handler = new Handler();
 
+
+        //isAnalyzing = true;
         snapPhoto();
         openGallery();
         identify();
@@ -115,10 +121,15 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
             public void onClick(View v) {
                 if (bitmap == null){
                     toast("Please upload or snap a photo");
-                    //customLoading();
+
 
                 } else {
-                    identifyChurch();
+                    loadingDialog = new LoadingDialog(getActivity());
+                    handler = new Handler();
+                    loadingDialog.startLoading("Please wait");
+
+                    customLoading();
+
                 }
 
             }
@@ -140,29 +151,34 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
     private void customLoading(){
         try{
-            loadingDialog = new LoadingDialog(getActivity());
-            handler = new Handler();
-            loadingDialog.startLoading("Please wait");
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    loadingDialog.changeLabel("Analyzing Image");
-                }
-            }, 2000);
 
-            handler.postDelayed(new Runnable() {
+            cancelHandler = new Runnable() {
                 @Override
                 public void run() {
-                    loadingDialog.changeLabel("Fetching Data");
-                }
-            }, 4000);
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingDialog.changeLabel("Analyzing Image");
+                        }
+                    }, 2000);
 
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    loadingDialog.changeLabel("Matching Results");
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingDialog.changeLabel("Fetching Data");
+                        }
+                    }, 4000);
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingDialog.changeLabel("Matching Results");
+                        }
+                    }, 6000);
                 }
-            }, 6000);
+            };
+
+            identifyChurch();
 
         }catch(Exception e){
             Log.e(TAG,"loading",e);
@@ -173,44 +189,23 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
     private void identifyChurch() {
         try {
-//        String value = contentUri.toString();
-//        Intent intent = new Intent(getActivity(), .class);
-//        intent.putExtra("userPic", value);
-//        intent.putExtra("url", url);
-//        startActivity(intent);
-            // TODO: add take picture code here
-
-
             SessionManagement sessionManagement = new SessionManagement(getActivity());
 
-            String api_url = null;
-            String fileName = null;
-            String encodeImage = null;
-
-            //url fragments
-            //api_url = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
-            //fileName = URLEncoder.encode(set_image_filename().replace("'","\\'"), "utf-8");
-
-            //ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            //bitmapReduced.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-
-            //byte[] imgBytes = byteArrayOutputStream.toByteArray();
-            //encodeImage =  new String(imgBytes, StandardCharsets.UTF_8);
-
-
             String URL = "https://cliurches-app.tech/api/media/upload/";
-            //Log.e(TAG, "identifyChurch: " + encodeImage);
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     URL,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            //Log.e(TAG, "onResponse: " + response);
                             try {
+                                loadingDialog.stopLoading();
+                                handler.removeCallbacks(cancelHandler); //cancel the custom loading part
+
                                 JSONObject object = new JSONObject(response);
+                                String img_url = object.getString("img_path");
                                 Bundle bundle = new Bundle();
-                                bundle.putString(IMG_URL, object.getString("img_path"));
+                                bundle.putString(IMG_URL, img_url);
 
                                 navController.navigate(R.id.action_cameraFragment_to_matchResultFragment, bundle);
                                 ((HomeActivity)getActivity()).hideNavigationBar(true);
