@@ -302,7 +302,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which){
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    logout();
+                                    logoutSession();
                                     break;
                                 case DialogInterface.BUTTON_NEGATIVE:
 
