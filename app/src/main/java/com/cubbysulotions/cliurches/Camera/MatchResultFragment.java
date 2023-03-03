@@ -20,8 +20,10 @@ import android.widget.Toast;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
 import com.cubbysulotions.cliurches.R;
 import com.cubbysulotions.cliurches.Utilities.BackpressedListener;
+import com.squareup.picasso.Picasso;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static com.cubbysulotions.cliurches.Camera.CameraFragment.IMG_URL;
 
 public class MatchResultFragment extends Fragment implements BackpressedListener {
 
@@ -49,9 +51,13 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
         txtChurchDescription = view.findViewById(R.id.txtChurchDes);
         imgChurch = view.findViewById(R.id.imgSearch);
 
+        Picasso.get().load(getArguments().getString(IMG_URL)).into(imgChurch);
+
         back();
         search();
         save();
+
+
     }
 
     private void save() {

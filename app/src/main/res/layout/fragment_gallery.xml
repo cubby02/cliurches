@@ -7,52 +7,10 @@
     android:orientation="vertical"
     android:background="@color/blue_main">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvGallery"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp">
-        <ImageView
-            android:id="@+id/img1"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/empty_img"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-
-        <ImageView
-            android:id="@+id/img2"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/empty_img"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="10dp">
-        <ImageView
-            android:id="@+id/img3"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/empty_img"/>
-        <Space
-            android:layout_width="10dp"
-            android:layout_height="match_parent"/>
-
-        <ImageView
-            android:id="@+id/img4"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/empty_img"/>
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

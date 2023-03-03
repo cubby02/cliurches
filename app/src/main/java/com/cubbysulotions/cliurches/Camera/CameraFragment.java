@@ -44,6 +44,9 @@ import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 //import org.tensorflow.lite.DataType;
@@ -64,6 +67,8 @@ import java.util.Random;
 
 public class CameraFragment<CliurchesMlModelV1> extends Fragment implements BackpressedListener {
 
+
+    public static final String IMG_URL = "img_url";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -201,10 +206,18 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.e(TAG, "onResponse: " + response);
-                            navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
-                            ((HomeActivity)getActivity()).hideNavigationBar(true);
-                            ((HomeActivity)getActivity()).hideTopBarPanel(true);
+                            //Log.e(TAG, "onResponse: " + response);
+                            try {
+                                JSONObject object = new JSONObject(response);
+                                Bundle bundle = new Bundle();
+                                bundle.putString(IMG_URL, object.getString("img_path"));
+
+                                navController.navigate(R.id.action_cameraFragment_to_matchResultFragment, bundle);
+                                ((HomeActivity)getActivity()).hideNavigationBar(true);
+                                ((HomeActivity)getActivity()).hideTopBarPanel(true);
+                            } catch (JSONException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }, new Response.ErrorListener() {
                 @Override
