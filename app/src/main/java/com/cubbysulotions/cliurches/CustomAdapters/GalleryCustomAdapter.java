@@ -176,28 +176,16 @@ public class GalleryCustomAdapter extends RecyclerView.Adapter<GalleryCustomAdap
                             @Override
                             public void onClick(View view) {
                                 String church = item.getChurch();
-                                Intent intent = null;
-                                switch (church){
-                                    case "bolo":
-                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bolo_maps)));
-                                        break;
-                                    case "bauan":
-                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bauan_maps)));
-                                        break;
-                                    case "aplaya":
-                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.aplaya_maps)));
-                                        break;
-                                    case "sanpascual":
-                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.sanPascual_maps)));
-                                        break;
-                                }
 
-                                    intent.setPackage("com.google.android.apps.maps");
-                                    if (intent.resolveActivity(context.getPackageManager()) != null) {
-                                        context.startActivity(intent);
-                                    } else {
-                                        Toast.makeText(context, "No G-Maps", Toast.LENGTH_SHORT).show();
-                                    }
+                                maps(church);
+
+                                intent.setPackage("com.google.android.apps.maps");
+                                if (intent.resolveActivity(context.getPackageManager()) != null) {
+                                    context.startActivity(intent);
+                                } else {
+                                    maps(church);
+                                    context.startActivity(intent);
+                                }
 
                             }
                         });
@@ -219,6 +207,24 @@ public class GalleryCustomAdapter extends RecyclerView.Adapter<GalleryCustomAdap
             notifyDataSetChanged();
         }
 
+    public Intent intent;
+        public void maps(String church){
+            intent = null;
+            switch (church){
+                case "bolo":
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bolo_maps)));
+                    break;
+                case "bauan":
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bauan_maps)));
+                    break;
+                case "aplaya":
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.aplaya_maps)));
+                    break;
+                case "sanpascual":
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.sanPascual_maps)));
+                    break;
+            }
+        }
 
 
 }
