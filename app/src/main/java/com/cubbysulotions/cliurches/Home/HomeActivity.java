@@ -124,6 +124,16 @@ public class HomeActivity extends AppCompatActivity {
         navigationView.setItemSelected(R.id.nav_home, true);
     }
 
+    public void gallery(){
+        navigationView = findViewById(R.id.bottom_nav);
+        navigationView.setItemSelected(R.id.nav_gallery, true);
+        Fragment fragment = new GalleryFragment();
+        tabLabel.setText("GALLERY");
+        hideNavigationBar(false);
+        hideTopBarPanel(false);
+        getSupportFragmentManager().beginTransaction().replace(R.id.body_container, fragment).commit();
+    }
+
     public void hideNavigationBar(boolean flag){
         if(flag){
             navigationView.setVisibility(View.GONE);

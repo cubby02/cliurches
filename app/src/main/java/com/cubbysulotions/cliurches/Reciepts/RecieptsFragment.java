@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.cubbysulotions.cliurches.CustomAdapters.RecieptsCustomAdapter;
@@ -70,7 +72,7 @@ public class RecieptsFragment extends Fragment implements BackpressedListener {
         SessionManagement sessionManagement = new SessionManagement(getActivity());
         String api_key = sessionManagement.getSession2();
 
-        String JSON_URL = "https://cliurches-app.tech/api/displayPamisa/?api_key="+ api_key +"";
+        String JSON_URL = "http://192.3.236.3/cliurches-api/api/displayPamisa/?api_key="+ api_key +"";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,
@@ -107,8 +109,15 @@ public class RecieptsFragment extends Fragment implements BackpressedListener {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                toast("Something went wrong");
-                Log.e(TAG, "onErrorResponse: ", error);
+                if (error.getClass().equals(ParseError.class)) {
+                    // Show timeout error message
+                    Toast.makeText(getContext(),
+                            "Empty receipts",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    toast("Something went wrong");
+                    Log.e(TAG, "onErrorResponse: ", error);
+                }
             }
         }
         );

@@ -4,8 +4,17 @@ public class Gallery {
     String dateStamp;
     String uid;
     String imgLink;
+    String church;
 
     public Gallery() {
+    }
+
+    public String getChurch() {
+        return church;
+    }
+
+    public void setChurch(String church) {
+        this.church = church;
     }
 
     public String getDateStamp() {

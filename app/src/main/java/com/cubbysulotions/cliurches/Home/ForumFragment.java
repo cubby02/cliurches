@@ -96,7 +96,7 @@ public class ForumFragment extends Fragment {
     private void showAllPosts() {
         try {
             postsList.clear();
-            String JSON_URL = "https://cliurches-app.tech/api/view_timeline/?&api_key="+ api_key +"";
+            String JSON_URL = "http://192.3.236.3/cliurches-api/api/view_timeline/?&api_key="+ api_key +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,

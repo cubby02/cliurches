@@ -193,7 +193,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private void analyzeImage(String img_url){
         try {
             customLoading();
-            String url = "http://192.3.236.3/cliurches-ml/?url="+ img_url +"";
+            String url = "http://192.3.236.3/cliurches-api/api/media/identify?url="+ img_url +"";
             StringRequest stringRequest = new StringRequest(
                     Request.Method.GET,
                     url,
@@ -205,7 +205,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
                             Bundle bundle = new Bundle();
                             bundle.putString(IMG_URL, img_url);
-                            bundle.putString(CHURCH_NAME, response);
+                            bundle.putString(CHURCH_NAME, response.trim());
 
                             navController.navigate(R.id.action_cameraFragment_to_matchResultFragment, bundle);
                             ((HomeActivity)getActivity()).hideNavigationBar(true);
@@ -237,7 +237,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
     private void identifyChurch() {
         try {
-            String URL = "https://cliurches-app.tech/api/media/upload/";
+            String URL = "http://192.3.236.3/cliurches-api/api/media/upload/";
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     URL,
@@ -247,6 +247,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                             try {
                                 JSONObject object = new JSONObject(response);
                                 String img_url = object.getString("img_path");
+                                Log.e(TAG, "onResponse: " + img_url);
                                 analyzeImage(img_url);
 
                             } catch (JSONException e) {

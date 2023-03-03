@@ -32,6 +32,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.Admin.AdminActivity;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
@@ -180,7 +181,33 @@ public class LogInFragment extends Fragment {
                         @Override
                         public void onClick(View view) {
                             try {
-                                // TODO: Add send reset link code here
+                                String urlApi = null;
+
+                                try {
+                                    urlApi = URLEncoder.encode(txtEmail.getText().toString().replace("'","\\'"), "utf-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String JSON_URL = "http://192.3.236.3/cliurches-api/api/changePassword/?email="+ urlApi +"";
+                                StringRequest stringRequest = new StringRequest(
+                                        Request.Method.POST,
+                                        JSON_URL,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                toast("Please check your email");
+                                                dialog.dismiss();
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Log.e(TAG, "onErrorResponse: ", error);
+                                        toast("Something went wrong");
+                                    }
+                                }
+                                );
+                                VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
                             } catch (Exception e){
                                 toast("Something went wrong, please try again");
                                 Log.e(TAG, "onClick send: ", e);
@@ -222,7 +249,7 @@ public class LogInFragment extends Fragment {
                                 e.printStackTrace();
                             }
 
-                            String JSON_URL = "https://cliurches-app.tech/api/login/?email="+ email +"&password="+ password+"";
+                            String JSON_URL = "http://192.3.236.3/cliurches-api/api/login/?email="+ email +"&password="+ password+"";
                             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                                     Request.Method.GET,
                                     JSON_URL,

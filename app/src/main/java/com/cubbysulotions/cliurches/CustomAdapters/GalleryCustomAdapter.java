@@ -3,8 +3,10 @@ package com.cubbysulotions.cliurches.CustomAdapters;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
@@ -82,6 +84,7 @@ public class GalleryCustomAdapter extends RecyclerView.Adapter<GalleryCustomAdap
             Gallery item = posts.get(position);
             Picasso.get().load(item.getImgLink()).into(holder.img);
 
+
             holder.img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -107,6 +110,31 @@ public class GalleryCustomAdapter extends RecyclerView.Adapter<GalleryCustomAdap
 
                         Picasso.get().load(item.getImgLink()).into(imgViewGallery);
 
+                        String church = item.getChurch();
+
+                        switch (church){
+                            case "bolo":
+                                txtChurchName.setText(context.getResources().getString(R.string.bolo));
+                                txtChurchOverview.setText(context.getResources().getString(R.string.bolo_desc));
+
+                                break;
+                            case "bauan":
+                                txtChurchName.setText(context.getResources().getString(R.string.bauan));
+                                txtChurchOverview.setText(context.getResources().getString(R.string.bauan_desc));
+
+                                break;
+                            case "aplaya":
+                                txtChurchName.setText(context.getResources().getString(R.string.aplaya));
+                                txtChurchOverview.setText(context.getResources().getString(R.string.aplaya_desc));
+
+                                break;
+                            case "sanpascual":
+                                txtChurchName.setText(context.getResources().getString(R.string.sanPascual));
+                                txtChurchOverview.setText(context.getResources().getString(R.string.sanPascual_desc));
+
+                                break;
+                        }
+
                         btnClose.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -116,6 +144,60 @@ public class GalleryCustomAdapter extends RecyclerView.Adapter<GalleryCustomAdap
                                     Toast.makeText(context,"Something went wrong, please try again", Toast.LENGTH_SHORT).show();
                                     Log.e(TAG, "onClick", e);
                                 }
+
+                            }
+                        });
+
+                        btnGoogleSearch.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String church = item.getChurch();
+                                Intent intent = null;
+                                switch (church){
+                                    case "bolo":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bolo_googleSearch)));
+                                        break;
+                                    case "bauan":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bauan_googleSearch)));
+                                        break;
+                                    case "aplaya":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.aplaya_googleSearch)));
+                                        break;
+                                    case "sanpascual":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.sanPascual_googleSearch)));
+                                        break;
+                                }
+
+                                context.startActivity(intent);
+                            }
+                        });
+
+                        btnMaps.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String church = item.getChurch();
+                                Intent intent = null;
+                                switch (church){
+                                    case "bolo":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bolo_maps)));
+                                        break;
+                                    case "bauan":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.bauan_maps)));
+                                        break;
+                                    case "aplaya":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.aplaya_maps)));
+                                        break;
+                                    case "sanpascual":
+                                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse(context.getResources().getString(R.string.sanPascual_maps)));
+                                        break;
+                                }
+
+                                    intent.setPackage("com.google.android.apps.maps");
+                                    if (intent.resolveActivity(context.getPackageManager()) != null) {
+                                        context.startActivity(intent);
+                                    } else {
+                                        Toast.makeText(context, "No G-Maps", Toast.LENGTH_SHORT).show();
+                                    }
 
                             }
                         });

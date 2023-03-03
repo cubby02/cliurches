@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -70,7 +71,7 @@ public class GalleryFragment extends Fragment implements BackpressedListener {
         try {
             galleryList.clear();
             SessionManagement sessionManagement = new SessionManagement(getActivity());
-            String JSON_URL = "https://cliurches-app.tech/api/media/usergallery/?api_key="+ sessionManagement.getSession2() +"";
+            String JSON_URL = "http://192.3.236.3/cliurches-api/api/media/usergallery/?api_key="+ sessionManagement.getSession2() +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -87,6 +88,7 @@ public class GalleryFragment extends Fragment implements BackpressedListener {
                                     item.setDateStamp(postObject.getString("dateStamp"));
                                     item.setImgLink(postObject.getString("img_link"));
                                     item.setUid(postObject.getString("uid"));
+                                    item.setChurch(postObject.getString("church"));
 
 
                                     galleryList.add(item);
@@ -101,8 +103,16 @@ public class GalleryFragment extends Fragment implements BackpressedListener {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "onErrorResponse: ", error);
+                    if (error.getClass().equals(ParseError.class)) {
+                        // Show timeout error message
+                        Toast.makeText(getContext(),
+                                "Empty gallery",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "onErrorResponse: ", error);
+                    }
+
                 }
             }
             );

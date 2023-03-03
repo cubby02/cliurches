@@ -108,7 +108,6 @@ public class AdminActivity extends AppCompatActivity {
             cardViewSetPayment = findViewById(R.id.cardViewSetPayment);
 
 
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(Color.parseColor("#50343434"));
             }
@@ -169,7 +168,7 @@ public class AdminActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            String URL = "https://cliurches-app.tech/api/paymentMethod/?parish="+ selectedChurch_url +"&api_key="+api_url+"";
+            String URL = "http://192.3.236.3/cliurches-api/api/paymentMethod/?parish="+ selectedChurch_url +"&api_key="+api_url+"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -239,7 +238,7 @@ public class AdminActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        String JSON_URL = "https://cliurches-app.tech/api/admin/paymentMethod/?bank="+ bankName+"&accountNum="+ accntNum +"&accountName="+ AccntName +"&donationPayment="+ don +"&api_key="+ api_key+"";
+                        String JSON_URL = "http://192.3.236.3/cliurches-api/api/admin/paymentMethod/?bank="+ bankName+"&accountNum="+ accntNum +"&accountName="+ AccntName +"&donationPayment="+ don +"&api_key="+ api_key+"";
 
                         StringRequest postRequest = new StringRequest(
                                 Request.Method.POST,
@@ -249,6 +248,7 @@ public class AdminActivity extends AppCompatActivity {
                                     public void onResponse(String response) {
                                         toast("Payment account save");
                                         populatePaymentMethod();
+                                        cardViewSetPayment.setVisibility(View.GONE);
                                     }
                                 }, new Response.ErrorListener() {
                             @Override
@@ -278,7 +278,7 @@ public class AdminActivity extends AppCompatActivity {
             String api_key = sessionManagement.getSession2();
             String church = sessionManagement.getAdminName();
 
-            String JSON_URL = "https://cliurches-app.tech/api/admin/"+type+"/?parish="+church+"&api_key="+ api_key +"";
+            String JSON_URL = "http://192.3.236.3/cliurches-api/api/admin/"+type+"/?parish="+church+"&api_key="+ api_key +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -316,8 +316,15 @@ public class AdminActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    //toast("Something went wrong");
-                    Log.e(TAG, "onErrorResponse: ", error);
+                    if (error.getClass().equals(ParseError.class)) {
+                        // Show timeout error message
+                        Toast.makeText(AdminActivity.this,
+                                "Empty gallery",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(AdminActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "onErrorResponse: ", error);
+                    }
                 }
             }
             );

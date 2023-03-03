@@ -57,6 +57,7 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
         matchFound = view.findViewById(R.id.matchFound);
         noMatchFound = view.findViewById(R.id.noMatchFound);
 
+
         Picasso.get().load(getArguments().getString(IMG_URL)).into(imgChurch);
         setResults(getArguments().getString(CHURCH_NAME));
         back();
@@ -101,11 +102,7 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
             @Override
             public void onClick(View view) {
                 try {
-                    // TODO: add save code here
-
-                    navController.navigate(R.id.action_matchResultFragment_to_cameraFragment);
-                    ((HomeActivity)getActivity()).hideNavigationBar(false);
-                    ((HomeActivity)getActivity()).hideTopBarPanel(false);
+                    ((HomeActivity)getActivity()).gallery();
                 } catch (Exception e){
                     toast("Something went wrong, please try again");
                     Log.e(TAG, "onClick: ", e);

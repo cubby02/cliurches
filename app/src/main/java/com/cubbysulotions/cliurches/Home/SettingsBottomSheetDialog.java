@@ -29,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
 import com.cubbysulotions.cliurches.R;
+import com.cubbysulotions.cliurches.Utilities.LoadingDialog;
 import com.cubbysulotions.cliurches.Utilities.SessionManagement;
 import com.cubbysulotions.cliurches.Utilities.VolleySingleton;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
@@ -72,10 +73,12 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
     private TextView txtUserFullName, txtUserEmail;
     private Button btnClose, btnEdit, btnLogout;
 
-    private Button btnCancelEdit, btnSaveEdit;
+    private Button btnCancelEdit, btnSaveEdit, btnChangePassword;
     private TextInputLayout txtFNameLayout, txtLNameLayout, txtEmailLayout;
     private TextInputEditText fName, lName, email;
     private RelativeLayout userDetailsLayout, loading, editUserLayout;
+
+    LoadingDialog loadingDialog;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -99,6 +102,14 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
         fName = view.findViewById(R.id.txtEditFname);
         lName = view.findViewById(R.id.txtEditLname);
         email = view.findViewById(R.id.txtEditEmail);
+        btnChangePassword = view.findViewById(R.id.btnChangePassword);
+
+        loadingDialog = new LoadingDialog(getActivity());
+
+        SessionManagement sessionManagement = new SessionManagement(getActivity());
+        if(sessionManagement.getAccountType().equals("admin")){
+            email.setEnabled(false);
+        }
 
         populateDetails();
         editDetails();
@@ -106,7 +117,65 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
         closeDetails();
         saveDetails();
         logout();
+        changePass();
 
+    }
+
+    private void changePass() {
+        btnChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    String urlApi = null;
+
+                                    try {
+                                        urlApi = URLEncoder.encode(user_email.replace("'","\\'"), "utf-8");
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    String JSON_URL = "http://192.3.236.3/cliurches-api/api/changePassword/?email="+ urlApi +"";
+                                    StringRequest stringRequest = new StringRequest(
+                                            Request.Method.POST,
+                                            JSON_URL,
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String response) {
+                                                    logoutSession();
+                                                    toast("Please check your email");
+                                                }
+                                            }, new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            Log.e(TAG, "onErrorResponse: ", error);
+                                            loading.setVisibility(View.INVISIBLE);
+                                            toast("Something went wrong");
+                                        }
+                                    }
+                                    );
+                                    VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
+                                    break;
+                                case DialogInterface.BUTTON_NEGATIVE:
+
+                                    break;
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    builder.setMessage("Are you sure you want to request for change password? Your account will be logout temporarily.").setPositiveButton("Yes", dialogClickListener)
+                            .setNegativeButton("No", dialogClickListener).show();
+
+                } catch (Exception e){
+                    Log.e(TAG, "populateDetails: ", e);
+                    toast("Something went wrong");
+                }
+            }
+        });
     }
 
     private void populateDetails() {
@@ -119,7 +188,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                 e.printStackTrace();
             }
 
-            String URL = "https://cliurches-app.tech/api/user_details/?api_key="+ api +"";
+            String URL = "http://192.3.236.3/cliurches-api/api/user_details/?api_key="+ api +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -188,7 +257,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                             e.printStackTrace();
                         }
 
-                        String JSON_URL = "https://cliurches-app.tech/api/edit_details/?firstname="+ urlFirstname +"&lastname="+ urlLastname +"&email="+ urlEmail +"&api_key="+ urlApi +"";
+                        String JSON_URL = "http://192.3.236.3/cliurches-api/api/edit_details/?firstname="+ urlFirstname +"&lastname="+ urlLastname +"&email="+ urlEmail +"&api_key="+ urlApi +"";
                         StringRequest stringRequest = new StringRequest(
                                 Request.Method.POST,
                                 JSON_URL,
@@ -233,36 +302,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                         public void onClick(DialogInterface dialog, int which) {
                             switch (which){
                                 case DialogInterface.BUTTON_POSITIVE:
-                                    String urlApi = null;
-                                    SessionManagement sessionManagement = new SessionManagement(getActivity());
-                                    try {
-                                        urlApi = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
-                                    } catch (UnsupportedEncodingException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    String URL = "https://cliurches-app.tech/api/logout/?api_key="+ urlApi +"";
-                                    StringRequest stringRequest = new StringRequest(
-                                            Request.Method.POST,
-                                            URL,
-                                            new Response.Listener<String>() {
-                                                @Override
-                                                public void onResponse(String response) {
-                                                    sessionManagement.removeSession();
-
-                                                    Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
-                                                    startActivity(intent);
-                                                    getActivity().finish();
-                                                }
-                                            }, new Response.ErrorListener() {
-                                        @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            Log.e(TAG, "onErrorResponse: ", error);
-                                            toast("Something went wrong");
-                                        }
-                                    }
-                                    );
-                                    VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
+                                    logout();
                                     break;
                                 case DialogInterface.BUTTON_NEGATIVE:
 
@@ -279,6 +319,40 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                 }
             }
         });
+    }
+
+    private void logoutSession(){
+        toast("Logging out...");
+        String urlApi = null;
+        SessionManagement sessionManagement = new SessionManagement(getActivity());
+        try {
+            urlApi = URLEncoder.encode(sessionManagement.getSession2().replace("'","\\'"), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        String URL = "https://cliurches-app.tech/api/logout/?api_key="+ urlApi +"";
+        StringRequest stringRequest = new StringRequest(
+                Request.Method.POST,
+                URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        sessionManagement.removeSession();
+                        toast("Logged out");
+                        Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "onErrorResponse: ", error);
+                toast("Something went wrong");
+            }
+        }
+        );
+        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
     }
 
     private void closeDetails() {

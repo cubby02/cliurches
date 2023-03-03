@@ -230,7 +230,7 @@ public class MassDetailsFragment extends Fragment implements BackpressedListener
                 e.printStackTrace();
             }
 
-            String URL = "https://cliurches-app.tech/api/user_details/?api_key="+ api +"";
+            String URL = "http://192.3.236.3/cliurches-api/api/user_details/?api_key="+ api +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,

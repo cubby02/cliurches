@@ -162,7 +162,7 @@ public class RegisterFragment extends Fragment {
                                 e.printStackTrace();
                             }
 
-                            String JSON_URL = "https://cliurches-app.tech/api/new_user/?email="+ email +"&password="+ password +"&firstname="+ firstName +"&lastname="+ lastName +"";
+                            String JSON_URL = "http://192.3.236.3/cliurches-api/api/new_user/?email="+ email +"&password="+ password +"&firstname="+ firstName +"&lastname="+ lastName +"";
 
                             StringRequest postRequest = new StringRequest(
                                     Request.Method.POST,

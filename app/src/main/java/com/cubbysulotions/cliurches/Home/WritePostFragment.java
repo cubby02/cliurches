@@ -92,7 +92,7 @@ public class WritePostFragment extends Fragment implements BackpressedListener {
                         e.printStackTrace();
                     }
 
-                    String JSON_URL = "https://cliurches-app.tech/api/create_post/?title=[post title]&content="+ post +"&category=[post category]&api_key="+ api +"";
+                    String JSON_URL = "http://192.3.236.3/cliurches-api/api/create_post/?title=[post title]&content="+ post +"&category=[post category]&api_key="+ api +"";
                     StringRequest postRequest = new StringRequest(
                             Request.Method.POST,
                             JSON_URL,

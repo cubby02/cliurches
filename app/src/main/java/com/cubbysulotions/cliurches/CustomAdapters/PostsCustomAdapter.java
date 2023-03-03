@@ -116,7 +116,7 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                             e.printStackTrace();
                         }
 
-                        String URL  = "https://cliurches-app.tech/api/sendlike/?postid="+ postID +"&api_key="+ api +"";
+                        String URL  = "http://192.3.236.3/cliurches-api/api/sendlike/?postid="+ postID +"&api_key="+ api +"";
 
                         StringRequest stringRequest = new StringRequest(
                                 Request.Method.POST,
@@ -170,7 +170,7 @@ public class PostsCustomAdapter extends RecyclerView.Adapter<PostsCustomAdapter.
                                             e.printStackTrace();
                                         }
 
-                                        String URL  = "https://cliurches-app.tech/api/delete_post/?postid="+ postID +"&api_key="+ api +"";
+                                        String URL  = "http://192.3.236.3/cliurches-api/api/delete_post/?postid="+ postID +"&api_key="+ api +"";
 
                                         StringRequest stringRequest = new StringRequest(
                                                 Request.Method.POST,

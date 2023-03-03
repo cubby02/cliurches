@@ -146,7 +146,7 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
                         e.printStackTrace();
                     }
 
-                    String URL  = "https://cliurches-app.tech/api/cancelPamisa/?id="+ postID +"&api_key="+ api +"";
+                    String URL  = "http://192.3.236.3/cliurches-api/api/cancelPamisa/?id="+ postID +"&api_key="+ api +"";
 
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.POST,
@@ -189,7 +189,7 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
                         e.printStackTrace();
                     }
 
-                    String URL  = "https://cliurches-app.tech/api/admin/approve/?id="+ postID +"&api_key=" + api+"";
+                    String URL  = "http://192.3.236.3/cliurches-api/api/admin/approve/?id="+ postID +"&api_key=" + api+"";
 
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.POST,
@@ -231,7 +231,7 @@ public class RecieptsCustomAdapter extends RecyclerView.Adapter<RecieptsCustomAd
                         e.printStackTrace();
                     }
 
-                    String URL  = "https://cliurches-app.tech/api/admin/decline/?id="+ postID +"&api_key=" + api+"";
+                    String URL  = "http://192.3.236.3/cliurches-api/api/admin/decline/?id="+ postID +"&api_key=" + api+"";
 
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.POST,
