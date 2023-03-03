@@ -1,6 +1,7 @@
 package com.cubbysulotions.cliurches.Camera;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+import static com.cubbysulotions.cliurches.Camera.CameraFragment.CHURCH_NAME;
 import static com.cubbysulotions.cliurches.Camera.CameraFragment.IMG_URL;
 
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,8 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
     private TextView txtChurch, txtChurchDescription;
     private ImageView imgChurch;
 
+    private RelativeLayout matchFound, noMatchFound;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -50,12 +54,46 @@ public class MatchResultFragment extends Fragment implements BackpressedListener
         txtChurch = view.findViewById(R.id.txtChurchName);
         txtChurchDescription = view.findViewById(R.id.txtChurchOverview);
         imgChurch = view.findViewById(R.id.imgSearch);
+        matchFound = view.findViewById(R.id.matchFound);
+        noMatchFound = view.findViewById(R.id.noMatchFound);
 
         Picasso.get().load(getArguments().getString(IMG_URL)).into(imgChurch);
+        setResults(getArguments().getString(CHURCH_NAME));
         back();
         search();
         save();
 
+    }
+
+    private void setResults(String church) {
+        switch (church){
+            case "bolo":
+                txtChurch.setText(getActivity().getResources().getString(R.string.bolo));
+                txtChurchDescription.setText(getActivity().getResources().getString(R.string.bolo_desc));
+                matchFound.setVisibility(View.VISIBLE);
+                btnSave.setVisibility(View.VISIBLE);
+                break;
+            case "bauan":
+                txtChurch.setText(getActivity().getResources().getString(R.string.bauan));
+                txtChurchDescription.setText(getActivity().getResources().getString(R.string.bauan_desc));
+                matchFound.setVisibility(View.VISIBLE);
+                btnSave.setVisibility(View.VISIBLE);
+                break;
+            case "aplaya":
+                txtChurch.setText(getActivity().getResources().getString(R.string.aplaya));
+                txtChurchDescription.setText(getActivity().getResources().getString(R.string.aplaya_desc));
+                matchFound.setVisibility(View.VISIBLE);
+                btnSave.setVisibility(View.VISIBLE);
+                break;
+            case "sanpascual":
+                txtChurch.setText(getActivity().getResources().getString(R.string.sanPascual));
+                txtChurchDescription.setText(getActivity().getResources().getString(R.string.sanPascual_desc));
+                matchFound.setVisibility(View.VISIBLE);
+                btnSave.setVisibility(View.VISIBLE);
+                break;
+            default:
+                noMatchFound.setVisibility(View.VISIBLE);
+        }
     }
 
     private void save() {

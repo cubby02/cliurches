@@ -2,6 +2,7 @@ package com.cubbysulotions.cliurches.Utilities;
 
 import android.content.Context;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -31,6 +32,12 @@ public class VolleySingleton {
     }
 
     public<T> void addToRequestQueue(Request<T> request){
+        requestQueue.add(request);
+    }
+
+    public<T> void addToRequestQueue_ML(Request<T> request){
+        //this will ensure that the volley request will not classified the request as time out error
+        request.setRetryPolicy(new DefaultRetryPolicy( 120000, 2, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(request);
     }
 }

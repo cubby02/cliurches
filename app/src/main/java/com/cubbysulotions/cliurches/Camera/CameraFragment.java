@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.cubbysulotions.cliurches.Home.HomeActivity;
@@ -69,6 +70,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
 
     public static final String IMG_URL = "img_url";
+    public static final String CHURCH_NAME = "church_name";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,7 +93,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private Uri photoURI;
 
     private Handler handler;
-    private Runnable cancelHandler;
+    private Runnable cancelHandler, cancelHandler2, cancelHandler3;
 
     private Uri imageURI;
     private Bitmap bitmap, bitmapReduced;
@@ -127,7 +129,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                     handler = new Handler();
                     loadingDialog.startLoading("Please wait");
 
-                    customLoading();
+                    identifyChurch();
 
                 }
 
@@ -177,7 +179,9 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                 }
             };
 
-            identifyChurch();
+
+
+            cancelHandler.run();
 
         }catch(Exception e){
             Log.e(TAG,"loading",e);
@@ -186,10 +190,53 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
     }
 
+    private void analyzeImage(String img_url){
+        try {
+            customLoading();
+            String url = "http://192.3.236.3/cliurches-ml/?url="+ img_url +"";
+            StringRequest stringRequest = new StringRequest(
+                    Request.Method.GET,
+                    url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            loadingDialog.stopLoading();
+                            handler.removeCallbacks(cancelHandler); //cancel the custom loading part
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString(IMG_URL, img_url);
+                            bundle.putString(CHURCH_NAME, response);
+
+                            navController.navigate(R.id.action_cameraFragment_to_matchResultFragment, bundle);
+                            ((HomeActivity)getActivity()).hideNavigationBar(true);
+                            ((HomeActivity)getActivity()).hideTopBarPanel(true);
+                        }
+                    }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        loadingDialog.stopLoading();
+                        handler.removeCallbacks(cancelHandler); //cancel the custom loading part
+                        if (error.networkResponse == null) {
+                            if (error.getClass().equals(TimeoutError.class)) {
+                                // Show timeout error message
+                                Toast.makeText(getContext(),
+                                        "Oops. Timeout error!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        Log.e(TAG, "onErrorResponse: ", error);
+                    }
+                }
+            );
+            VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue_ML(stringRequest);
+        } catch (Exception e) {
+            toast("Something went wrong, please try again");
+            Log.e(TAG, "onClick: ", e);
+        }
+    }
+
     private void identifyChurch() {
         try {
-            SessionManagement sessionManagement = new SessionManagement(getActivity());
-
             String URL = "https://cliurches-app.tech/api/media/upload/";
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
@@ -198,17 +245,10 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                         @Override
                         public void onResponse(String response) {
                             try {
-                                loadingDialog.stopLoading();
-                                handler.removeCallbacks(cancelHandler); //cancel the custom loading part
-
                                 JSONObject object = new JSONObject(response);
                                 String img_url = object.getString("img_path");
-                                Bundle bundle = new Bundle();
-                                bundle.putString(IMG_URL, img_url);
+                                analyzeImage(img_url);
 
-                                navController.navigate(R.id.action_cameraFragment_to_matchResultFragment, bundle);
-                                ((HomeActivity)getActivity()).hideNavigationBar(true);
-                                ((HomeActivity)getActivity()).hideTopBarPanel(true);
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
@@ -216,6 +256,9 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    loadingDialog.stopLoading();
+                    handler.removeCallbacks(cancelHandler); //cancel the custom loading part
+
                     Log.e(TAG, "onErrorResponse: ", error);
                 }
             }
@@ -244,10 +287,6 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
                 }
             };
             VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
-
-            //navController.navigate(R.id.action_cameraFragment_to_matchResultFragment);
-            //((HomeActivity)getActivity()).hideNavigationBar(true);
-            //((HomeActivity)getActivity()).hideTopBarPanel(true);
 
         } catch (Exception e){
             toast("Something went wrong, please try again");
