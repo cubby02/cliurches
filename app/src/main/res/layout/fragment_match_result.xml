@@ -64,7 +64,7 @@
                 android:background="@drawable/btn_rounded"
                 android:backgroundTint="@color/white"
                 android:fontFamily="@font/nunito_extrabold"
-                android:text="@string/save_to_gallery"
+                android:text="View Gallery"
                 android:textColor="@color/blue_main"
                 android:visibility="gone" />
 
@@ -135,23 +135,25 @@
                         android:id="@+id/btnGoogleSearch"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:backgroundTint="@color/blue_main"
-                        android:layout_toLeftOf="@id/btnMaps"
-                        android:background="@drawable/ic_baseline_info_24"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="15dp" />
+                        android:layout_marginBottom="15dp"
+                        android:layout_toLeftOf="@id/btnMaps"
+                        android:background="@drawable/ic_baseline_info_24"
+                        android:backgroundTint="@color/blue_main"
+                        android:visibility="gone" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnMaps"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:backgroundTint="@color/blue_main"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/ic_baseline_map_24"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp" />
+                        android:layout_marginBottom="15dp"
+                        android:background="@drawable/ic_baseline_map_24"
+                        android:backgroundTint="@color/blue_main"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
