@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cubbysulotions.cliurches.LoginSignUp.LoginRegisterActivity;
@@ -258,21 +259,28 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                         }
 
                         String JSON_URL = "http://171.22.124.181/cliurches-api/api/edit_details/?firstname="+ urlFirstname +"&lastname="+ urlLastname +"&email="+ urlEmail +"&api_key="+ urlApi +"";
-                        StringRequest stringRequest = new StringRequest(
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                                 Request.Method.POST,
                                 JSON_URL,
-                                new Response.Listener<String>() {
+                                null,
+                                new Response.Listener<JSONObject>() {
                                     @Override
-                                    public void onResponse(String response) {
-                                        if(response.equals("success")) {
-                                            populateDetails();
-                                            userDetailsLayout.setVisibility(View.VISIBLE);
-                                            editUserLayout.setVisibility(View.GONE);
-                                            loading.setVisibility(View.INVISIBLE);
-                                            toast("User's details updated");
+                                    public void onResponse(JSONObject response) {
+                                        try {
+                                            String status = response.getString("status");
 
-                                        }else{
-                                            toast("email belongs to an existing user");
+                                            if(status.equals("success")) {
+                                                populateDetails();
+                                                userDetailsLayout.setVisibility(View.VISIBLE);
+                                                editUserLayout.setVisibility(View.GONE);
+                                                loading.setVisibility(View.INVISIBLE);
+                                                toast("User's details updated");
+
+                                            }else{
+                                                toast("email belongs to an existing user");
+                                                }
+                                        }catch (JSONException e) {
+                                            throw new RuntimeException(e);
                                         }
                                     }
                                 }, new Response.ErrorListener() {
@@ -284,7 +292,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                             }
                         }
                         );
-                        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(stringRequest);
+                        VolleySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(jsonObjectRequest);
 
 
 
