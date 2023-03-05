@@ -272,7 +272,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                                             toast("User's details updated");
 
                                         }else{
-                                            toast("email belongs to an existing user.");
+                                            toast("email belongs to an existing user");
                                         }
                                     }
                                 }, new Response.ErrorListener() {
