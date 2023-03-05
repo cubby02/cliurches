@@ -264,11 +264,16 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
-                                        populateDetails();
-                                        userDetailsLayout.setVisibility(View.VISIBLE);
-                                        editUserLayout.setVisibility(View.GONE);
-                                        loading.setVisibility(View.INVISIBLE);
-                                        toast("User's details updated");
+                                        if(response.equals("sucess")) {
+                                            populateDetails();
+                                            userDetailsLayout.setVisibility(View.VISIBLE);
+                                            editUserLayout.setVisibility(View.GONE);
+                                            loading.setVisibility(View.INVISIBLE);
+                                            toast("User's details updated");
+
+                                        }else{
+                                            toast("email belongs to an existing user.");
+                                        }
                                     }
                                 }, new Response.ErrorListener() {
                             @Override

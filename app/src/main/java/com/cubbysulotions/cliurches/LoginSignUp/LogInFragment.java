@@ -184,7 +184,7 @@ public class LogInFragment extends Fragment {
                                 String urlApi = null;
 
                                 try {
-                                    urlApi = URLEncoder.encode(txtEmail.getText().toString().replace("'","\\'"), "utf-8");
+                                    urlApi = URLEncoder.encode(resetEmail.getText().toString().replace("'","\\'"), "utf-8");
                                 } catch (UnsupportedEncodingException e) {
                                     e.printStackTrace();
                                 }
@@ -198,6 +198,7 @@ public class LogInFragment extends Fragment {
                                             public void onResponse(String response) {
                                                 toast("Please check your email");
                                                 dialog.dismiss();
+
                                             }
                                         }, new Response.ErrorListener() {
                                     @Override
