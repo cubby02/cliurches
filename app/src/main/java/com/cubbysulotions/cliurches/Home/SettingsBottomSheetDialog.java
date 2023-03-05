@@ -264,7 +264,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                                 new Response.Listener<String>() {
                                     @Override
                                     public void onResponse(String response) {
-                                        if(response.equals("sucess")) {
+                                        if(response.equals("success")) {
                                             populateDetails();
                                             userDetailsLayout.setVisibility(View.VISIBLE);
                                             editUserLayout.setVisibility(View.GONE);
