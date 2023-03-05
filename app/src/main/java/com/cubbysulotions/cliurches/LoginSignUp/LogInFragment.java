@@ -189,7 +189,7 @@ public class LogInFragment extends Fragment {
                                     e.printStackTrace();
                                 }
 
-                                String JSON_URL = "http://192.3.236.3/cliurches-api/api/changePassword/?email="+ urlApi +"";
+                                String JSON_URL = "http://171.22.124.181/cliurches-api/api/changePassword/?email="+ urlApi +"";
                                 StringRequest stringRequest = new StringRequest(
                                         Request.Method.POST,
                                         JSON_URL,
@@ -249,7 +249,7 @@ public class LogInFragment extends Fragment {
                                 e.printStackTrace();
                             }
 
-                            String JSON_URL = "http://192.3.236.3/cliurches-api/api/login/?email="+ email +"&password="+ password+"";
+                            String JSON_URL = "http://171.22.124.181/cliurches-api/api/login/?email="+ email +"&password="+ password+"";
                             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                                     Request.Method.GET,
                                     JSON_URL,

@@ -72,7 +72,7 @@ public class RecieptsFragment extends Fragment implements BackpressedListener {
         SessionManagement sessionManagement = new SessionManagement(getActivity());
         String api_key = sessionManagement.getSession2();
 
-        String JSON_URL = "http://192.3.236.3/cliurches-api/api/displayPamisa/?api_key="+ api_key +"";
+        String JSON_URL = "http://171.22.124.181/cliurches-api/api/displayPamisa/?api_key="+ api_key +"";
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 Request.Method.GET,

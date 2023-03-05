@@ -139,7 +139,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                                         e.printStackTrace();
                                     }
 
-                                    String JSON_URL = "http://192.3.236.3/cliurches-api/api/changePassword/?email="+ urlApi +"";
+                                    String JSON_URL = "http://171.22.124.181/cliurches-api/api/changePassword/?email="+ urlApi +"";
                                     StringRequest stringRequest = new StringRequest(
                                             Request.Method.POST,
                                             JSON_URL,
@@ -188,7 +188,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                 e.printStackTrace();
             }
 
-            String URL = "http://192.3.236.3/cliurches-api/api/user_details/?api_key="+ api +"";
+            String URL = "http://171.22.124.181/cliurches-api/api/user_details/?api_key="+ api +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -257,7 +257,7 @@ public class SettingsBottomSheetDialog extends BottomSheetDialogFragment {
                             e.printStackTrace();
                         }
 
-                        String JSON_URL = "http://192.3.236.3/cliurches-api/api/edit_details/?firstname="+ urlFirstname +"&lastname="+ urlLastname +"&email="+ urlEmail +"&api_key="+ urlApi +"";
+                        String JSON_URL = "http://171.22.124.181/cliurches-api/api/edit_details/?firstname="+ urlFirstname +"&lastname="+ urlLastname +"&email="+ urlEmail +"&api_key="+ urlApi +"";
                         StringRequest stringRequest = new StringRequest(
                                 Request.Method.POST,
                                 JSON_URL,

@@ -193,7 +193,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
     private void analyzeImage(String img_url){
         try {
             customLoading();
-            String url = "http://192.3.236.3/cliurches-api/api/media/identify?url="+ img_url +"";
+            String url = "http://171.22.124.181/cliurches-api/api/media/identify?url="+ img_url +"";
             StringRequest stringRequest = new StringRequest(
                     Request.Method.GET,
                     url,
@@ -237,7 +237,7 @@ public class CameraFragment<CliurchesMlModelV1> extends Fragment implements Back
 
     private void identifyChurch() {
         try {
-            String URL = "http://192.3.236.3/cliurches-api/api/media/upload/";
+            String URL = "http://171.22.124.181/cliurches-api/api/media/upload/";
             StringRequest stringRequest = new StringRequest(
                     Request.Method.POST,
                     URL,

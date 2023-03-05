@@ -71,7 +71,7 @@ public class GalleryFragment extends Fragment implements BackpressedListener {
         try {
             galleryList.clear();
             SessionManagement sessionManagement = new SessionManagement(getActivity());
-            String JSON_URL = "http://192.3.236.3/cliurches-api/api/media/usergallery/?api_key="+ sessionManagement.getSession2() +"";
+            String JSON_URL = "http://171.22.124.181/cliurches-api/api/media/usergallery/?api_key="+ sessionManagement.getSession2() +"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,

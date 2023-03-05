@@ -120,7 +120,7 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
                 e.printStackTrace();
             }
 
-            String URL = "http://192.3.236.3/cliurches-api/api/paymentMethod/?parish="+ selectedChurch_url +"&api_key="+api_url+"";
+            String URL = "http://171.22.124.181/cliurches-api/api/paymentMethod/?parish="+ selectedChurch_url +"&api_key="+api_url+"";
 
             JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                     Request.Method.GET,
@@ -188,7 +188,7 @@ public class PaymentFragment extends Fragment implements BackpressedListener {
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                    String URL = "http://192.3.236.3/cliurches-api/api/pamisa/?parish="+ selectedChurch_url +"&recipient="+name_url +"&forwhom="+ forWhom_url +"&date="+ selectedDate_url +"&time=" + selectedTime_url +"&type=" + selectedPadasal_url +"&comment=" + additional_url +"&api_key="+ api_url+"";
+                    String URL = "http://171.22.124.181/cliurches-api/api/pamisa/?parish="+ selectedChurch_url +"&recipient="+name_url +"&forwhom="+ forWhom_url +"&date="+ selectedDate_url +"&time=" + selectedTime_url +"&type=" + selectedPadasal_url +"&comment=" + additional_url +"&api_key="+ api_url+"";
                     StringRequest stringRequest = new StringRequest(
                             Request.Method.POST,
                             URL,
