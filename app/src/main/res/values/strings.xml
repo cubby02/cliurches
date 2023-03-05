@@ -64,7 +64,7 @@
     <string name="please"><i>Please add details</i></string>
     <string name="please2"><i>Please contact church admin</i></string>
 
-    <string name="notice">This AI-powered program has been designed to analyze data flow graphs and deduce the most likely location based on the image\'s features.</string>
+    <string name="notice">This AI-powered tool has been designed to analyze data flow graphs and deduce the most likely location based on the image\'s features.</string>
 
     <!-- BAUAN CHURCH -->
     <string name="bauan">Bauan - Immaculate Concepcion Parish</string>
